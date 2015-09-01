@@ -6,6 +6,12 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
+			<label index="tx_faq_mm_question_questioncategory.sorting"><![CDATA[sorting]]></label>
+			<label index="tx_faq_mm_question_questioncategory.uid_foreign"><![CDATA[uid_foreign]]></label>
+			<label index="tx_faq_mm_question_questioncategory.uid_local"><![CDATA[uid_local]]></label>
+			<label index="tx_faq_mm_question_questioncategory.ident"><![CDATA[ident]]></label>
+			<label index="tx_faq_mm_question_questioncategory.sorting_foreign"><![CDATA[sorting_foreign]]></label>
+			<label index="tx_faq_mm_question_questioncategory.tablenames"><![CDATA[tablenames]]></label>
 			<label index="tx_faq_domain_model_questioncategory"><![CDATA[faq ==> LLL:tx_faq_domain_model_questioncategory]]></label>
 			<label index="tx_faq_domain_model_questioncategory.parent"><![CDATA[parent]]></label>
 			<label index="tx_faq_domain_model_questioncategory.title"><![CDATA[title]]></label>
@@ -24,16 +30,16 @@
 			<label index="error.question.question.1221560718"><![CDATA[The field must not be empty.]]></label>
 			<label index="eid.error.multivote"><![CDATA[Sie haben f&uuml;r diese Frage bereits abgestimmt!]]></label>
 			<label index="eid.ok"><![CDATA[Vielen Dank f&uuml;r Ihre Wertung.]]></label>
-			<label index="tx_hdnetfaq_domain_model_questioncategory"><![CDATA[FAQ Kategorie]]></label>
-			<label index="tx_hdnetfaq_domain_model_questioncategory.parent"><![CDATA[Kategorie]]></label>
-			<label index="tx_hdnetfaq_domain_model_questioncategory.title"><![CDATA[Titel]]></label>
-			<label index="tx_hdnetfaq_domain_model_question"><![CDATA[Frage]]></label>
-			<label index="tx_hdnetfaq_domain_model_question.categories"><![CDATA[Kategorien]]></label>
-			<label index="tx_hdnetfaq_domain_model_question.flop_counter"><![CDATA[Anzahl / Flop]]></label>
-			<label index="tx_hdnetfaq_domain_model_question.top_counter"><![CDATA[Anzahl / Top]]></label>
-			<label index="tx_hdnetfaq_domain_model_question.tags"><![CDATA[Tags]]></label>
-			<label index="tx_hdnetfaq_domain_model_question.answer"><![CDATA[Antwort]]></label>
-			<label index="tx_hdnetfaq_domain_model_question.title"><![CDATA[Frage]]></label>
+			<label index="tx_faq_domain_model_questioncategory"><![CDATA[FAQ Kategorie]]></label>
+			<label index="tx_faq_domain_model_questioncategory.parent"><![CDATA[Kategorie]]></label>
+			<label index="tx_faq_domain_model_questioncategory.title"><![CDATA[Titel]]></label>
+			<label index="tx_faq_domain_model_question"><![CDATA[Frage]]></label>
+			<label index="tx_faq_domain_model_question.categories"><![CDATA[Kategorien]]></label>
+			<label index="tx_faq_domain_model_question.flop_counter"><![CDATA[Anzahl / Flop]]></label>
+			<label index="tx_faq_domain_model_question.top_counter"><![CDATA[Anzahl / Top]]></label>
+			<label index="tx_faq_domain_model_question.tags"><![CDATA[Tags]]></label>
+			<label index="tx_faq_domain_model_question.answer"><![CDATA[Antwort]]></label>
+			<label index="tx_faq_domain_model_question.title"><![CDATA[Frage]]></label>
 			<label index="flexform.topMode">Top-Fragen Modus</label>
 			<label index="flexform.topMode.votings">Votings</label>
 			<label index="flexform.topMode.custom">Auswahl</label>
@@ -70,16 +76,16 @@
 			<label index="error.question.question.1221560718"><![CDATA[The field must not be empty.]]></label>
 			<label index="eid.error.multivote"><![CDATA[Sie haben f&uuml;r diese Frage bereits abgestimmt!]]></label>
 			<label index="eid.ok"><![CDATA[Vielen Dank f&uuml;r Ihre Wertung.]]></label>
-			<label index="tx_hdnetfaq_domain_model_questioncategory"><![CDATA[FAQ Kategorie]]></label>
-			<label index="tx_hdnetfaq_domain_model_questioncategory.parent"><![CDATA[Kategorie]]></label>
-			<label index="tx_hdnetfaq_domain_model_questioncategory.title"><![CDATA[Titel]]></label>
-			<label index="tx_hdnetfaq_domain_model_question"><![CDATA[Frage]]></label>
-			<label index="tx_hdnetfaq_domain_model_question.categories"><![CDATA[Kategorien]]></label>
-			<label index="tx_hdnetfaq_domain_model_question.flop_counter"><![CDATA[Anzahl / Flop]]></label>
-			<label index="tx_hdnetfaq_domain_model_question.top_counter"><![CDATA[Anzahl / Top]]></label>
-			<label index="tx_hdnetfaq_domain_model_question.tags"><![CDATA[Tags]]></label>
-			<label index="tx_hdnetfaq_domain_model_question.answer"><![CDATA[Antwort]]></label>
-			<label index="tx_hdnetfaq_domain_model_question.title"><![CDATA[Frage]]></label>
+			<label index="tx_faq_domain_model_questioncategory"><![CDATA[FAQ Kategorie]]></label>
+			<label index="tx_faq_domain_model_questioncategory.parent"><![CDATA[Kategorie]]></label>
+			<label index="tx_faq_domain_model_questioncategory.title"><![CDATA[Titel]]></label>
+			<label index="tx_faq_domain_model_question"><![CDATA[Frage]]></label>
+			<label index="tx_faq_domain_model_question.categories"><![CDATA[Kategorien]]></label>
+			<label index="tx_faq_domain_model_question.flop_counter"><![CDATA[Anzahl / Flop]]></label>
+			<label index="tx_faq_domain_model_question.top_counter"><![CDATA[Anzahl / Top]]></label>
+			<label index="tx_faq_domain_model_question.tags"><![CDATA[Tags]]></label>
+			<label index="tx_faq_domain_model_question.answer"><![CDATA[Antwort]]></label>
+			<label index="tx_faq_domain_model_question.title"><![CDATA[Frage]]></label>
 			<label index="flexform.topMode">Top-Fragen Modus</label>
 			<label index="flexform.topMode.votings">Votings</label>
 			<label index="flexform.topMode.custom">Auswahl</label>
