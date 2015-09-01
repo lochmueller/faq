@@ -1,4 +1,0 @@
-<b>Vielen Dank für Ihre Frage:</b><br />
-<blockquote>{question.question}</blockquote>
-<hr />
-Wir werden uns in Kürze bei Ihnen unter der E-Mail Adresse <cite>{question.email}</cite> melden.
