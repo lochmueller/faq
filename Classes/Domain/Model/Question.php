@@ -5,7 +5,7 @@
  * @author     Tim Lochmüller
  */
 
-namespace HDNET\HdnetFaq\Domain\Model;
+namespace HDNET\Faq\Domain\Model;
 
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -58,7 +58,7 @@ class Question extends AbstractModel {
 	/**
 	 * Categories
 	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HDNET\HdnetFaq\Domain\Model\Questioncategory>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HDNET\Faq\Domain\Model\Questioncategory>
 	 * @db int(11) DEFAULT '0' NOT NULL
 	 */
 	protected $categories;

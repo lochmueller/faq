@@ -7,7 +7,7 @@
  * @author     Tim Spiekerkoetter
  */
 
-namespace HDNET\HdnetFaq\Domain\Repository;
+namespace HDNET\Faq\Domain\Repository;
 
 use HDNET\Hdnet\Domain\Repository\AbstractRepository as HdnetAbstractRepository;
 

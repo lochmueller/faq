@@ -7,7 +7,7 @@
  * @author     Tim Spiekerkoetter
  */
 
-namespace HDNET\HdnetFaq\Domain\Model;
+namespace HDNET\Faq\Domain\Model;
 
 use HDNET\Hdnet\Domain\Model\AbstractModel as HdnetAbstractModel;
 

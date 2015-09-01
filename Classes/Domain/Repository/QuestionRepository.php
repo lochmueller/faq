@@ -5,12 +5,12 @@
  * @author     Tim Lochmüller
  */
 
-namespace HDNET\HdnetFaq\Domain\Repository;
+namespace HDNET\Faq\Domain\Repository;
 
 use HDNET\Hdnet\Utility\HelperUtility;
-use HDNET\HdnetFaq\Domain\Model\Question;
-use HDNET\HdnetFaq\Domain\Model\Questioncategory;
-use HDNET\HdnetFaq\Domain\Model\Request\Faq;
+use HDNET\Faq\Domain\Model\Question;
+use HDNET\Faq\Domain\Model\Questioncategory;
+use HDNET\Faq\Domain\Model\Request\Faq;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**

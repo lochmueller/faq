@@ -5,7 +5,7 @@
  * @author     Tim Lochmüller
  */
 
-namespace HDNET\HdnetFaq\Domain\Repository;
+namespace HDNET\Faq\Domain\Repository;
 
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 

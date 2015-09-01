@@ -7,7 +7,7 @@
  * @author     Tim Spiekerkoetter
  */
 
-namespace HDNET\HdnetFaq\Controller;
+namespace HDNET\Faq\Controller;
 
 use HDNET\Hdnet\Controller\AbstractController as HdnetAbstractController;
 use HDNET\Hdnet\Xclass\TypoScriptFrontendController;

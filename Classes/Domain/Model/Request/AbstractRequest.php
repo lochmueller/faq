@@ -5,9 +5,9 @@
   * @author     Tim Lochmüller
  */
 
-namespace HDNET\HdnetFaq\Domain\Model\Request;
+namespace HDNET\Faq\Domain\Model\Request;
 
-use HDNET\HdnetFaq\Domain\Model\AbstractModel;
+use HDNET\Faq\Domain\Model\AbstractModel;
 
 /**
  * Request Abstraction

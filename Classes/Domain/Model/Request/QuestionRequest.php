@@ -5,7 +5,7 @@
  * @author     Tim Lochmüller
  */
 
-namespace HDNET\HdnetFaq\Domain\Model\Request;
+namespace HDNET\Faq\Domain\Model\Request;
 
 /**
  * Request Faq

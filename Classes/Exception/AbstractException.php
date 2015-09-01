@@ -5,7 +5,7 @@
  * @author     Tim Spiekerkoetter
  */
 
-namespace HDNET\HdnetFaq;
+namespace HDNET\Faq;
 
 use HDNET\Hdnet\Exception;
 

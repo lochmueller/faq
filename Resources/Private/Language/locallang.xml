@@ -6,6 +6,16 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
+			<label index="tx_faq_domain_model_questioncategory"><![CDATA[faq ==> LLL:tx_faq_domain_model_questioncategory]]></label>
+			<label index="tx_faq_domain_model_questioncategory.parent"><![CDATA[parent]]></label>
+			<label index="tx_faq_domain_model_questioncategory.title"><![CDATA[title]]></label>
+			<label index="tx_faq_domain_model_question"><![CDATA[faq ==> LLL:tx_faq_domain_model_question]]></label>
+			<label index="tx_faq_domain_model_question.categories"><![CDATA[categories]]></label>
+			<label index="tx_faq_domain_model_question.flop_counter"><![CDATA[flop_counter]]></label>
+			<label index="tx_faq_domain_model_question.top_counter"><![CDATA[top_counter]]></label>
+			<label index="tx_faq_domain_model_question.tags"><![CDATA[tags]]></label>
+			<label index="tx_faq_domain_model_question.answer"><![CDATA[answer]]></label>
+			<label index="tx_faq_domain_model_question.title"><![CDATA[title]]></label>
 			<label index="tt_content.hdnet_faq.header"><![CDATA[hdnet_faq (Header)]]></label>
 			<label index="eid.error.question"><![CDATA[Keine g&uuml;ltige Frage ausgew&auml;hlt!]]></label>
 			<label index="error.captcha.9221561048"><![CDATA[Entered word does not match the image]]></label>

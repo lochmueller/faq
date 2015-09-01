@@ -1,5 +1,5 @@
 <?php
-$base = \HDNET\Autoloader\Utility\ModelUtility::getTcaInformation('HDNET\\HdnetFaq\\Domain\\Model\\Questioncategory');
+$base = \HDNET\Autoloader\Utility\ModelUtility::getTcaInformation('HDNET\\Faq\\Domain\\Model\\Questioncategory');
 
 $custom = array(
 	'columns' => array(

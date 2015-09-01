@@ -5,7 +5,7 @@
  * @author     Tim Lochmüller
  */
 
-namespace HDNET\HdnetFaq\Domain\Model;
+namespace HDNET\Faq\Domain\Model;
 
 /**
  * Questioncategory / Fragen Kategorie
@@ -25,7 +25,7 @@ class Questioncategory extends AbstractModel {
 	/**
 	 * Parent
 	 *
-	 * @var \HDNET\HdnetFaq\Domain\Model\Questioncategory
+	 * @var \HDNET\Faq\Domain\Model\Questioncategory
 	 * @db  int(11) DEFAULT '0' NOT NULL
 	 * @lazy
 	 */
@@ -52,7 +52,7 @@ class Questioncategory extends AbstractModel {
 	/**
 	 * Set the parent
 	 *
-	 * @param \HDNET\HdnetFaq\Domain\Model\Questioncategory $parent
+	 * @param \HDNET\Faq\Domain\Model\Questioncategory $parent
 	 */
 	public function setParent($parent) {
 		$this->parent = $parent;
@@ -61,7 +61,7 @@ class Questioncategory extends AbstractModel {
 	/**
 	 * Get the parent
 	 *
-	 * @return \HDNET\HdnetFaq\Domain\Model\Questioncategory
+	 * @return \HDNET\Faq\Domain\Model\Questioncategory
 	 */
 	public function getParent() {
 		return $this->parent;

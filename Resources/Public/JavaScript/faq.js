@@ -34,7 +34,7 @@ $.fn.faq = function (settings) {
 				var questionUid = $(this).attr('data-uid');
 
 				$.ajax({
-					url: '/?eID=faqTopFlop&mode=top&question=' + questionUid,
+					url: '/?eID=FaqTopFlop&mode=top&question=' + questionUid,
 					dataType: 'json',
 					success: function (data) {
 						var message = $msgWrp.html(data.description);
@@ -50,7 +50,7 @@ $.fn.faq = function (settings) {
 				var questionUid = $(this).attr('data-uid');
 
 				$.ajax({
-					url: '/?eID=faqTopFlop&mode=flop&question=' + questionUid,
+					url: '/?eID=FaqTopFlop&mode=flop&question=' + questionUid,
 					dataType: 'json',
 					success: function (data) {
 						var message = $msgWrp.html(data.description);

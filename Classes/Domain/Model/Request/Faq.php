@@ -5,7 +5,7 @@
  * @author     Tim Lochmüller
  */
 
-namespace HDNET\HdnetFaq\Domain\Model\Request;
+namespace HDNET\Faq\Domain\Model\Request;
 
 /**
  * Request Faq
@@ -16,7 +16,7 @@ class Faq extends AbstractRequest {
 	/**
 	 * Category
 	 *
-	 * @var \HDNET\HdnetFaq\Domain\Model\Questioncategory
+	 * @var \HDNET\Faq\Domain\Model\Questioncategory
 	 */
 	protected $category;
 
@@ -30,7 +30,7 @@ class Faq extends AbstractRequest {
 	/**
 	 * Set the category
 	 *
-	 * @param \HDNET\HdnetFaq\Domain\Model\Questioncategory $category
+	 * @param \HDNET\Faq\Domain\Model\Questioncategory $category
 	 */
 	public function setCategory($category) {
 		$this->category = $category;
@@ -39,7 +39,7 @@ class Faq extends AbstractRequest {
 	/**
 	 * Get the category
 	 *
-	 * @return \HDNET\HdnetFaq\Domain\Model\Questioncategory
+	 * @return \HDNET\Faq\Domain\Model\Questioncategory
 	 */
 	public function getCategory() {
 		return $this->category;
