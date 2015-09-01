@@ -1,0 +1,55 @@
+
+{namespace h=HDNET\Hdnet\ViewHelpers}
+<f:layout name="Default" />
+
+<f:section name="content">
+
+	<f:render partial="Faq/Form" arguments="{_all}" />
+
+	<f:if condition="{showResults}">
+
+		<h2><f:translate key="results">Suchergebnisse:</f:translate></h2>
+
+
+		<div class="box faq list results noPad clearfix">
+			<f:if condition="{questions}">
+				<f:then>
+					<ul>
+						<f:for each="{questions}" as="question">
+							<f:render partial="Faq/Answer" arguments="{question: question, renderId: 1}" />
+						</f:for>
+					</ul>
+				</f:then>
+				<f:else>
+					<f:translate key="no_questions_found">
+						<p>Es konnten keine FAQ gefunden werden.<br />Bitte versuchen Sie es erneut mit ein anderen Suchbegriff.</p>
+						<p><strong>Alternativ können Sie uns auch direkt eine Frage stellen.</strong></p>
+					</f:translate>
+				</f:else>
+			</f:if>
+		</div>
+	</f:if>
+
+
+	<h2><f:translate key="recently">Kürzlich angelegte Fragen</f:translate></h2>
+
+	<div class="box faq list noPad clearfix">
+		<ul>
+			<f:for each="{newQuestions}" as="question">
+				<f:render partial="Faq/Answer" arguments="{question: question}" />
+			</f:for>
+		</ul>
+	</div>
+
+	<h2><f:translate key="top">Top Fragen</f:translate></h2>
+
+	<div class="box faq list noPad clearfix">
+		<ul>
+			<f:for each="{topQuestions}" as="question">
+				<f:render partial="Faq/Answer" arguments="{question: question}" />
+			</f:for>
+		</ul>
+	</div>
+
+</f:section>
+

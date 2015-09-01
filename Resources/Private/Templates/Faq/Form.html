@@ -1,0 +1,26 @@
+{namespace h=HDNET\Hdnet\ViewHelpers}
+{namespace s=SJBR\SrFreecap\ViewHelpers}
+
+<div class="box faq add clearfix">
+
+	<h2><f:translate key="form.headline">Es fehlt eine Frage?<br>Teilen Sie sie uns mit!</f:translate></h2>
+
+	<f:render partial="FormErrors" />
+
+	<f:form action="send" object="{question}" objectName="question" class="clearfix">
+		<label class="none" for="addquestion-question"><f:translate key="form.question">Ihre Frage</f:translate></label>
+		<f:form.textarea property="question" id="addquestion-question" rows="6" cols="5" />
+
+		<label class="blue" for="addquestion-email"><strong><f:translate key="form.email">E-Mail-Adresse (für unsere Antwort)</f:translate></strong></label>
+		<f:form.textfield property="email" class="text" id="addquestion-email" />
+
+		<label for="addquestion-captcha"><f:translate key="form.captcha">Bitte geben Sie die unten stehenden Buchstaben in das Feld ein.*</f:translate>
+			<span title="{f:translate(key: 'form.captcha.popup')}" class="info icon-help-circled"></span>
+		</label>
+
+		<s:image />
+		<f:form.textfield name="captcha" class="text" id="addquestion-captcha" />
+
+		<f:form.submit value="{f:translate(key: 'form.submit')}" class="submit button layout100 align-center" />
+	</f:form>
+</div>

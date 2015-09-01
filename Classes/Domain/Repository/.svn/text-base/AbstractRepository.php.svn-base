@@ -1,0 +1,27 @@
+<?php
+/**
+ * AbstractRepository.php
+ *
+ * General file information
+ *
+ * @category   Extension
+ * @package    HdnetFaq
+ * @author     Tim Spiekerkoetter HDNET GmbH & Co. KG <tim.spiekerkoetter@hdnet.de>
+ */
+
+namespace HDNET\HdnetFaq\Domain\Repository;
+
+use HDNET\Hdnet\Domain\Repository\AbstractRepository as HdnetAbstractRepository;
+
+/**
+ * AbstractRepository
+ *
+ * General class information
+ *
+ * @package    HdnetFaq
+ * @subpackage Domain\Repository
+ * @author     Tim Spiekerkoetter HDNET GmbH & Co. KG <tim.spiekerkoetter@hdnet.de>
+ */
+abstract class AbstractRepository extends HdnetAbstractRepository {
+
+}

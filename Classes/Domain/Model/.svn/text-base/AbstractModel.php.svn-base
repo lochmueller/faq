@@ -1,0 +1,27 @@
+<?php
+/**
+ * AbstractModel.php
+ *
+ * General file information
+ *
+ * @category   Extension
+ * @package    HdnetFaq
+ * @author     Tim Spiekerkoetter HDNET GmbH & Co. KG <tim.spiekerkoetter@hdnet.de>
+ */
+
+namespace HDNET\HdnetFaq\Domain\Model;
+
+use HDNET\Hdnet\Domain\Model\AbstractModel as HdnetAbstractModel;
+
+/**
+ * AbstractModel
+ *
+ * General class information
+ *
+ * @package    HdnetFaq
+ * @subpackage Domain\Model
+ * @author     Tim Spiekerkoetter HDNET GmbH & Co. KG <tim.spiekerkoetter@hdnet.de>
+ */
+abstract class AbstractModel extends HdnetAbstractModel {
+
+}

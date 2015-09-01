@@ -1,0 +1,29 @@
+plugin.tx_hdnetfaq {
+	settings {
+		faq {
+			limitTop = 5
+			limitNewest = 5
+			topCategory = 1
+			teaserLimit = 10
+			teaserCategories =
+			allLinkTarget = {$plugin.tx_hdnetfaq.settings.faq.allLinkTarget}
+		}
+	}
+
+	view {
+		templateRootPath = {$plugin.tx_hdnetfaq.view.templateRootPath}
+		partialRootPath = {$plugin.tx_hdnetfaq.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_hdnetfaq.view.layoutRootPath}
+	}
+
+	features {
+		rewrittenPropertyMapper = 1
+		skipDefaultArguments = 1
+		removeDuplicateFlashMessages = 1
+		moveErrorFlashMessagesToSysLog = 1
+	}
+
+	persistence {
+		updateReferenceIndex = 1
+	}
+}

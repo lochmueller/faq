@@ -1,0 +1,10 @@
+plugin.tx_faq {
+	view {
+		# cat=plugin.tx_faq/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:faq/Resources/Private/Templates/
+		# cat=plugin.tx_faq/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:faq/Resources/Private/Partials/
+		# cat=plugin.tx_faq/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:faq/Resources/Private/Layouts/
+	}
+}

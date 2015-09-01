@@ -1,0 +1,70 @@
+<?php
+/**
+ * Questioncategory / Fragen Kategorie
+ *
+ * @author     Tim Lochmüller
+ */
+
+namespace HDNET\HdnetFaq\Domain\Model;
+
+/**
+ * Questioncategory / Fragen Kategorie
+ *
+ * @db
+ */
+class Questioncategory extends AbstractModel {
+
+	/**
+	 * Title
+	 *
+	 * @var string
+	 * @db
+	 */
+	protected $title;
+
+	/**
+	 * Parent
+	 *
+	 * @var \HDNET\HdnetFaq\Domain\Model\Questioncategory
+	 * @db  int(11) DEFAULT '0' NOT NULL
+	 * @lazy
+	 */
+	protected $parent;
+
+	/**
+	 * Set the title
+	 *
+	 * @param string $title
+	 */
+	public function setTitle($title) {
+		$this->title = $title;
+	}
+
+	/**
+	 * Get the title
+	 *
+	 * @return string
+	 */
+	public function getTitle() {
+		return $this->title;
+	}
+
+	/**
+	 * Set the parent
+	 *
+	 * @param \HDNET\HdnetFaq\Domain\Model\Questioncategory $parent
+	 */
+	public function setParent($parent) {
+		$this->parent = $parent;
+	}
+
+	/**
+	 * Get the parent
+	 *
+	 * @return \HDNET\HdnetFaq\Domain\Model\Questioncategory
+	 */
+	public function getParent() {
+		return $this->parent;
+	}
+
+}

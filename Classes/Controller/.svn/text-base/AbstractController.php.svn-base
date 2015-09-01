@@ -1,0 +1,37 @@
+<?php
+/**
+ * AbstractController.php
+ *
+ * General file information
+ *
+ * @category   Extension
+ * @package    HdnetFaq
+ * @author     Tim Spiekerkoetter HDNET GmbH & Co. KG <tim.spiekerkoetter@hdnet.de>
+ */
+
+namespace HDNET\HdnetFaq\Controller;
+
+use HDNET\Hdnet\Controller\AbstractController as HdnetAbstractController;
+use HDNET\Hdnet\Xclass\TypoScriptFrontendController;
+
+/**
+ * AbstractController
+ *
+ * General class information
+ *
+ * @package    HdnetFaq
+ * @subpackage Controller
+ * @author     Tim Spiekerkoetter HDNET GmbH & Co. KG <tim.spiekerkoetter@hdnet.de>
+ */
+abstract class AbstractController extends HdnetAbstractController {
+	/**
+	 * Disable indexing of this page
+	 */
+	protected function disableIndexing() {
+		if ($GLOBALS['TSFE'] instanceof TypoScriptFrontendController) {
+			$GLOBALS['TSFE']->config['config']['index_enable'] = 0;
+			$GLOBALS['TSFE']->TYPO3_CONF_VARS['SC_OPTIONS']['tslib/class.tslib_fe.php']['pageIndexing'] = array();
+			$GLOBALS['TSFE']->page['no_search'] = 1;
+		}
+	}
+}
