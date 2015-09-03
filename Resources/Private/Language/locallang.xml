@@ -6,6 +6,7 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
+			<label index="sysfolder">FAQ</label>
 			<label index="tx_faq_mm_question_questioncategory.sorting"><![CDATA[sorting]]></label>
 			<label index="tx_faq_mm_question_questioncategory.uid_foreign"><![CDATA[uid_foreign]]></label>
 			<label index="tx_faq_mm_question_questioncategory.uid_local"><![CDATA[uid_local]]></label>
