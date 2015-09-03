@@ -130,19 +130,16 @@ class FaqController extends AbstractController
      * @param string                                          $captcha
      * @validate $captcha NotEmpty
      * @validate $captcha \SJBR\SrFreecap\Validation\Validator\CaptchaValidator
-     * @view \HDNET\Hdnet\View\MailView
      */
-    public function sendAction(
-        QuestionRequest $question,
-        /** @noinspection PhpUnusedParameterInspection */
-        $captcha
-    ) {
+    public function sendAction(QuestionRequest $question, $captcha)
+    {
         $this->disableIndexing();
         $targetEmailAddress = $this->getTargetEmailAddress();
         if (GeneralUtility::validEmail($targetEmailAddress)) {
             $this->view->assign('to', array($targetEmailAddress => $targetEmailAddress));
             $this->view->assign('subject', 'Neue Frage eingestellt');
             $this->view->assign('question', $question);
+            $this->view->assign('captcha', $captcha);
             $this->view->render();
         }
         $this->forward('user');
@@ -152,7 +149,6 @@ class FaqController extends AbstractController
      * user action
      *
      * @param \HDNET\Faq\Domain\Model\Request\QuestionRequest $question
-     * @view \HDNET\Hdnet\View\MailView
      */
     public function userAction(QuestionRequest $question)
     {

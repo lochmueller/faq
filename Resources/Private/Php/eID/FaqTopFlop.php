@@ -1,7 +1,5 @@
 <?php
 use HDNET\Autoloader\Utility\TranslateUtility;
-use HDNET\Hdnet\Service\Storage\SessionService;
-use HDNET\Hdnet\Utility\HelperUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 // @todo remove hdnet dependencies
@@ -30,14 +28,21 @@ if (!in_array($mode, $modes)) {
         'Es wurde kein Modus gesetzt. Bitte kontaktieren Sie den Administrator!');
 } else {
 
-    $sessionService = new SessionService('faq');
-    $ids = $sessionService->setAndGet('topflop', array());
+    $var = session_id();
+    if (empty($var) && !headers_sent()) {
+        session_start();
+    }
+
+    if (!isset($_SESSION['topflop'])) {
+        $_SESSION['topflop'] = serialize(array());
+    }
+    $ids = unserialize($_SESSION['topflop']);
     if (in_array($question, $ids)) {
         $return['state'] = 'ERROR';
         $return['description'] = TranslateUtility::assureLabel('eid.error.multivote', 'faq',
             'Sie haben f&uuml;r diese Frage bereits abgestimmt!');
     } else {
-        $database = HelperUtility::getDatabase();
+        $database = $GLOBALS['TYPO3_DB'];
         $row = $database->exec_SELECTgetSingleRow('uid,flop_counter,top_counter', $table, 'uid=' . $question . ' AND deleted=0');
         $query = $database->SELECTquery('uid,flop_counter,top_counter', $table, 'uid=' . $question . ' AND deleted=0');
         if (!is_array($row)) {
@@ -46,7 +51,7 @@ if (!in_array($mode, $modes)) {
                 'Keine g&uuml;ltige Frage ausgew&auml;hlt!');
         } else {
             $ids[] = $row['uid'];
-            $sessionService->set('topflop', $ids);
+            $_SESSION['topflop'] = serialize($ids);
             $counter = ((int)$row[$mode . '_counter']) + 1;
 
             $update = array(
