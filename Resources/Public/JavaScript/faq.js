@@ -11,10 +11,16 @@ $.fn.faq = function (settings) {
 	var options = $.extend(true, defaults, settings);
 
 	return this.each(function () {
-		var $that = $(this), $li = $that.find(options.element);
+		var $that = $(this);
+		var $li = $that.find(options.element);
 
 		$li.each(function () {
-			var $eachLi = $(this), $header = $eachLi.find(options.header), $content = $eachLi.find(options.content), $linkUp = $content.find(options.ratingUp), $linkDown = $content.find(options.ratingDown), $msgWrp = options.messageWrap;
+			var $eachLi = $(this);
+			var $header = $eachLi.find(options.header);
+			var $content = $eachLi.find(options.content);
+			var $linkUp = $content.find(options.ratingUp);
+			var $linkDown = $content.find(options.ratingDown);
+			var $msgWrp = options.messageWrap;
 
 			$header.click(function () {
 				jQuery(this).toggleClass('act');
