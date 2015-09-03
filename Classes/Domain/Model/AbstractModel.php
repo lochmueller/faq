@@ -16,6 +16,7 @@ use HDNET\Hdnet\Domain\Model\AbstractModel as HdnetAbstractModel;
  *
  * General class information
  */
-abstract class AbstractModel extends HdnetAbstractModel {
+abstract class AbstractModel extends HdnetAbstractModel
+{
 
 }

@@ -12,6 +12,7 @@ use HDNET\Hdnet\Exception;
 /**
  * Exception Abstraction
  */
-abstract class AbstractException extends Exception\AbstractException {
+abstract class AbstractException extends Exception\AbstractException
+{
 
 }

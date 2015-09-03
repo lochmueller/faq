@@ -16,6 +16,7 @@ use HDNET\Hdnet\Domain\Repository\AbstractRepository as HdnetAbstractRepository;
  *
  * General class information
  */
-abstract class AbstractRepository extends HdnetAbstractRepository {
+abstract class AbstractRepository extends HdnetAbstractRepository
+{
 
 }

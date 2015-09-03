@@ -9,23 +9,26 @@
 
 namespace HDNET\Faq\Controller;
 
-use HDNET\Hdnet\Controller\AbstractController as HdnetAbstractController;
 use HDNET\Hdnet\Xclass\TypoScriptFrontendController;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
  * AbstractController
  *
  * General class information
  */
-abstract class AbstractController extends HdnetAbstractController {
-	/**
-	 * Disable indexing of this page
-	 */
-	protected function disableIndexing() {
-		if ($GLOBALS['TSFE'] instanceof TypoScriptFrontendController) {
-			$GLOBALS['TSFE']->config['config']['index_enable'] = 0;
-			$GLOBALS['TSFE']->TYPO3_CONF_VARS['SC_OPTIONS']['tslib/class.tslib_fe.php']['pageIndexing'] = array();
-			$GLOBALS['TSFE']->page['no_search'] = 1;
-		}
-	}
+abstract class AbstractController extends ActionController
+{
+
+    /**
+     * Disable indexing of this page
+     */
+    protected function disableIndexing()
+    {
+        if ($GLOBALS['TSFE'] instanceof TypoScriptFrontendController) {
+            $GLOBALS['TSFE']->config['config']['index_enable'] = 0;
+            $GLOBALS['TSFE']->TYPO3_CONF_VARS['SC_OPTIONS']['tslib/class.tslib_fe.php']['pageIndexing'] = array();
+            $GLOBALS['TSFE']->page['no_search'] = 1;
+        }
+    }
 }
