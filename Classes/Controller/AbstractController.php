@@ -9,8 +9,8 @@
 
 namespace HDNET\Faq\Controller;
 
-use HDNET\Hdnet\Xclass\TypoScriptFrontendController;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * AbstractController

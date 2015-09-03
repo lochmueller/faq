@@ -9,14 +9,14 @@
 
 namespace HDNET\Faq\Domain\Repository;
 
-use HDNET\Hdnet\Domain\Repository\AbstractRepository as HdnetAbstractRepository;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
  * AbstractRepository
  *
  * General class information
  */
-abstract class AbstractRepository extends HdnetAbstractRepository
+abstract class AbstractRepository extends Repository
 {
 
 }
