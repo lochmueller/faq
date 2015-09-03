@@ -12,59 +12,64 @@ namespace HDNET\Faq\Domain\Model;
  *
  * @db
  */
-class Questioncategory extends AbstractModel {
+class Questioncategory extends AbstractModel
+{
 
-	/**
-	 * Title
-	 *
-	 * @var string
-	 * @db
-	 */
-	protected $title;
+    /**
+     * Title
+     *
+     * @var string
+     * @db
+     */
+    protected $title;
 
-	/**
-	 * Parent
-	 *
-	 * @var \HDNET\Faq\Domain\Model\Questioncategory
-	 * @db  int(11) DEFAULT '0' NOT NULL
-	 * @lazy
-	 */
-	protected $parent;
+    /**
+     * Parent
+     *
+     * @var \HDNET\Faq\Domain\Model\Questioncategory
+     * @db  int(11) DEFAULT '0' NOT NULL
+     * @lazy
+     */
+    protected $parent;
 
-	/**
-	 * Set the title
-	 *
-	 * @param string $title
-	 */
-	public function setTitle($title) {
-		$this->title = $title;
-	}
+    /**
+     * Set the title
+     *
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
 
-	/**
-	 * Get the title
-	 *
-	 * @return string
-	 */
-	public function getTitle() {
-		return $this->title;
-	}
+    /**
+     * Get the title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
 
-	/**
-	 * Set the parent
-	 *
-	 * @param \HDNET\Faq\Domain\Model\Questioncategory $parent
-	 */
-	public function setParent($parent) {
-		$this->parent = $parent;
-	}
+    /**
+     * Set the parent
+     *
+     * @param \HDNET\Faq\Domain\Model\Questioncategory $parent
+     */
+    public function setParent($parent)
+    {
+        $this->parent = $parent;
+    }
 
-	/**
-	 * Get the parent
-	 *
-	 * @return \HDNET\Faq\Domain\Model\Questioncategory
-	 */
-	public function getParent() {
-		return $this->parent;
-	}
+    /**
+     * Get the parent
+     *
+     * @return \HDNET\Faq\Domain\Model\Questioncategory
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
 
 }

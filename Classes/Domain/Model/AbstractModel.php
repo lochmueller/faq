@@ -9,13 +9,14 @@
 
 namespace HDNET\Faq\Domain\Model;
 
-use HDNET\Hdnet\Domain\Model\AbstractModel as HdnetAbstractModel;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
  * AbstractModel
  *
  * General class information
  */
-abstract class AbstractModel extends HdnetAbstractModel {
+abstract class AbstractModel extends AbstractEntity
+{
 
 }
