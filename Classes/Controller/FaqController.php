@@ -69,7 +69,7 @@ class FaqController extends AbstractController
         }
 
         if ($faq === null) {
-            $faq = new \HDNET\Faq\Domain\Model\Request\Faq();
+            $faq = $this->objectManager->get('HDNET\\Faq\\Domain\\Model\\Request\\Faq');
         }
 
         $this->view->assignMultiple(array(
@@ -167,6 +167,7 @@ class FaqController extends AbstractController
      * Get the target Email address
      *
      * @return string
+     * @throws \Exception
      */
     protected function getTargetEmailAddress()
     {
@@ -174,7 +175,6 @@ class FaqController extends AbstractController
             return trim($this->settings['faq']['targetEmail']);
         }
         throw new \Exception('No target e-mail address found', 123718231823);
-        #return 'ts@hdnet.de';
     }
 
     /**
