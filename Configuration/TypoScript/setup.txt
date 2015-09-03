@@ -3,7 +3,7 @@ plugin.tx_faq {
 		faq {
 			limitTop = 5
 			limitNewest = 5
-			topCategory = 1
+			topCategory = 0
 			teaserLimit = 10
 			teaserCategories =
 			allLinkTarget = {$plugin.tx_faq.settings.faq.allLinkTarget}
@@ -27,3 +27,6 @@ plugin.tx_faq {
 		updateReferenceIndex = 1
 	}
 }
+
+
+page.includeJSFooter.faq = typo3conf/ext/faq/Resources/Public/JavaScript/faq.js

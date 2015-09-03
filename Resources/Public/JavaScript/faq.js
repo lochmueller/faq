@@ -11,19 +11,13 @@ $.fn.faq = function (settings) {
 	var options = $.extend(true, defaults, settings);
 
 	return this.each(function () {
-		var $that = $(this),
-			$li = $that.find(options.element);
+		var $that = $(this), $li = $that.find(options.element);
 
 		$li.each(function () {
-			var $eachLi = $(this),
-				$header = $eachLi.find(options.header),
-				$content = $eachLi.find(options.content),
-				$linkUp = $content.find(options.ratingUp),
-				$linkDown = $content.find(options.ratingDown),
-				$msgWrp = options.messageWrap;
+			var $eachLi = $(this), $header = $eachLi.find(options.header), $content = $eachLi.find(options.content), $linkUp = $content.find(options.ratingUp), $linkDown = $content.find(options.ratingDown), $msgWrp = options.messageWrap;
 
 			$header.click(function () {
-				$(this).toggleClass('act');
+				jQuery(this).toggleClass('act');
 				$content.slideToggle('fast');
 			});
 
@@ -34,9 +28,7 @@ $.fn.faq = function (settings) {
 				var questionUid = $(this).attr('data-uid');
 
 				$.ajax({
-					url: '/?eID=FaqTopFlop&mode=top&question=' + questionUid,
-					dataType: 'json',
-					success: function (data) {
+					url: '/?eID=FaqTopFlop&mode=top&question=' + questionUid, dataType: 'json', success: function (data) {
 						var message = $msgWrp.html(data.description);
 						$content.find(options.ratingList).replaceWith(message);
 					}
@@ -49,10 +41,8 @@ $.fn.faq = function (settings) {
 
 				var questionUid = $(this).attr('data-uid');
 
-				$.ajax({
-					url: '/?eID=FaqTopFlop&mode=flop&question=' + questionUid,
-					dataType: 'json',
-					success: function (data) {
+				jQuery.ajax({
+					url: '/?eID=FaqTopFlop&mode=flop&question=' + questionUid, dataType: 'json', success: function (data) {
 						var message = $msgWrp.html(data.description);
 						$content.find(options.ratingList).replaceWith(message);
 					}
@@ -61,3 +51,7 @@ $.fn.faq = function (settings) {
 		});
 	});
 };
+
+jQuery(window).load(function () {
+	jQuery('.ext-faq').faq();
+});
