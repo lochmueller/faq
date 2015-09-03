@@ -2,10 +2,10 @@
 
 $EM_CONF[$_EXTKEY] = array(
     'title'          => 'FAQ',
-    'description'    => 'Basic FAQ extension in a clean extbase structure',
+    'description'    => 'Basic FAQ extension in a clean extbase/fluid structure.',
     'category'       => 'misc',
     'version'        => '0.1.0',
-    'state'          => 'stable',
+    'state'          => 'beta',
     'author'         => 'Tim Spiekerkötter, Tim Lochmüller',
     'author_email'   => 'tl@hdnet.de',
     'author_company' => 'hdnet.de',
