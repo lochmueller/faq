@@ -1,4 +1,5 @@
 <?php
+/** @var string $_EXTKEY */
 
 $loader = array(
     'SmartObjects',
