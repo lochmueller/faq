@@ -17,6 +17,7 @@
 							<onChange>reload</onChange>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:faq/Resources/Private/Language/locallang.xml:flexform.topMode.votings</numIndex>
