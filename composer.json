@@ -1,0 +1,19 @@
+{
+  "name": "lochmueller/faq",
+  "description": "Basic FAQ extension in a clean extbase/fluid structure. Questions and Question categroies with a smart plugin structure.",
+  "autoload": {
+    "psr-4": {
+      "HDNET\\Faq\\": "Classes/"
+    }
+  },
+  "type": "typo3-cms-extension",
+  "keywords": [
+    "TYPO3 CMS",
+    "FAQ"
+  ],
+  "homepage": "https://github.com/lochmueller/faq",
+  "license": "GPL-2.0+",
+  "support": {
+    "issues": "https://github.com/lochmueller/faq/issues"
+  }
+}
