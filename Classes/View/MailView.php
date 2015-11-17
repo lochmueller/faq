@@ -16,6 +16,7 @@
 
 namespace HDNET\Faq\View;
 
+use Swift_Attachment;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\TemplateView;
@@ -111,7 +112,7 @@ class MailView extends TemplateView
             foreach ($files as $file) {
                 $file = GeneralUtility::getFileAbsFileName($file);
                 if (is_file($file)) {
-                    $this->mail->attach(\Swift_Attachment::fromPath($file));
+                    $this->mail->attach(Swift_Attachment::fromPath($file));
                 }
             }
         }
@@ -129,7 +130,7 @@ class MailView extends TemplateView
         if ($variableContainer->exists('filesStream')) {
             $filesStream = $variableContainer->get('filesStream');
             foreach ($filesStream as $filename => $data) {
-                $this->mail->attach(\Swift_Attachment::newInstance($data, $filename));
+                $this->mail->attach(Swift_Attachment::newInstance($data, $filename));
             }
         }
         return $this;

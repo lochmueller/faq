@@ -10,6 +10,7 @@ namespace HDNET\Faq\Domain\Repository;
 use HDNET\Faq\Domain\Model\Question;
 use HDNET\Faq\Domain\Model\Questioncategory;
 use HDNET\Faq\Domain\Model\Request\Faq;
+use TYPO3\CMS\Core\Database\DatabaseConnection;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
@@ -175,6 +176,7 @@ class QuestionRepository extends AbstractRepository
             if (sizeof($topQuestions)) {
                 $topExclude = ' AND ' . $t . '.uid NOT IN (' . implode(',', $topQuestions) . ')';
             }
+            /** @var DatabaseConnection $db */
             $db = $GLOBALS['TYPO3_DB'];
             $rows = $db->exec_SELECTgetRows($t . '.*', $t . ',tx_hdnet_faq_mm_question_questioncategory',
                 $t . '.uid=tx_hdnet_faq_mm_question_questioncategory.uid_local AND tx_hdnet_faq_mm_question_questioncategory.uid_foreign IN (' . implode(',',
