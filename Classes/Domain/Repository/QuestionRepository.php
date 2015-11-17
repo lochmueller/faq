@@ -85,7 +85,9 @@ class QuestionRepository extends AbstractRepository
         $query->matching($query->logicalOr($constraintsOr));
 
         $query->setOrderings(array('crdate' => QueryInterface::ORDER_DESCENDING));
-        $query->setLimit($limit);
+        if ($limit) {
+            $query->setLimit($limit);
+        }
         return $query->execute();
     }
 
@@ -175,8 +177,8 @@ class QuestionRepository extends AbstractRepository
             }
             $db = $GLOBALS['TYPO3_DB'];
             $rows = $db->exec_SELECTgetRows($t . '.*', $t . ',tx_hdnet_faq_mm_question_questioncategory',
-                    $t . '.uid=tx_hdnet_faq_mm_question_questioncategory.uid_local AND tx_hdnet_faq_mm_question_questioncategory.uid_foreign IN (' . implode(',',
-                        $categories) . ')' . $topExclude . $pageRepository->enableFields($t), $t . '.uid', 'RAND()', $limit);
+                $t . '.uid=tx_hdnet_faq_mm_question_questioncategory.uid_local AND tx_hdnet_faq_mm_question_questioncategory.uid_foreign IN (' . implode(',',
+                    $categories) . ')' . $topExclude . $pageRepository->enableFields($t), $t . '.uid', 'RAND()', $limit);
             foreach ($rows as $row) {
                 $q = $this->findByUid((int)$row['uid']);
                 if ($q instanceof Question) {
