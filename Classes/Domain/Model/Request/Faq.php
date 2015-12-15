@@ -9,8 +9,6 @@ namespace HDNET\Faq\Domain\Model\Request;
 
 /**
  * Request Faq
- *
- * @db
  */
 class Faq extends AbstractRequest
 {
