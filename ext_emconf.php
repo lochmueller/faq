@@ -1,8 +1,8 @@
 <?php
 
 $EM_CONF[$_EXTKEY] = array(
-    'title'          => 'FAQ',
-    'description'    => 'Basic FAQ extension in a clean extbase/fluid structure. Questions and Question categroies with a smart plugin structure.',
+    'title'          => 'FAQ - Frequently Asked Questions',
+    'description'    => 'Basic FAQ (Frequently Asked Questions) extension in a clean extbase/fluid structure. Questions and Question categroies with a smart plugin structure.',
     'category'       => 'fe',
     'version'        => '1.0.1',
     'state'          => 'stable',

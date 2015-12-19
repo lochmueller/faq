@@ -1,6 +1,6 @@
 {
   "name": "lochmueller/faq",
-  "description": "Basic FAQ extension in a clean extbase/fluid structure. Questions and Question categroies with a smart plugin structure.",
+  "description": "Basic FAQ (Frequently Asked Questions) extension in a clean extbase/fluid structure. Questions and Question categroies with a smart plugin structure.",
   "autoload": {
     "psr-4": {
       "HDNET\\Faq\\": "Classes/"
