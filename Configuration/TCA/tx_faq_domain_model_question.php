@@ -6,6 +6,11 @@ $custom = array(
         'sortby' => null,
     ),
     'columns' => array(
+        'title'     => array(
+            'config'        => array(
+                'eval' => 'trim,required'
+            ),
+        ),
         'answer'     => array(
             'config'        => array(
                 'type' => 'text'
