@@ -8,6 +8,7 @@ plugin.tx_faq {
 			teaserCategories =
 			allLinkTarget = {$plugin.tx_faq.settings.faq.allLinkTarget}
 		}
+		enableCaptcha = 0
 	}
 
 	view {

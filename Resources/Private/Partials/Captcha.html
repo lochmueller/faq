@@ -1,0 +1,8 @@
+{namespace s=SJBR\SrFreecap\ViewHelpers}
+
+<label for="addquestion-captcha"><f:translate key="form.captcha">Bitte geben Sie die unten stehenden Buchstaben in das Feld ein.*</f:translate>
+	<span title="{f:translate(key: 'form.captcha.popup')}" class="info icon-help-circled"></span>
+</label>
+
+<s:image />
+<f:form.textfield name="captcha" class="text" id="addquestion-captcha" />

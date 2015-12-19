@@ -128,11 +128,11 @@ class FaqController extends AbstractController
      *
      * @param \HDNET\Faq\Domain\Model\Request\QuestionRequest $question
      * @param string                                          $captcha
-     * @validate $captcha NotEmpty
-     * @validate $captcha \SJBR\SrFreecap\Validation\Validator\CaptchaValidator
      */
-    public function sendAction(QuestionRequest $question, $captcha)
+    public function sendAction(QuestionRequest $question, $captcha = null)
     {
+        // @todo integrate captcha based on $this->settings['enableCaptcha']
+        // * @validate $captcha \SJBR\SrFreecap\Validation\Validator\CaptchaValidator && Not Empty
         $this->disableIndexing();
         $targetEmailAddress = $this->getTargetEmailAddress();
         if (GeneralUtility::validEmail($targetEmailAddress)) {
