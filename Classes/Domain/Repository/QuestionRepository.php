@@ -166,21 +166,31 @@ class QuestionRepository extends AbstractRepository
     {
         $questions = $this->getStaticQuestionsAndReduceLimit($topQuestions, $limit);
         if ($limit > 0) {
-            $categories[] = 0;
+            //$categories[] = 0;
 
             /** @var \TYPO3\CMS\Frontend\Page\PageRepository $pageRepository */
             $pageRepository = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
             $t = $this->getTableName();
 
-            $topExclude = '';
-            if (sizeof($topQuestions)) {
-                $topExclude = ' AND ' . $t . '.uid NOT IN (' . implode(',', $topQuestions) . ')';
-            }
             /** @var DatabaseConnection $db */
             $db = $GLOBALS['TYPO3_DB'];
-            $rows = $db->exec_SELECTgetRows($t . '.*', $t . ',tx_hdnet_faq_mm_question_questioncategory',
-                $t . '.uid=tx_hdnet_faq_mm_question_questioncategory.uid_local AND tx_hdnet_faq_mm_question_questioncategory.uid_foreign IN (' . implode(',',
-                    $categories) . ')' . $topExclude . $pageRepository->enableFields($t), $t . '.uid', 'RAND()', $limit);
+
+            $whereClause = $t . '.uid=tx_faq_mm_question_questioncategory.uid_local'. $pageRepository->enableFields($t);
+            if (sizeof($topQuestions)) {
+                $whereClause .= ' AND ' . $t . '.uid NOT IN (' . implode(',', $topQuestions) . ')';
+            }
+            if(!empty($categories)){
+                $whereClause .=' AND tx_faq_mm_question_questioncategory.uid_foreign IN (' . implode(',',$categories) . ')';
+            }
+            $rows = $db->exec_SELECTgetRows(
+                $t . '.*', // select table
+                $t . ',tx_faq_mm_question_questioncategory', // mm table
+                $whereClause, // WHERE
+                $t . '.uid', // GROUP BY
+                'RAND()', // ORDER BY
+                $limit // LIMIT
+            );
+
             foreach ($rows as $row) {
                 $q = $this->findByUid((int)$row['uid']);
                 if ($q instanceof Question) {
