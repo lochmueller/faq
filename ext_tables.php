@@ -1,15 +1,7 @@
 <?php
 /** @var string $_EXTKEY */
 
-$loader = array(
-    'SmartObjects',
-    'ExtensionTypoScriptSetup',
-    'ContextSensitiveHelps',
-    'FlexForms',
-    'StaticTyposcript',
-    'ExtensionId',
-);
-\HDNET\Autoloader\Loader::extTables('HDNET', 'faq', $loader);
+\HDNET\Autoloader\Loader::extTables('HDNET', 'faq', \HDNET\Faq\Utility\ExtensionUtility::getAutoloaderConfiguration());
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin($_EXTKEY, 'Faq', 'FAQ');
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin($_EXTKEY, 'FaqTeaser', 'FAQ Teaser');
