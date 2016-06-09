@@ -43,7 +43,7 @@ class FaqController extends AbstractController
      * Index action
      *
      * @param Faq $faq
-     * @param bool                                $showAll
+     * @param bool $showAll
      */
     public function indexAction(Faq $faq = null, $showAll = false)
     {
@@ -64,7 +64,8 @@ class FaqController extends AbstractController
             $topQuestions = $this->questionRepository->findTop((int)$this->settings['faq']['limitTop'], $topCategory,
                 GeneralUtility::intExplode(',', $this->settings['faq']['topQuestions'], true));
         } else {
-            $topQuestions = $this->questionRepository->findByUidsSorted(GeneralUtility::intExplode(',', $this->settings['custom'],
+            $topQuestions = $this->questionRepository->findByUidsSorted(GeneralUtility::intExplode(',',
+                $this->settings['custom'],
                 true));
         }
 
@@ -73,12 +74,13 @@ class FaqController extends AbstractController
         }
 
         $this->view->assignMultiple([
-            'showResults'  => $showResults,
-            'faq'          => $faq,
-            'questions'    => $questions,
-            'newQuestions' => $this->questionRepository->findNewest((int)$this->settings['faq']['limitNewest'], $topCategory),
+            'showResults' => $showResults,
+            'faq' => $faq,
+            'questions' => $questions,
+            'newQuestions' => $this->questionRepository->findNewest((int)$this->settings['faq']['limitNewest'],
+                $topCategory),
             'topQuestions' => $topQuestions,
-            'categories'   => $this->questioncategoryRepository->findByParent($topCategory,
+            'categories' => $this->questioncategoryRepository->findByParent($topCategory,
                 (bool)$this->settings['faq']['categorySort'] ?: false)
         ]);
     }
@@ -93,7 +95,8 @@ class FaqController extends AbstractController
         $topQuestions = GeneralUtility::intExplode(',', $this->settings['faq']['topQuestions'], true);
         $teaserCategories = GeneralUtility::intExplode(',', $this->settings['faq']['teaserCategories'], true);
         $teaserLimit = (int)$this->settings['faq']['teaserLimit'];
-        $questions = $this->questionRepository->findByTeaserConfiguration($topQuestions, $teaserCategories, $teaserLimit);
+        $questions = $this->questionRepository->findByTeaserConfiguration($topQuestions, $teaserCategories,
+            $teaserLimit);
         $this->view->assign('questions', $questions);
     }
 
@@ -127,7 +130,7 @@ class FaqController extends AbstractController
      * Send action
      *
      * @param \HDNET\Faq\Domain\Model\Request\QuestionRequest $question
-     * @param string                                          $captcha
+     * @param string $captcha
      */
     public function sendAction(QuestionRequest $question, $captcha = null)
     {
@@ -154,8 +157,8 @@ class FaqController extends AbstractController
     {
         if (GeneralUtility::validEmail($question->getEmail())) {
             $this->view->assignMultiple([
-                'subject'  => 'FAQ eingereicht',
-                'to'       => [$question->getEmail() => $question->getEmail()],
+                'subject' => 'FAQ eingereicht',
+                'to' => [$question->getEmail() => $question->getEmail()],
                 'question' => $question,
             ]);
             $this->view->render();

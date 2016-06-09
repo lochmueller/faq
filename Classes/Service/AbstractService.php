@@ -6,6 +6,7 @@
  */
 
 namespace HDNET\Faq\Service;
+
 use TYPO3\CMS\Core\SingletonInterface;
 
 /**

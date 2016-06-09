@@ -9,13 +9,13 @@ $custom = [
     'columns' => [
         'parent' => [
             'config' => [
-                'type'          => 'select',
-                'renderType'    => 'selectTree',
+                'type' => 'select',
+                'renderType' => 'selectTree',
                 'foreign_table' => 'tx_faq_domain_model_questioncategory',
-                'maxitems'      => '1',
-                'minitems'      => '0',
-                'renderMode'    => 'tree',
-                'treeConfig'    => [
+                'maxitems' => '1',
+                'minitems' => '0',
+                'renderMode' => 'tree',
+                'treeConfig' => [
                     'parentField' => 'parent',
                 ],
             ],

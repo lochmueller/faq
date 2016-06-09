@@ -19,7 +19,7 @@ class VoteViewHelper extends AbstractWidgetViewHelper
     /**
      * @var bool
      */
-    protected $ajaxWidget = TRUE;
+    protected $ajaxWidget = true;
 
     /**
      * @var \HDNET\Faq\ViewHelpers\Widget\Controller\VoteController

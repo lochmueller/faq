@@ -33,9 +33,9 @@ class QuestionRepository extends AbstractRepository
     /**
      * Get the top questions
      *
-     * @param int   $limit
+     * @param int $limit
      *
-     * @param int   $topCategoryId
+     * @param int $topCategoryId
      *
      * @param array $topQuestions
      *
@@ -158,8 +158,8 @@ class QuestionRepository extends AbstractRepository
      * Get the teaser questions
      *
      * @param  array $topQuestions
-     * @param array  $categories
-     * @param int    $limit
+     * @param array $categories
+     * @param int $limit
      *
      * @return array
      */
@@ -175,12 +175,13 @@ class QuestionRepository extends AbstractRepository
             /** @var DatabaseConnection $db */
             $db = $GLOBALS['TYPO3_DB'];
 
-            $whereClause = $t . '.uid=tx_faq_mm_question_questioncategory.uid_local'. $pageRepository->enableFields($t);
+            $whereClause = $t . '.uid=tx_faq_mm_question_questioncategory.uid_local' . $pageRepository->enableFields($t);
             if (sizeof($topQuestions)) {
                 $whereClause .= ' AND ' . $t . '.uid NOT IN (' . implode(',', $topQuestions) . ')';
             }
-            if(!empty($categories)){
-                $whereClause .=' AND tx_faq_mm_question_questioncategory.uid_foreign IN (' . implode(',',$categories) . ')';
+            if (!empty($categories)) {
+                $whereClause .= ' AND tx_faq_mm_question_questioncategory.uid_foreign IN (' . implode(',',
+                        $categories) . ')';
             }
             $rows = $db->exec_SELECTgetRows(
                 $t . '.*', // select table
@@ -205,7 +206,7 @@ class QuestionRepository extends AbstractRepository
      * Get the Questsions with the given IDS and reduce the limit
      *
      * @param array $ids
-     * @param int   $limit
+     * @param int $limit
      *
      * @return array
      */

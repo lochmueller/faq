@@ -38,7 +38,7 @@ class QuestioncategoryRepository extends AbstractRepository
     /**
      * Find the categories in the right order (default: default, $sorting=TRUE: alphabetical)
      *
-     * @param int     $topCategory
+     * @param int $topCategory
      * @param boolean $sorting
      *
      * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
