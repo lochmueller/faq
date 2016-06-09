@@ -42,7 +42,7 @@ class FaqController extends AbstractController
     /**
      * Index action
      *
-     * @param Faq $faq
+     * @param \HDNET\Faq\Domain\Model\Request\Faq $faq
      * @param bool $showAll
      */
     public function indexAction(Faq $faq = null, $showAll = false)
