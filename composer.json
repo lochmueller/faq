@@ -1,16 +1,33 @@
 {
   "name": "lochmueller/faq",
+  "type": "typo3-cms-extension",
+  "version": "1.0.1",
   "description": "Basic FAQ (Frequently Asked Questions) extension in a clean extbase/fluid structure. Questions and Question categroies with a smart plugin structure.",
   "autoload": {
     "psr-4": {
       "HDNET\\Faq\\": "Classes/"
     }
   },
-  "type": "typo3-cms-extension",
   "keywords": [
     "TYPO3 CMS",
     "FAQ"
   ],
+  "authors": [
+    {
+      "name": "Tim Lochmüller",
+      "email": "webmaster@fruit-lab.de",
+      "role": "Developer",
+      "homepage": "https://github.com/lochmueller"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "typo3/cms-core": "~6.2.14|>=7.4.0,<8.2"
+  },
+  "replace": {
+    "faq": "self.version",
+    "typo3-ter/faq": "self.version"
+  },
   "homepage": "https://github.com/lochmueller/faq",
   "license": "GPL-2.0+",
   "support": {
