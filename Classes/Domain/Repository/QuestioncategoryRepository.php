@@ -20,7 +20,7 @@ class QuestioncategoryRepository extends AbstractRepository
      *
      * @var array
      */
-    protected $defaultOrderings = array('sorting' => QueryInterface::ORDER_ASCENDING);
+    protected $defaultOrderings = ['sorting' => QueryInterface::ORDER_ASCENDING];
 
     /**
      * Create query
@@ -48,7 +48,7 @@ class QuestioncategoryRepository extends AbstractRepository
         $query = $this->createQuery();
         $query->matching($query->equals('parent', $topCategory));
         if ($sorting) {
-            $query->setOrderings(array('title' => QueryInterface::ORDER_ASCENDING));
+            $query->setOrderings(['title' => QueryInterface::ORDER_ASCENDING]);
         }
         return $query->execute();
     }

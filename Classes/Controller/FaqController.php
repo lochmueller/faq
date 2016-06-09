@@ -56,7 +56,7 @@ class FaqController extends AbstractController
             $showResults = true;
             $questions = $this->questionRepository->findAll($topCategory);
         } else {
-            $questions = array();
+            $questions = [];
             $showResults = false;
         }
 
@@ -72,7 +72,7 @@ class FaqController extends AbstractController
             $faq = $this->objectManager->get('HDNET\\Faq\\Domain\\Model\\Request\\Faq');
         }
 
-        $this->view->assignMultiple(array(
+        $this->view->assignMultiple([
             'showResults'  => $showResults,
             'faq'          => $faq,
             'questions'    => $questions,
@@ -80,7 +80,7 @@ class FaqController extends AbstractController
             'topQuestions' => $topQuestions,
             'categories'   => $this->questioncategoryRepository->findByParent($topCategory,
                 (bool)$this->settings['faq']['categorySort'] ?: false)
-        ));
+        ]);
     }
 
     /**
@@ -136,7 +136,7 @@ class FaqController extends AbstractController
         $this->disableIndexing();
         $targetEmailAddress = $this->getTargetEmailAddress();
         if (GeneralUtility::validEmail($targetEmailAddress)) {
-            $this->view->assign('to', array($targetEmailAddress => $targetEmailAddress));
+            $this->view->assign('to', [$targetEmailAddress => $targetEmailAddress]);
             $this->view->assign('subject', 'Neue Frage eingestellt');
             $this->view->assign('question', $question);
             $this->view->assign('captcha', $captcha);
@@ -153,11 +153,11 @@ class FaqController extends AbstractController
     public function userAction(QuestionRequest $question)
     {
         if (GeneralUtility::validEmail($question->getEmail())) {
-            $this->view->assignMultiple(array(
+            $this->view->assignMultiple([
                 'subject'  => 'FAQ eingereicht',
-                'to'       => array($question->getEmail() => $question->getEmail()),
+                'to'       => [$question->getEmail() => $question->getEmail()],
                 'question' => $question,
-            ));
+            ]);
             $this->view->render();
         }
         $this->forward('thanks');

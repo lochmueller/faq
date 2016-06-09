@@ -27,7 +27,7 @@ abstract class AbstractController extends ActionController
     {
         if ($GLOBALS['TSFE'] instanceof TypoScriptFrontendController) {
             $GLOBALS['TSFE']->config['config']['index_enable'] = 0;
-            $GLOBALS['TSFE']->TYPO3_CONF_VARS['SC_OPTIONS']['tslib/class.tslib_fe.php']['pageIndexing'] = array();
+            $GLOBALS['TSFE']->TYPO3_CONF_VARS['SC_OPTIONS']['tslib/class.tslib_fe.php']['pageIndexing'] = [];
             $GLOBALS['TSFE']->page['no_search'] = 1;
         }
     }

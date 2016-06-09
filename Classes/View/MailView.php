@@ -75,7 +75,7 @@ class MailView extends TemplateView
     {
         $host = GeneralUtility::getIndpEnv('TYPO3_HOST');
 
-        $this->mail->setFrom(array('noreply@' . $host => 'Webseite ' . $host));
+        $this->mail->setFrom(['noreply@' . $host => 'Webseite ' . $host]);
         return $this;
     }
 

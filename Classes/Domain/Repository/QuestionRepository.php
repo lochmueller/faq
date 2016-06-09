@@ -25,9 +25,9 @@ class QuestionRepository extends AbstractRepository
      *
      * @var array
      */
-    protected $defaultOrderings = array(
+    protected $defaultOrderings = [
         'title' => QueryInterface::ORDER_ASCENDING,
-    );
+    ];
 
     /**
      * Get the top questions
@@ -40,22 +40,22 @@ class QuestionRepository extends AbstractRepository
      *
      * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
-    public function findTop($limit = 5, $topCategoryId = 0, $topQuestions = array())
+    public function findTop($limit = 5, $topCategoryId = 0, $topQuestions = [])
     {
         $questions = $this->getStaticQuestionsAndReduceLimit($topQuestions, $limit);
         if ($limit > 0) {
             $query = $this->createQuery();
-            $constraintsOr = array();
+            $constraintsOr = [];
             $constraintsOr[] = $query->contains('categories', $topCategoryId);
             $constraintsOr[] = $query->equals('categories.parent', $topCategoryId);
 
-            $constraintsAnd = array();
+            $constraintsAnd = [];
             $constraintsAnd[] = $query->logicalOr($constraintsOr);
             $constraintsAnd[] = $query->logicalNot($query->in('uid', $topQuestions));
 
             $query->matching($query->logicalAnd($constraintsAnd));
 
-            $query->setOrderings(array('topCounter' => QueryInterface::ORDER_DESCENDING));
+            $query->setOrderings(['topCounter' => QueryInterface::ORDER_DESCENDING]);
             $query->setLimit($limit);
             $results = $query->execute()
                 ->toArray();
@@ -79,13 +79,13 @@ class QuestionRepository extends AbstractRepository
     {
         $query = $this->createQuery();
 
-        $constraintsOr = array();
+        $constraintsOr = [];
         $constraintsOr[] = $query->contains('categories', $topCategoryId);
         $constraintsOr[] = $query->equals('categories.parent', $topCategoryId);
 
         $query->matching($query->logicalOr($constraintsOr));
 
-        $query->setOrderings(array('crdate' => QueryInterface::ORDER_DESCENDING));
+        $query->setOrderings(['crdate' => QueryInterface::ORDER_DESCENDING]);
         if ($limit) {
             $query->setLimit($limit);
         }
@@ -106,7 +106,7 @@ class QuestionRepository extends AbstractRepository
         } else {
             $query = $this->createQuery();
 
-            $constraintsOr = array();
+            $constraintsOr = [];
             $constraintsOr[] = $query->contains('categories', $topCategoryId);
             $constraintsOr[] = $query->equals('categories.parent', $topCategoryId);
 
@@ -127,11 +127,11 @@ class QuestionRepository extends AbstractRepository
     {
         $query = $this->createQuery();
 
-        $constraintsOr = array();
+        $constraintsOr = [];
         $constraintsOr[] = $query->contains('categories', $topCategoryId);
         $constraintsOr[] = $query->equals('categories.parent', $topCategoryId);
 
-        $constraints = array();
+        $constraints = [];
         $constraints[] = $query->logicalOr($constraintsOr);
 
         if ($faq->getCategory() instanceof Questioncategory) {
@@ -140,10 +140,10 @@ class QuestionRepository extends AbstractRepository
         }
 
         if (strlen($faq->getSearchWord())) {
-            $constraints[] = $query->logicalOr(array(
+            $constraints[] = $query->logicalOr([
                 $query->like('title', '%' . $faq->getSearchWord() . '%'),
                 $query->like('answer', '%' . $faq->getSearchWord() . '%')
-            ));
+            ]);
         }
 
         if (sizeof($constraints)) {
@@ -211,7 +211,7 @@ class QuestionRepository extends AbstractRepository
      */
     protected function getStaticQuestionsAndReduceLimit(array $ids, &$limit)
     {
-        $questions = array();
+        $questions = [];
         foreach ($ids as $id) {
             $q = $this->findByUid((int)$id);
             if ($q instanceof Question) {

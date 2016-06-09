@@ -19,12 +19,12 @@ class ExtensionUtility
      */
     static public function getAutoloaderConfiguration()
     {
-        return array(
+        return [
             'SmartObjects',
             'ExtensionTypoScriptSetup',
             'FlexForms',
             'StaticTyposcript',
             'ExtensionId',
-        );
+        ];
     }
 }
