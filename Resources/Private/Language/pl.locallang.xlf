@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="pl" datatype="plaintext" original="messages" date="2016-06-09T06:59:02Z">
+		<header>
+			<type>database</type>
+			<generator>LFEditor</generator>
+		</header>
+		<body>
+		<trans-unit id="answer.helpful" approved="yes">
+			<source>helpful</source>
+			<target>przydatne</target>
+		</trans-unit>
+		<trans-unit id="answer.not_helpful" approved="yes">
+			<source>not helpful</source>
+			<target>nieprzydatne</target>
+		</trans-unit>
+		<trans-unit id="form.email" approved="yes">
+			<source>Email (for the answer)</source>
+			<target>E-mail na odpowiedź</target>
+		</trans-unit>
+		<trans-unit id="form.headline" approved="yes">
+			<source>Send us your question!</source>
+			<target>Wyślij nam swoje pytanie</target>
+		</trans-unit>
+		<trans-unit id="form.submit" approved="yes">
+			<source>Send question</source>
+			<target>Wyślij pytanie</target>
+		</trans-unit>
+		<trans-unit id="recently" approved="yes">
+			<source>Recently asked questions</source>
+			<target>Ostatnio zadane pytania</target>
+		</trans-unit>
+		<trans-unit id="results" approved="yes">
+			<source>Results:</source>
+			<target>Wyniki wyszukiwania:</target>
+		</trans-unit>
+		<trans-unit id="search.all" approved="yes">
+			<source>show all questions</source>
+			<target>Pokaż wszystkie pytania</target>
+		</trans-unit>
+		<trans-unit id="search.category.default" approved="yes">
+			<source>Please select</source>
+			<target>Wybierz</target>
+		</trans-unit>
+		<trans-unit id="search.text" approved="yes">
+			<source>What are you looking for?</source>
+			<target>Co chcesz znaleźć?</target>
+		</trans-unit>
+		<trans-unit id="search.topic" approved="yes">
+			<source>Select a topic</source>
+			<target>Wybierz temat</target>
+		</trans-unit>
+		<trans-unit id="top" approved="yes">
+			<source>Most asked questions</source>
+			<target>Najpopularniejsze pytania</target>
+		</trans-unit>
+		</body>
+	</file>
+</xliff>

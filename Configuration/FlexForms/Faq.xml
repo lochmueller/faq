@@ -7,24 +7,24 @@
 		<sheet1>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:faq/Resources/Private/Language/locallang.xml:flexform.topMode.title</sheetTitle>
+					<sheetTitle>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode.title</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<settings.topMode>
 						<TCEforms>
-							<label>LLL:EXT:faq/Resources/Private/Language/locallang.xml:flexform.topMode</label>
+							<label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode</label>
 							<onChange>reload</onChange>
 							<config>
 								<type>select</type>
 								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:faq/Resources/Private/Language/locallang.xml:flexform.topMode.votings</numIndex>
+										<numIndex index="0">LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode.votings</numIndex>
 										<numIndex index="1">0</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:faq/Resources/Private/Language/locallang.xml:flexform.topMode.custom</numIndex>
+										<numIndex index="0">LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode.custom</numIndex>
 										<numIndex index="1">1</numIndex>
 									</numIndex>
 								</items>
@@ -33,7 +33,7 @@
 					</settings.topMode>
 					<settings.custom>
 						<TCEforms>
-							<label>LLL:EXT:faq/Resources/Private/Language/locallang.xml:flexform.topMode.custom</label>
+							<label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode.custom</label>
 							<displayCond>FIELD:settings.topMode:=:1</displayCond>
 							<config>
 								<type>group</type>

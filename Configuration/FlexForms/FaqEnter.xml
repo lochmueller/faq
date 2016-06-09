@@ -7,13 +7,13 @@
 		<sheet1>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:faq/Resources/Private/Language/locallang.xml:flexform.faqEnter.title</sheetTitle>
+					<sheetTitle>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.faqEnter.title</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<settings.faq.targetEmail>
 						<TCEforms>
-							<label>LLL:EXT:faq/Resources/Private/Language/locallang.xml:flexform.faqEnter.targetEmail</label>
+							<label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.faqEnter.targetEmail</label>
 							<config>
 								<type>input</type>
 								<size>23</size>

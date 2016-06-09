@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="nl" datatype="plaintext" original="messages" date="2016-06-09T06:59:02Z">
+		<header>
+			<type>database</type>
+			<generator>LFEditor</generator>
+		</header>
+		<body>
+		<trans-unit id="answer.helpful" approved="yes">
+			<source>helpful</source>
+			<target>Nuttig</target>
+		</trans-unit>
+		<trans-unit id="answer.not_helpful" approved="yes">
+			<source>not helpful</source>
+			<target>Niet nuttig</target>
+		</trans-unit>
+		<trans-unit id="form.email" approved="yes">
+			<source>Email (for the answer)</source>
+			<target>Mail adres (voor het antwoord)</target>
+		</trans-unit>
+		<trans-unit id="form.headline" approved="yes">
+			<source>Send us your question!</source>
+			<target>Stuur ons uw vraag!</target>
+		</trans-unit>
+		<trans-unit id="form.submit" approved="yes">
+			<source>Send question</source>
+			<target>stuur de vraag</target>
+		</trans-unit>
+		<trans-unit id="recently" approved="yes">
+			<source>Recently asked questions</source>
+			<target>Recent gestelde vragen</target>
+		</trans-unit>
+		<trans-unit id="results" approved="yes">
+			<source>Results:</source>
+			<target>Zoekresultaten:</target>
+		</trans-unit>
+		<trans-unit id="search.all" approved="yes">
+			<source>show all questions</source>
+			<target>Alle vragen weergeven</target>
+		</trans-unit>
+		<trans-unit id="search.category.default" approved="yes">
+			<source>Please select</source>
+			<target>Selecteer</target>
+		</trans-unit>
+		<trans-unit id="search.text" approved="yes">
+			<source>What are you looking for?</source>
+			<target>Wat zoekt u?</target>
+		</trans-unit>
+		<trans-unit id="search.topic" approved="yes">
+			<source>Select a topic</source>
+			<target>Kies een thema</target>
+		</trans-unit>
+		<trans-unit id="top" approved="yes">
+			<source>Most asked questions</source>
+			<target>Meest gestelde vragen</target>
+		</trans-unit>
+		</body>
+	</file>
+</xliff>

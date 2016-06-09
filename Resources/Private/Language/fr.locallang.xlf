@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="fr" datatype="plaintext" original="messages" date="2016-06-09T06:59:02Z">
+		<header>
+			<type>database</type>
+			<generator>LFEditor</generator>
+		</header>
+		<body>
+		<trans-unit id="answer.helpful" approved="yes">
+			<source>helpful</source>
+			<target>utile</target>
+		</trans-unit>
+		<trans-unit id="answer.not_helpful" approved="yes">
+			<source>not helpful</source>
+			<target>inutile</target>
+		</trans-unit>
+		<trans-unit id="form.email" approved="yes">
+			<source>Email (for the answer)</source>
+			<target>Adresse mail (pour notre réponse)</target>
+		</trans-unit>
+		<trans-unit id="form.headline" approved="yes">
+			<source>Send us your question!</source>
+			<target>Envoyez-nous votre question!</target>
+		</trans-unit>
+		<trans-unit id="form.submit" approved="yes">
+			<source>Send question</source>
+			<target>Envoyer question</target>
+		</trans-unit>
+		<trans-unit id="recently" approved="yes">
+			<source>Recently asked questions</source>
+			<target>Questions récemment posées</target>
+		</trans-unit>
+		<trans-unit id="results" approved="yes">
+			<source>Results:</source>
+			<target>Résultats:</target>
+		</trans-unit>
+		<trans-unit id="search.all" approved="yes">
+			<source>show all questions</source>
+			<target>montrer toutes les questions</target>
+		</trans-unit>
+		<trans-unit id="search.category.default" approved="yes">
+			<source>Please select</source>
+			<target>Veuillez sélectionner</target>
+		</trans-unit>
+		<trans-unit id="search.text" approved="yes">
+			<source>What are you looking for?</source>
+			<target>Que recherchez-vous ?</target>
+		</trans-unit>
+		<trans-unit id="search.topic" approved="yes">
+			<source>Select a topic</source>
+			<target>Choisir un thème</target>
+		</trans-unit>
+		<trans-unit id="top" approved="yes">
+			<source>Most asked questions</source>
+			<target>Questions les plus fréquemment posées</target>
+		</trans-unit>
+		</body>
+	</file>
+</xliff>
