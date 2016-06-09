@@ -13,6 +13,7 @@ use HDNET\Faq\Domain\Model\Request\Faq;
 use TYPO3\CMS\Core\Database\DatabaseConnection;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Frontend\Page\PageRepository;
 
 /**
  * Build up the Question
@@ -168,8 +169,7 @@ class QuestionRepository extends AbstractRepository
         if ($limit > 0) {
             //$categories[] = 0;
 
-            /** @var \TYPO3\CMS\Frontend\Page\PageRepository $pageRepository */
-            $pageRepository = GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\Page\\PageRepository');
+            $pageRepository = GeneralUtility::makeInstance(PageRepository::class);
             $t = $this->getTableName();
 
             /** @var DatabaseConnection $db */

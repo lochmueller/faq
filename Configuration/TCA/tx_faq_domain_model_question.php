@@ -1,5 +1,9 @@
 <?php
-$base = \HDNET\Autoloader\Utility\ModelUtility::getTcaInformation('HDNET\\Faq\\Domain\\Model\\Question');
+use HDNET\Autoloader\Utility\ArrayUtility;
+use HDNET\Autoloader\Utility\ModelUtility;
+use HDNET\Faq\Domain\Model\Question;
+
+$base = ModelUtility::getTcaInformation(Question::class);
 
 $custom = [
     'ctrl'    => [
@@ -34,4 +38,4 @@ $custom = [
     ],
 ];
 
-return \HDNET\Autoloader\Utility\ArrayUtility::mergeRecursiveDistinct($base, $custom);
+return ArrayUtility::mergeRecursiveDistinct($base, $custom);

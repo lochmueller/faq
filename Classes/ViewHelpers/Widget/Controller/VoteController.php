@@ -10,6 +10,7 @@ namespace HDNET\Faq\ViewHelpers\Widget\Controller;
 
 use HDNET\Autoloader\Utility\TranslateUtility;
 use HDNET\Faq\Domain\Model\Question;
+use HDNET\Faq\Domain\Model\Request\Vote;
 use HDNET\Faq\Exception\AlreadyVotedException;
 use HDNET\Faq\Exception\VoteException;
 
@@ -50,8 +51,7 @@ class VoteController extends AbstractWidgetController
      */
     public function voteAction(Question $question, $mode)
     {
-        /** @var \HDNET\Faq\Domain\Model\Request\Vote $vote */
-        $vote = $this->objectManager->get('HDNET\\Faq\\Domain\\Model\\Request\\Vote');
+        $vote = $this->objectManager->get(Vote::class);
         $vote->setMode($mode);
         $vote->setQuestion($question);
 

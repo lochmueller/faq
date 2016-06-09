@@ -42,7 +42,7 @@ class FaqController extends AbstractController
     /**
      * Index action
      *
-     * @param \HDNET\Faq\Domain\Model\Request\Faq $faq
+     * @param Faq $faq
      * @param bool                                $showAll
      */
     public function indexAction(Faq $faq = null, $showAll = false)
@@ -69,7 +69,7 @@ class FaqController extends AbstractController
         }
 
         if ($faq === null) {
-            $faq = $this->objectManager->get('HDNET\\Faq\\Domain\\Model\\Request\\Faq');
+            $faq = $this->objectManager->get(Faq::class);
         }
 
         $this->view->assignMultiple([
