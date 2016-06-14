@@ -12,9 +12,18 @@ plugin.tx_faq {
 	}
 
 	view {
-		templateRootPath = {$plugin.tx_faq.view.templateRootPath}
-		partialRootPath = {$plugin.tx_faq.view.partialRootPath}
-		layoutRootPath = {$plugin.tx_faq.view.layoutRootPath}
+		templateRootPaths {
+			0 = EXT:faq/Resources/Private/Extension/Faq/Templates/
+			1 = {$plugin.tx_faq.view.templateRootPath}
+		}
+		partialRootPaths {
+			0 = EXT:faq/Resources/Private/Extension/Faq/Partials/
+			1 = {$plugin.tx_faq.view.partialRootPath}
+		}
+		layoutRootPaths {
+			0 = EXT:faq/Resources/Private/Extension/Faq/Layouts/
+			1 = {$plugin.tx_faq.view.layoutRootPath}
+		}
 	}
 
 	features {
