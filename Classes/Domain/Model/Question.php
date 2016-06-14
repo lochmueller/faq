@@ -189,5 +189,4 @@ class Question extends AbstractModel
     {
         return (int)$this->flopCounter;
     }
-
 }

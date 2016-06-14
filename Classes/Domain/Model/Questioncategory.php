@@ -71,5 +71,4 @@ class Questioncategory extends AbstractModel
     {
         return $this->parent;
     }
-
 }

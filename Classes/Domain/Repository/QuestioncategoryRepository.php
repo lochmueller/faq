@@ -52,5 +52,4 @@ class QuestioncategoryRepository extends AbstractRepository
         }
         return $query->execute();
     }
-
 }

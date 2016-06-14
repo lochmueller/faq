@@ -69,5 +69,4 @@ class QuestionRequest extends AbstractRequest
     {
         return $this->question;
     }
-
 }

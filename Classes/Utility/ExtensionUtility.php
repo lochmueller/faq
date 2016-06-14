@@ -17,7 +17,7 @@ class ExtensionUtility
      *
      * @return array
      */
-    static public function getAutoloaderConfiguration()
+    public static function getAutoloaderConfiguration()
     {
         return [
             'SmartObjects',

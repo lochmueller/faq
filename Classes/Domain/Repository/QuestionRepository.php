@@ -180,8 +180,10 @@ class QuestionRepository extends AbstractRepository
                 $whereClause .= ' AND ' . $t . '.uid NOT IN (' . implode(',', $topQuestions) . ')';
             }
             if (!empty($categories)) {
-                $whereClause .= ' AND tx_faq_mm_question_questioncategory.uid_foreign IN (' . implode(',',
-                        $categories) . ')';
+                $whereClause .= ' AND tx_faq_mm_question_questioncategory.uid_foreign IN (' . implode(
+                    ',',
+                    $categories
+                ) . ')';
             }
             $rows = $db->exec_SELECTgetRows(
                 $t . '.*', // select table
@@ -222,5 +224,4 @@ class QuestionRepository extends AbstractRepository
         }
         return $questions;
     }
-
 }

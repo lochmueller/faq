@@ -66,5 +66,4 @@ class Faq extends AbstractRequest
     {
         return trim($this->searchWord);
     }
-
 }
