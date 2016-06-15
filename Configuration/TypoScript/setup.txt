@@ -13,15 +13,15 @@ plugin.tx_faq {
 
 	view {
 		templateRootPaths {
-			0 = EXT:faq/Resources/Private/Extension/Faq/Templates/
+			0 = EXT:faq/Resources/Private/Templates/
 			1 = {$plugin.tx_faq.view.templateRootPath}
 		}
 		partialRootPaths {
-			0 = EXT:faq/Resources/Private/Extension/Faq/Partials/
+			0 = EXT:faq/Resources/Private/Partials/
 			1 = {$plugin.tx_faq.view.partialRootPath}
 		}
 		layoutRootPaths {
-			0 = EXT:faq/Resources/Private/Extension/Faq/Layouts/
+			0 = EXT:faq/Resources/Private/Layouts/
 			1 = {$plugin.tx_faq.view.layoutRootPath}
 		}
 	}
