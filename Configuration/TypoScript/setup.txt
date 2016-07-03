@@ -3,9 +3,12 @@ plugin.tx_faq {
 		faq {
 			limitTop = 5
 			limitNewest = 5
+			limitPerPage = 5
+			showNewest = 0
+			showTop = 1
 			topCategory = 0
 			teaserLimit = 10
-			teaserCategories =
+			teaserCategories = 
 			allLinkTarget = {$plugin.tx_faq.settings.faq.allLinkTarget}
 		}
 		enableCaptcha = 0
@@ -24,6 +27,7 @@ plugin.tx_faq {
 			0 = EXT:faq/Resources/Private/Layouts/
 			1 = {$plugin.tx_faq.view.layoutRootPath}
 		}
+		widget.TYPO3\CMS\Fluid\ViewHelpers\Widget\PaginateViewHelper.templateRootPath = EXT:faq/Resources/Private/Templates/
 	}
 
 	features {

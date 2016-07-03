@@ -54,6 +54,15 @@
 		<trans-unit id="flexform.topMode.votings">
 			<source>Votings</source>
 		</trans-unit>
+		<trans-unit id="flexform.showNewest">
+			<source>Show latest questions</source>
+		</trans-unit>
+		<trans-unit id="flexform.limitPerPage">
+			<source>List: Show items per page</source>
+		</trans-unit>
+		<trans-unit id="flexform.showTop">
+			<source>Show top questions</source>
+		</trans-unit>
 		<trans-unit id="form.captcha">
 			<source>Type the characters*</source>
 		</trans-unit>

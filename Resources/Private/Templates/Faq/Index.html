@@ -13,11 +13,13 @@
 		<div class="box faq list results noPad clearfix">
 			<f:if condition="{questions}">
 				<f:then>
-					<ul>
-						<f:for each="{questions}" as="question">
-							<f:render partial="Faq/Answer" arguments="{question: question, renderId: 1}" />
-						</f:for>
-					</ul>
+				    <f:widget.paginate objects="{questions}" as="quest" configuration="{itemsPerPage: '{settings.faq.limitPerPage}', insertAbove: 1 insertBelow: 1}">
+    					<ul>
+    						<f:for each="{quest}" as="question">
+    							<f:render partial="Faq/Answer" arguments="{question: question, renderId: 1}" />
+    						</f:for>
+    					</ul>
+				    </f:widget.paginate>
 				</f:then>
 				<f:else>
 					<f:translate key="no_questions_found">
@@ -30,25 +32,29 @@
 	</f:if>
 
 
-	<h2><f:translate key="recently">Kürzlich angelegte Fragen</f:translate></h2>
+    <f:if condition="{settings.faq.showNewest}">
+    	<h2><f:translate key="recently">Kürzlich angelegte Fragen</f:translate></h2>
+    
+    	<div class="box faq list noPad clearfix">
+    		<ul>
+    			<f:for each="{newQuestions}" as="question">
+    				<f:render partial="Faq/Answer" arguments="{question: question}" />
+    			</f:for>
+    		</ul>
+    	</div>
+    </f:if>
 
-	<div class="box faq list noPad clearfix">
-		<ul>
-			<f:for each="{newQuestions}" as="question">
-				<f:render partial="Faq/Answer" arguments="{question: question}" />
-			</f:for>
-		</ul>
-	</div>
-
-	<h2><f:translate key="top">Top Fragen</f:translate></h2>
-
-	<div class="box faq list noPad clearfix">
-		<ul>
-			<f:for each="{topQuestions}" as="question">
-				<f:render partial="Faq/Answer" arguments="{question: question}" />
-			</f:for>
-		</ul>
-	</div>
+    <f:if condition="{settings.faq.showTop}">
+    	<h2><f:translate key="top">Top Fragen</f:translate></h2>
+    
+    	<div class="box faq list noPad clearfix">
+    		<ul>
+    			<f:for each="{topQuestions}" as="question">
+    				<f:render partial="Faq/Answer" arguments="{question: question}" />
+    			</f:for>
+    		</ul>
+    	</div>
+    </f:if>
 
 </f:section>
 

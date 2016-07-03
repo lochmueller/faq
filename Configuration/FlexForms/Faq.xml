@@ -11,6 +11,35 @@
 				</TCEforms>
 				<type>array</type>
 				<el>
+					<settings.faq.showNewest>
+						<TCEforms>
+                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.showNewest</label>
+                            <config>
+                                <type>check</type>
+                            </config>
+						</TCEforms>
+					</settings.faq.showNewest>
+					<settings.faq.showTop>
+						<TCEforms>
+                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.showTop</label>
+                            <config>
+                                <type>check</type>
+                            </config>
+						</TCEforms>
+					</settings.faq.showTop>
+					
+					<settings.faq.limitPerPage>
+						<TCEforms>
+                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.limitPerPage</label>
+                            <config>
+                                <type>input</type>
+                                <size>5</size>
+                                <eval>int</eval>
+                            </config>
+						</TCEforms>
+					</settings.faq.limitPerPage>					
+					
+					
 					<settings.topMode>
 						<TCEforms>
 							<label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode</label>

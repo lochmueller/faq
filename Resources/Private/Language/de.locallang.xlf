@@ -66,6 +66,18 @@
 			<source>Votings</source>
 			<target>Votings</target>
 		</trans-unit>
+		<trans-unit id="flexform.showNewest">
+			<source>Show latest questions</source>
+			<target>Neue FAQs anzeigen</target>
+		</trans-unit>
+		<trans-unit id="flexform.limitPerPage">
+			<source>List: Show items per page</source>
+			<target>Liste: FAQs pro Seite anzeigen</target>
+		</trans-unit>
+		<trans-unit id="flexform.showTop">
+			<source>Show top questions</source>
+			<target>Top FAQs anzeigen</target>
+		</trans-unit>
 		<trans-unit id="form.captcha" approved="yes">
 			<source>Type the characters*</source>
 			<target>Bitte geben Sie die unten stehenden Buchstaben in das Feld ein.*</target>
