@@ -63,6 +63,5 @@ class SessionService extends AbstractService
     public function set($sessionIdentifier, $value)
     {
         $this->frontendUser->setAndSaveSessionData($sessionIdentifier, $value);
-
     }
 }
