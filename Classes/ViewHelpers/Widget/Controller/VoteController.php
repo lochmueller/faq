@@ -74,14 +74,14 @@ class VoteController extends AbstractWidgetController
             $result['state'] = 'OK';
             $result['description'] = TranslateUtility::assureLabel(
                 'eid.ok',
-                'hdnet_faq',
+                'faq',
                 'Vielen Dank f&uuml;r Ihre Wertung.'
             );
             $result['currentCounter'] = $vote->getQuestionVotes();
         } catch (AlreadyVotedException $e) {
             $result['description'] = TranslateUtility::assureLabel(
                 'eid.error.multivote',
-                'hdnet_faq',
+                'faq',
                 'Sie haben f&uuml;r diese Frage bereits abgestimmt!'
             );
         } catch (VoteException $e) {
