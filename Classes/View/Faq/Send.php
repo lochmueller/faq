@@ -1,6 +1,6 @@
 <?php
 /**
- * @todo    General file information
+ * Send
  *
  * @author  Tim Lochmüller
  */
@@ -10,7 +10,7 @@ namespace HDNET\Faq\View\Faq\Send;
 use HDNET\Faq\View\MailView;
 
 /**
- * @todo General class information
+ * Send
  */
 class Send extends MailView
 {

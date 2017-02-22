@@ -16,16 +16,23 @@ class SessionService extends AbstractService
 {
 
     /**
+     * Frontend user
+     *
      * @var \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication
      */
     protected $frontendUser;
 
+    /**
+     * Init the current object
+     */
     public function initializeObject()
     {
         $this->frontendUser = $GLOBALS['TSFE']->fe_user;
     }
 
     /**
+     * Set and Get
+     *
      * @param string $sessionIdentifier
      * @param mixed $value
      * @return mixed
@@ -39,6 +46,8 @@ class SessionService extends AbstractService
     }
 
     /**
+     * Has
+     *
      * @param $sessionIdentifier
      * @return bool
      */
@@ -48,6 +57,8 @@ class SessionService extends AbstractService
     }
 
     /**
+     * Get
+     *
      * @param string $sessionIdentifier
      * @return mixed
      */
@@ -57,6 +68,8 @@ class SessionService extends AbstractService
     }
 
     /**
+     * Set
+     *
      * @param string $sessionIdentifier
      * @param mixed $value
      */

@@ -17,17 +17,23 @@ class VoteViewHelper extends AbstractWidgetViewHelper
 {
 
     /**
+     * AJAX Widget?
+     *
      * @var bool
      */
     protected $ajaxWidget = true;
 
     /**
+     * Controller
+     *
      * @var \HDNET\Faq\ViewHelpers\Widget\Controller\VoteController
      * @inject
      */
     protected $controller;
 
     /**
+     * Render
+     *
      * @param int $question
      * @param array $counters
      *

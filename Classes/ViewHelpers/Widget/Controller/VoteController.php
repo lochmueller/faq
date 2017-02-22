@@ -23,17 +23,24 @@ class VoteController extends AbstractWidgetController
 {
 
     /**
+     * Session service
+     *
      * @var \HDNET\Faq\Service\SessionService
      * @inject
      */
     protected $sessionService;
 
     /**
+     * Question repository
+     *
      * @var \HDNET\Faq\Domain\Repository\QuestionRepository
      * @inject
      */
     protected $questionRepository;
 
+    /**
+     * Index action
+     */
     public function indexAction()
     {
         $this->view->assignMultiple([
@@ -44,6 +51,8 @@ class VoteController extends AbstractWidgetController
     }
 
     /**
+     * Vote action
+     *
      * @param Question $question
      * @param int $mode
      *

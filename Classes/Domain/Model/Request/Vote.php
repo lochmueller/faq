@@ -23,6 +23,8 @@ class Vote extends AbstractRequest
     const MODE_FLOP = 2;
 
     /**
+     * Question
+     *
      * @var \HDNET\Faq\Domain\Model\Question
      */
     protected $question;
@@ -36,7 +38,7 @@ class Vote extends AbstractRequest
     protected $mode;
 
     /**
-     *
+     * Update question
      */
     public function updateQuestion()
     {
@@ -48,6 +50,8 @@ class Vote extends AbstractRequest
     }
 
     /**
+     * Build mode method
+     *
      * @return string
      */
     protected function buildModeMethod()
@@ -63,6 +67,8 @@ class Vote extends AbstractRequest
     }
 
     /**
+     * Get mode
+     *
      * @return int
      */
     public function getMode()
@@ -71,6 +77,8 @@ class Vote extends AbstractRequest
     }
 
     /**
+     * Set mode
+     *
      * @param int $mode
      */
     public function setMode($mode)
@@ -79,6 +87,8 @@ class Vote extends AbstractRequest
     }
 
     /**
+     * Get question
+     *
      * @return \HDNET\Faq\Domain\Model\Question
      */
     public function getQuestion()
@@ -87,6 +97,8 @@ class Vote extends AbstractRequest
     }
 
     /**
+     * Set question
+     *
      * @param \HDNET\Faq\Domain\Model\Question $question
      */
     public function setQuestion($question)
@@ -95,6 +107,8 @@ class Vote extends AbstractRequest
     }
 
     /**
+     * Get question votes
+     *
      * @return int
      */
     public function getQuestionVotes()
@@ -107,6 +121,8 @@ class Vote extends AbstractRequest
     }
 
     /**
+     * Check against
+     *
      * @param array $votes
      *
      * @throws AlreadyVotedException

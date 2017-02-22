@@ -65,6 +65,9 @@ class Question extends AbstractModel
      */
     protected $categories;
 
+    /**
+     * Question constructor.
+     */
     public function __construct()
     {
         $this->categories = new ObjectStorage();
