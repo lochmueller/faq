@@ -42,11 +42,11 @@ class MailView extends TemplateView
      * @param null $actionName
      *
      * @throws \Exception
-     * @return boolean|void
+     * @return boolean
      */
     public function render($actionName = null)
     {
-        return $this->startMail()
+        return (bool)$this->startMail()
             ->assignDefaults()
             ->assignGeneralVariables()
             ->assignFiles()
