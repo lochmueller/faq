@@ -1,7 +1,7 @@
 {
   "name": "lochmueller/faq",
   "type": "typo3-cms-extension",
-  "version": "1.1.4",
+  "version": "2.0.0",
   "description": "Basic FAQ (Frequently Asked Questions) extension in a clean extbase/fluid structure. Questions and Question categroies with a smart plugin structure.",
   "autoload": {
     "psr-4": {
@@ -40,7 +40,7 @@
     "issues": "https://github.com/lochmueller/faq/issues"
   },
   "require-dev": {
-    "namelesscoder/typo3-repository-client": "1.2.0",
+    "namelesscoder/typo3-repository-client": "2.0.0",
     "phpunit/phpunit": "~4.8.0",
     "squizlabs/php_codesniffer": "^2.6",
     "phpmd/phpmd": "^2.4"
