@@ -27,7 +27,7 @@
     }
   ],
   "require": {
-    "php": ">=5.5.0",
+    "php": ">=7.0.0",
     "typo3/cms-core": "~7.6.0||~8.5.0||~8.6.0||dev-master"
   },
   "replace": {
