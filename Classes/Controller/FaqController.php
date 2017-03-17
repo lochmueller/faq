@@ -149,6 +149,7 @@ class FaqController extends AbstractController
         // @todo integrate captcha based on $this->settings['enableCaptcha']
         // * @validate $captcha \SJBR\SrFreecap\Validation\Validator\CaptchaValidator && Not Empty
         $this->disableIndexing();
+
         $targetEmailAddress = $this->getTargetEmailAddress();
         if (GeneralUtility::validEmail($targetEmailAddress)) {
             $this->view->assign('to', [$targetEmailAddress => $targetEmailAddress]);

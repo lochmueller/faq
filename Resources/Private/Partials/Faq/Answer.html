@@ -1,18 +1,16 @@
 {namespace hf=HDNET\Faq\ViewHelpers}
-<li class="clearfix" {f:if(condition: renderId, then: ' id="a_{question.uid}"', else: '')}>
+
+<li class="clearfix" id="a_{question.uid}{suffix}">
 	<h3 class="header clearfix">
-        <div class="clearfix">
-            <span class="icon"></span>
-            <span class="title">{question.title}</span>
-        </div>
-        <span class="cat"><f:for each="{question.categories}" as="cat" iteration="i">{f:if(condition: i.isFirst, then: '', else: ', ')}{cat.title}</f:for></span>
+		{question.title}
+		<span class="cat"><f:for each="{question.categories}" as="cat" iteration="i">{f:if(condition: i.isFirst, then: '', else: ', ')}{cat.title}</f:for></span>
 	</h3>
 
 	<div class="content">
-        <f:format.html>{question.answer}</f:format.html>
+		<f:format.html>{question.answer}</f:format.html>
 		<f:if condition="{settings.enableVoting}">
 			<ul class="rating clearfix">
-				<hf:widget.vote question="{question.uid}" counters="{top: question.topCounter, flop: question.flopCounter}" />
+				<hf:widget.vote question="{question.uid}" counters="{top: question.topCounter, flop: question.flopCounter}"/>
 			</ul>
 		</f:if>
 	</div>

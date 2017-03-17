@@ -1,18 +1,23 @@
-<f:layout name="Default" />
+<f:layout name="Default"/>
 
 <f:section name="content">
 	<f:if condition="{questions}">
 		<header class="boxHeader clearfix">
-			<h2><f:translate key="teaser.faq">Häufige Fragen</f:translate></h2>
+			<h2>
+				<f:translate key="teaser.faq"/>
+			</h2>
 			<f:if condition="{settings.faq.allLinkTarget}">
-				<f:link.page pageUid="{settings.faq.allLinkTarget}"><f:translate key="teaser.all">+ alle Fragen</f:translate></f:link.page>
+				<f:link.page pageUid="{settings.faq.allLinkTarget}">
+					<f:translate key="teaser.all"/>
+				</f:link.page>
 			</f:if>
 		</header>
 		<div class="box accordion noPad clearfix">
 			<f:for each="{questions}" as="question">
 				<h3>{question.title}</h3>
-
-				<div><f:format.html>{question.answer}</f:format.html></div>
+				<div>
+					<f:format.html>{question.answer}</f:format.html>
+				</div>
 			</f:for>
 		</div>
 	</f:if>

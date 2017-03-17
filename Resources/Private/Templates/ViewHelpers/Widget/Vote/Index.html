@@ -1,12 +1,12 @@
 <li>
-	<f:widget.link action="vote" arguments="{question: question, mode: 1}" ajax="1" class="faq-vote thumbs up" title="Diese Antwort war hilfreich">
+	<f:widget.link action="vote" arguments="{question: question, mode: 1}" ajax="1" class="faq-vote thumbs up" title="{f:translate(key:'answer.helpful')}">
 		<span class="icon-thumbs-up-alt"></span>
-		<f:translate key="answer.helpful">hilfreich</f:translate>
+		<f:translate key="answer.helpful" />
 	</f:widget.link> ({top})
 </li>
 <li>
-	<f:widget.link action="vote" arguments="{question: question, mode: 2}" ajax="1" class="faq-vote thumbs down" title="Diese Antwort war nicht hilfreich">
+	<f:widget.link action="vote" arguments="{question: question, mode: 2}" ajax="1" class="faq-vote thumbs down" title="{f:translate(key:'answer.not_helpful')}">
 		<span class="icon-thumbs-down-alt"></span>
-		<f:translate key="answer.not_helpful">nicht hilfreich</f:translate>
+		<f:translate key="answer.not_helpful" />
 	</f:widget.link> ({flop})
 </li>
