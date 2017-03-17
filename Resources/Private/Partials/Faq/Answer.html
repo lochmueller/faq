@@ -1,5 +1,5 @@
 {namespace hf=HDNET\Faq\ViewHelpers}
-<li class="clearfix"{f:if(condition: renderId, then: ' id="a_{question.uid}"', else: '')}>
+<li class="clearfix" {f:if(condition: renderId, then: ' id="a_{question.uid}"', else: '')}>
 	<h3 class="header clearfix">
         <div class="clearfix">
             <span class="icon"></span>
@@ -10,8 +10,10 @@
 
 	<div class="content">
         <f:format.html>{question.answer}</f:format.html>
-		<ul class="rating clearfix">
-			<hf:widget.vote question="{question.uid}" counters="{top: question.topCounter, flop: question.flopCounter}" />
-		</ul>
+		<f:if condition="{settings.enableVoting}">
+			<ul class="rating clearfix">
+				<hf:widget.vote question="{question.uid}" counters="{top: question.topCounter, flop: question.flopCounter}" />
+			</ul>
+		</f:if>
 	</div>
 </li>

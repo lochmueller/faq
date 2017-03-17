@@ -22,6 +22,10 @@
 			<source>Sie haben für diese Frage bereits abgestimmt!</source>
 			<target>Sie haben für diese Frage bereits abgestimmt!</target>
 		</trans-unit>
+		<trans-unit id="search" approved="yes">
+			<source>Search</source>
+			<target>Suchen</target>
+		</trans-unit>
 		<trans-unit id="eid.error.question" approved="yes">
 			<source>Keine gültige Frage ausgewählt!</source>
 			<target>Keine gültige Frage ausgewählt!</target>

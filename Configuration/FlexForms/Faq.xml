@@ -1,86 +1,95 @@
 <T3DataStructure>
-	<meta type="array">
-		<langChildren type="integer">0</langChildren>
-		<langDisable type="integer">1</langDisable>
-	</meta>
-	<sheets>
-		<sheet1>
-			<ROOT>
-				<TCEforms>
-					<sheetTitle>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode.title</sheetTitle>
-				</TCEforms>
-				<type>array</type>
-				<el>
-					<settings.faq.showNewest>
-						<TCEforms>
+    <meta type="array">
+        <langChildren type="integer">0</langChildren>
+        <langDisable type="integer">1</langDisable>
+    </meta>
+    <sheets>
+        <sheet1>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode.title</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.faq.showNewest>
+                        <TCEforms>
                             <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.showNewest</label>
                             <config>
                                 <type>check</type>
                             </config>
-						</TCEforms>
-					</settings.faq.showNewest>
-					<settings.faq.showTop>
-						<TCEforms>
+                        </TCEforms>
+                    </settings.faq.showNewest>
+                    <settings.faq.showTop>
+                        <TCEforms>
                             <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.showTop</label>
                             <config>
                                 <type>check</type>
                             </config>
-						</TCEforms>
-					</settings.faq.showTop>
-					
-					<settings.faq.limitPerPage>
-						<TCEforms>
+                        </TCEforms>
+                    </settings.faq.showTop>
+
+                    <settings.faq.limitPerPage>
+                        <TCEforms>
                             <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.limitPerPage</label>
                             <config>
                                 <type>input</type>
                                 <size>5</size>
                                 <eval>int</eval>
+                                <range>
+                                    <lower>1</lower>
+                                    <upper>1000</upper>
+                                </range>
+                                <default>10</default>
                             </config>
-						</TCEforms>
-					</settings.faq.limitPerPage>					
-					
-					
-					<settings.topMode>
-						<TCEforms>
-							<label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode</label>
-							<onChange>reload</onChange>
-							<config>
-								<type>select</type>
-								<renderType>selectSingle</renderType>
-								<items type="array">
-									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode.votings</numIndex>
-										<numIndex index="1">0</numIndex>
-									</numIndex>
-									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode.custom</numIndex>
-										<numIndex index="1">1</numIndex>
-									</numIndex>
-								</items>
-							</config>
-						</TCEforms>
-					</settings.topMode>
-					<settings.custom>
-						<TCEforms>
-							<label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode.custom</label>
-							<displayCond>FIELD:settings.topMode:=:1</displayCond>
-							<config>
-								<type>group</type>
-								<internal_type>db</internal_type>
-								<allowed>tx_faq_domain_model_question</allowed>
-								<maxitems>99</maxitems>
-								<mintems>0</mintems>
-								<size>5</size>
-								<wizards>
-									<suggest>
-										<type>suggest</type>
-									</suggest>
-								</wizards>
-							</config>
-						</TCEforms>
-					</settings.custom>
-				</el>
-			</ROOT>
-		</sheet1>
-	</sheets>
+                        </TCEforms>
+                    </settings.faq.limitPerPage>
+
+
+                    <settings.topMode>
+                        <TCEforms>
+                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode</label>
+                            <onChange>reload</onChange>
+                            <config>
+                                <type>select</type>
+                                <renderType>selectSingle</renderType>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">
+                                            LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode.votings
+                                        </numIndex>
+                                        <numIndex index="1">0</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">
+                                            LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode.custom
+                                        </numIndex>
+                                        <numIndex index="1">1</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.topMode>
+                    <settings.custom>
+                        <TCEforms>
+                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode.custom</label>
+                            <displayCond>FIELD:settings.topMode:=:1</displayCond>
+                            <config>
+                                <type>group</type>
+                                <internal_type>db</internal_type>
+                                <allowed>tx_faq_domain_model_question</allowed>
+                                <maxitems>99</maxitems>
+                                <mintems>0</mintems>
+                                <size>5</size>
+                                <wizards>
+                                    <suggest>
+                                        <type>suggest</type>
+                                    </suggest>
+                                </wizards>
+                            </config>
+                        </TCEforms>
+                    </settings.custom>
+                </el>
+            </ROOT>
+        </sheet1>
+    </sheets>
 </T3DataStructure>

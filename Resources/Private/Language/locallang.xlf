@@ -102,6 +102,9 @@
 		<trans-unit id="search.topic">
 			<source>Select a topic</source>
 		</trans-unit>
+		<trans-unit id="search">
+			<source>Search</source>
+		</trans-unit>
 		<trans-unit id="sysfolder">
 			<source>FAQ</source>
 		</trans-unit>
