@@ -135,9 +135,18 @@ class QuestionRepository extends AbstractRepository
         $constraints = [];
         $constraints[] = $query->logicalOr($constraintsOr);
 
+        $categories = GeneralUtility::intExplode(',', implode(',', $faq->getCategories()), true);
         if ($faq->getCategory() instanceof Questioncategory) {
-            $constraints[] = $query->contains('categories', $faq->getCategory()
-                ->getUid());
+            $categories[] = (int)$faq->getCategory()
+                ->getUid();
+        }
+
+        if ($categories) {
+            $catSelection = [];
+            foreach ($categories as $catId) {
+                $catSelection[] = $query->contains('categories', $catId);
+            }
+            $constraints[] = $query->logicalOr($catSelection);
         }
 
         if (strlen($faq->getSearchWord())) {
@@ -181,9 +190,9 @@ class QuestionRepository extends AbstractRepository
             }
             if (!empty($categories)) {
                 $whereClause .= ' AND tx_faq_mm_question_questioncategory.uid_foreign IN (' . implode(
-                    ',',
-                    $categories
-                ) . ')';
+                        ',',
+                        $categories
+                    ) . ')';
             }
             $rows = $db->exec_SELECTgetRows(
                 $t . '.*', // select table

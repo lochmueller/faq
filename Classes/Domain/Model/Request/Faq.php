@@ -21,6 +21,13 @@ class Faq extends AbstractRequest
     protected $category;
 
     /**
+     * Categories (for checkbox selection)
+     *
+     * @var array
+     */
+    protected $categories = [];
+
+    /**
      * Search word
      *
      * @var string
@@ -66,4 +73,21 @@ class Faq extends AbstractRequest
     {
         return trim($this->searchWord);
     }
+
+    /**
+     * @return array
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @param array $categories
+     */
+    public function setCategories($categories)
+    {
+        $this->categories = $categories;
+    }
+
 }

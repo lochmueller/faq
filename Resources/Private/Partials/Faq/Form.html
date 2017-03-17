@@ -5,22 +5,39 @@
 			<f:render partial="FormErrors"/>
 
 			<div class="gel columnGroup columnCount2 columnDistribution1212 clearfix">
+
 				<section class="column c1">
 					<div class="columnGutter">
 						<label>
-							<f:translate key="search.topic"/>
+							<f:translate key="search.text"/>
 						</label>
-						<f:form.select property="category" options="{categories}" optionValueField="uid" optionLabelField="title"
-													 prependOptionLabel="{f:translate(key: 'search.category.default')}" prependOptionValue="0"/>
+						<f:form.textfield property="searchWord" class="text"/>
 					</div>
 				</section>
 
 				<section class="column c2">
 					<div class="columnGutter">
 						<label>
-							<f:translate key="search.text"/>
+							<f:translate key="search.topic"/>
 						</label>
-						<f:form.textfield property="searchWord" class="text"/>
+						<div>
+							<f:if condition="{settings.formTopicsSelect}">
+								<f:then>
+									<f:form.select property="category" options="{categories}" optionValueField="uid"
+																 optionLabelField="title"
+																 prependOptionLabel="{f:translate(key: 'search.category.default')}"
+																 prependOptionValue="0"/>
+								</f:then>
+								<f:else>
+									<f:for each="{categories}" as="cat">
+										<label>
+											<f:form.checkbox property="categories" value="{cat.uid}"/>
+											{cat.title}
+										</label>
+									</f:for>
+								</f:else>
+							</f:if>
+						</div>
 					</div>
 				</section>
 

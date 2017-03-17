@@ -12,6 +12,8 @@ plugin.tx_faq {
 			allLinkTarget =
 		}
 		enableVoting = 0
+		# Otherwise they are checkboxes
+		formTopicsSelect = 1
 		enableCaptcha = 0
 	}
 
