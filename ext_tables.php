@@ -16,6 +16,16 @@ if (class_exists(\TYPO3\CMS\Backend\Sprite\SpriteManager::class)) {
         'contains-faq',
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/QuestionFolder.png'
     );
+} else {
+    // module icon
+    $extensionIcon = \HDNET\Autoloader\Utility\IconUtility::getByExtensionKey('faq', true);
+    /** @var \TYPO3\CMS\Core\Imaging\IconRegistry $iconRegistry */
+    $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
+    $iconRegistry->registerIcon(
+        'apps-pagetree-folder-contains-faq',
+        \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
+        ['source' => $extensionIcon]
+    );
 }
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('
