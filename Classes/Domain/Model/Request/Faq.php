@@ -89,5 +89,4 @@ class Faq extends AbstractRequest
     {
         $this->categories = $categories;
     }
-
 }

@@ -190,9 +190,9 @@ class QuestionRepository extends AbstractRepository
             }
             if (!empty($categories)) {
                 $whereClause .= ' AND tx_faq_mm_question_questioncategory.uid_foreign IN (' . implode(
-                        ',',
-                        $categories
-                    ) . ')';
+                    ',',
+                    $categories
+                ) . ')';
             }
             $rows = $db->exec_SELECTgetRows(
                 $t . '.*', // select table
