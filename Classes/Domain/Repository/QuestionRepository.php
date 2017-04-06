@@ -52,7 +52,9 @@ class QuestionRepository extends AbstractRepository
 
             $constraintsAnd = [];
             $constraintsAnd[] = $query->logicalOr($constraintsOr);
-            $constraintsAnd[] = $query->logicalNot($query->in('uid', $topQuestions));
+            if (!empty($topQuestions)) {
+                $constraintsAnd[] = $query->logicalNot($query->in('uid', $topQuestions));
+            }
 
             $query->matching($query->logicalAnd($constraintsAnd));
 
