@@ -2,13 +2,21 @@
 
 <f:section name="content">
 
-	<f:render partial="Faq/Form" arguments="{_all}"/>
+	<f:if condition="{settings.hideSearch}">
+		<f:else>
+			<f:render partial="Faq/Form" arguments="{_all}"/>
+		</f:else>
+	</f:if>
 
 	<f:if condition="{showResults}">
 
-		<h2>
-			<f:translate key="results">Suchergebnisse:</f:translate>
-		</h2>
+		<f:if condition="{settings.hideSearch}">
+			<f:else>
+				<h2>
+					<f:translate key="results">Suchergebnisse:</f:translate>
+				</h2>
+			</f:else>
+		</f:if>
 
 		<div class="box faq list results noPad clearfix">
 			<f:if condition="{questions}">

@@ -48,6 +48,14 @@ class FaqController extends AbstractController
     public function indexAction(Faq $faq = null, $showAll = false)
     {
         $topCategory = (int)$this->settings['faq']['topCategory'];
+
+        if ((bool)$this->settings['overrideShowAll'] === true) {
+            $showAll = true;
+        }
+        if ((int)$this->settings['overrideTopCategory'] !== 0) {
+            $topCategory = (int)$this->settings['overrideTopCategory'];
+        }
+
         if (is_object($faq)) {
             $questions = $this->questionRepository->findByFaq($faq, $topCategory);
             $showResults = true;

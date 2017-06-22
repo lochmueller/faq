@@ -27,7 +27,6 @@
                             </config>
                         </TCEforms>
                     </settings.faq.showTop>
-
                     <settings.faq.limitPerPage>
                         <TCEforms>
                             <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.limitPerPage</label>
@@ -43,8 +42,6 @@
                             </config>
                         </TCEforms>
                     </settings.faq.limitPerPage>
-
-
                     <settings.topMode>
                         <TCEforms>
                             <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode</label>
@@ -88,6 +85,38 @@
                             </config>
                         </TCEforms>
                     </settings.custom>
+                    <settings.overrideTopCategory>
+                        <TCEforms>
+                            <label>Override Top category</label>
+                            <config>
+                                <type>select</type>
+                                <foreign_table>tx_faq_domain_model_questioncategory</foreign_table>
+                                <size>1</size>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0"></numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.overrideTopCategory>
+                    <settings.overrideShowAll>
+                        <TCEforms>
+                            <label>Override showAll</label>
+                            <config>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.overrideShowAll>
+                    <settings.hideSearch>
+                        <TCEforms>
+                            <label>Hide search (please use the other options to selecte a default result)?</label>
+                            <config>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.hideSearch>
                 </el>
             </ROOT>
         </sheet1>
