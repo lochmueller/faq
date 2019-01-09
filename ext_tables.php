@@ -10,10 +10,16 @@
 $GLOBALS['TCA']['pages']['columns']['module']['config']['items'][$_EXTKEY]['0'] = 'LLL:EXT:faq/Resources/Private/Language/locallang.xlf:sysfolder';
 $GLOBALS['TCA']['pages']['columns']['module']['config']['items'][$_EXTKEY]['1'] = $_EXTKEY;
 
-\TYPO3\CMS\Backend\Sprite\SpriteManager::addTcaTypeIcon(
-    'pages',
+$iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
+$iconRegistry->registerIcon(
     'contains-faq',
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/QuestionFolder.png'
+    \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
+    ['source' => 'EXT:faq/Resources/Public/Icons/QuestionFolder.png']
+);
+$iconRegistry->registerIcon(
+    'ext-faq-question',
+    \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
+    ['source' => 'EXT:faq/Resources/Public/Icons/Question.png']
 );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('
@@ -21,7 +27,7 @@ mod {
 	wizards.newContentElement.wizardItems.plugins {
 		elements {
 			faq {
-				icon = EXT:faq/Resources/Public/Icons/Question.png
+				iconIdentifier = ext-faq-question
 				title = FAQ
 				description = Create FAQ Plugin to handle the FAQ output
 				tt_content_defValues {
