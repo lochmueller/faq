@@ -15,6 +15,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * FAQ
  *
+ * @IgnoreAnnotation("cache")
+ * @IgnoreAnnotation("donotvalidate")
  */
 class FaqController extends AbstractController
 {
