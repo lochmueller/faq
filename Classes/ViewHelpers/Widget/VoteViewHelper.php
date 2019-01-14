@@ -28,6 +28,7 @@ class VoteViewHelper extends AbstractWidgetViewHelper
      *
      * @var \HDNET\Faq\ViewHelpers\Widget\Controller\VoteController
      * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $controller;
 

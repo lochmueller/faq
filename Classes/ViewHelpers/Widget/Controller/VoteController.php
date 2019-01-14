@@ -27,6 +27,7 @@ class VoteController extends AbstractWidgetController
      *
      * @var \HDNET\Faq\Service\SessionService
      * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $sessionService;
 
@@ -35,6 +36,7 @@ class VoteController extends AbstractWidgetController
      *
      * @var \HDNET\Faq\Domain\Repository\QuestionRepository
      * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $questionRepository;
 

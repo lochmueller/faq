@@ -30,6 +30,7 @@ class FaqController extends AbstractController
      *
      * @var \HDNET\Faq\Domain\Repository\QuestionRepository
      * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $questionRepository;
 
@@ -38,6 +39,7 @@ class FaqController extends AbstractController
      *
      * @var \HDNET\Faq\Domain\Repository\QuestioncategoryRepository
      * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $questioncategoryRepository;
 
