@@ -139,6 +139,7 @@ class FaqController extends AbstractController
      * @param \HDNET\Faq\Domain\Model\Request\QuestionRequest $question
      * @donotvalidate $question
      * @ignorevalidation $question
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation $question
      */
     public function formAction(QuestionRequest $question = null)
     {
