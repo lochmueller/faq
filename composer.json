@@ -9,8 +9,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "HDNET\\Calendarize\\Tests\\": "Tests",
-      "TYPO3\\CMS\\Core\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/core/Tests/"
+      "HDNET\\Faq\\Tests\\": "Tests"
     }
   },
   "keywords": [
@@ -27,7 +26,7 @@
   ],
   "require": {
     "php": ">=7.0.0",
-    "typo3/cms-core": "~7.6.0||~8.7.0||~9.5||dev-master"
+    "typo3/cms-core": "~7.6.0||~8.7.0||~9.5.0||dev-master"
   },
   "replace": {
     "faq": "self.version",
