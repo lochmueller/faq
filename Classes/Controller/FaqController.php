@@ -16,7 +16,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * FAQ
  *
  * @IgnoreAnnotation("cache")
- * @IgnoreAnnotation("donotvalidate")
  */
 class FaqController extends AbstractController
 {
@@ -137,7 +136,6 @@ class FaqController extends AbstractController
      * Enter form
      *
      * @param \HDNET\Faq\Domain\Model\Request\QuestionRequest $question
-     * @donotvalidate $question
      * @ignorevalidation $question
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation $question
      */
