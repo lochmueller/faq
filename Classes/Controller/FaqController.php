@@ -14,8 +14,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * FAQ
- *
- * @IgnoreAnnotation("cache")
  */
 class FaqController extends AbstractController
 {
@@ -106,8 +104,6 @@ class FaqController extends AbstractController
 
     /**
      * Render the teaser action
-     *
-     * @cache 1h
      */
     public function teaserAction()
     {
