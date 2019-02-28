@@ -10,6 +10,7 @@ namespace HDNET\Faq\Domain\Repository;
 use HDNET\Faq\Domain\Model\Question;
 use HDNET\Faq\Domain\Model\Questioncategory;
 use HDNET\Faq\Domain\Model\Request\Faq;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\DatabaseConnection;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
@@ -139,7 +140,7 @@ class QuestionRepository extends AbstractRepository
 
         $categories = GeneralUtility::intExplode(',', implode(',', $faq->getCategories()), true);
         if ($faq->getCategory() instanceof Questioncategory) {
-            $categories[] = (int)$faq->getCategory()
+            $categories[] = (int) $faq->getCategory()
                 ->getUid();
         }
 
@@ -178,35 +179,36 @@ class QuestionRepository extends AbstractRepository
     {
         $questions = $this->getStaticQuestionsAndReduceLimit($topQuestions, $limit);
         if ($limit > 0) {
-            //$categories[] = 0;
-
-            $pageRepository = GeneralUtility::makeInstance(PageRepository::class);
             $t = $this->getTableName();
 
-            /** @var DatabaseConnection $db */
-            $db = $GLOBALS['TYPO3_DB'];
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_faq_mm_question_questioncategory');
+            $queryBuilder
+                ->getRestrictions()
+                ->removeAll();
 
-            $whereClause = $t . '.uid=tx_faq_mm_question_questioncategory.uid_local' . $pageRepository->enableFields($t);
+
+            $where = [
+                $queryBuilder->expr()->eq($t . '.uid', 'mm.uid_local')
+            ];
             if (sizeof($topQuestions)) {
-                $whereClause .= ' AND ' . $t . '.uid NOT IN (' . implode(',', $topQuestions) . ')';
+                $where[] = $queryBuilder->expr()->notIn($t . '.uid', $topQuestions);
             }
             if (!empty($categories)) {
-                $whereClause .= ' AND tx_faq_mm_question_questioncategory.uid_foreign IN (' . implode(
-                    ',',
-                    $categories
-                ) . ')';
+                $where[] = $queryBuilder->expr()->in('mm.uid_foreign', $categories);
             }
-            $rows = $db->exec_SELECTgetRows(
-                $t . '.*', // select table
-                $t . ',tx_faq_mm_question_questioncategory', // mm table
-                $whereClause, // WHERE
-                $t . '.uid', // GROUP BY
-                'RAND()', // ORDER BY
-                $limit // LIMIT
-            );
+
+            $rows = $queryBuilder->select($t . '.*')
+                ->from($t)
+                ->join($t, 'tx_faq_mm_question_questioncategory', 'mm')
+                ->where(...$where)
+                ->groupBy($t . '.uid')
+                ->execute()
+                ->fetchAll();
+
+            shuffle($rows);
 
             foreach ($rows as $row) {
-                $q = $this->findByUid((int)$row['uid']);
+                $q = $this->findByUid((int) $row['uid']);
                 if ($q instanceof Question) {
                     $questions[] = $q;
                 }
@@ -227,7 +229,7 @@ class QuestionRepository extends AbstractRepository
     {
         $questions = [];
         foreach ($ids as $id) {
-            $q = $this->findByUid((int)$id);
+            $q = $this->findByUid((int) $id);
             if ($q instanceof Question) {
                 $questions[] = $q;
                 $limit--;
