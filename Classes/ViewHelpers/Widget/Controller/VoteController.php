@@ -59,6 +59,8 @@ class VoteController extends AbstractWidgetController
      * @param int $mode
      *
      * @return string
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
      */
     public function voteAction(Question $question, $mode)
     {

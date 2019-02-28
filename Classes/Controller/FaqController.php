@@ -149,6 +149,7 @@ class FaqController extends AbstractController
      *
      * @param \HDNET\Faq\Domain\Model\Request\QuestionRequest $question
      * @param string $captcha
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      */
     public function sendAction(QuestionRequest $question, $captcha = null)
     {
@@ -171,6 +172,7 @@ class FaqController extends AbstractController
      * user action
      *
      * @param \HDNET\Faq\Domain\Model\Request\QuestionRequest $question
+     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      */
     public function userAction(QuestionRequest $question)
     {

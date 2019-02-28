@@ -11,10 +11,8 @@ use HDNET\Faq\Domain\Model\Question;
 use HDNET\Faq\Domain\Model\Questioncategory;
 use HDNET\Faq\Domain\Model\Request\Faq;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Database\DatabaseConnection;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-use TYPO3\CMS\Frontend\Page\PageRepository;
 
 /**
  * Build up the Question
@@ -78,6 +76,7 @@ class QuestionRepository extends AbstractRepository
      * @param int $topCategoryId
      *
      * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      */
     public function findNewest($limit = 5, $topCategoryId = 0)
     {
@@ -102,6 +101,7 @@ class QuestionRepository extends AbstractRepository
      * @param int $topCategoryId
      *
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      */
     public function findAll($topCategoryId = 0)
     {
@@ -126,6 +126,7 @@ class QuestionRepository extends AbstractRepository
      * @param int $topCategoryId
      *
      * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      */
     public function findByFaq(Faq $faq, $topCategoryId = 0)
     {
@@ -174,6 +175,7 @@ class QuestionRepository extends AbstractRepository
      * @param int $limit
      *
      * @return array
+     * @throws \Exception
      */
     public function findByTeaserConfiguration(array $topQuestions, array $categories, $limit)
     {
