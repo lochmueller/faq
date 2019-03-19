@@ -40,6 +40,7 @@
   "require-dev": {
     "namelesscoder/typo3-repository-client": "2.0.0",
     "phpunit/phpunit": "~4.8.0",
+    "friendsofphp/php-cs-fixer": "^2.12",
     "squizlabs/php_codesniffer": "^2.6",
     "phpmd/phpmd": "^2.4"
   },
@@ -55,5 +56,10 @@
         "partOfMinimalUsableSystem": true
       }
     }
+  },
+  "scripts": {
+    "tool:php-cs-fixer": [
+      "php-cs-fixer fix --config .php_cs"
+    ]
   }
 }
