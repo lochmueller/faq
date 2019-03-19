@@ -1,6 +1,8 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * QuestionTest
+ * QuestionTest.
  */
 
 namespace HDNET\Faq\Tests\Unit\Domain\Model;
@@ -8,33 +10,30 @@ namespace HDNET\Faq\Tests\Unit\Domain\Model;
 use HDNET\Faq\Domain\Model\Question;
 
 /**
- * QuestionTest
+ * QuestionTest.
+ *
+ * @internal
+ * @coversNothing
  */
 class QuestionTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 {
-
     /**
      * @var Question
      */
     protected $fileDomainModelInstance;
 
     /**
-     * Setup
-     *
-     * @return void
+     * Setup.
      */
     protected function setUp()
     {
         $this->fileDomainModelInstance = new Question();
     }
 
-    /**
-     * @test
-     */
-    public function titleCanBeSet()
+    public function testTitleCanBeSet()
     {
         $title = 'This is the title';
         $this->fileDomainModelInstance->setTitle($title);
-        $this->assertEquals($title, $this->fileDomainModelInstance->getTitle());
+        $this->assertSame($title, $this->fileDomainModelInstance->getTitle());
     }
 }

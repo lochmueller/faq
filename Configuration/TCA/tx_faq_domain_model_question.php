@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types = 1);
 use HDNET\Autoloader\Utility\ArrayUtility;
 use HDNET\Autoloader\Utility\ModelUtility;
 use HDNET\Faq\Domain\Model\Question;
@@ -12,12 +14,12 @@ $custom = [
     'columns' => [
         'title' => [
             'config' => [
-                'eval' => 'trim,required'
+                'eval' => 'trim,required',
             ],
         ],
         'answer' => [
             'config' => [
-                'type' => 'text'
+                'type' => 'text',
             ],
             'defaultExtras' => 'richtext:rte_transform[flag=rte_enabled|mode=ts_css]',
         ],

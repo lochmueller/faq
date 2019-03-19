@@ -1,21 +1,17 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * VoteViewHelper.php
- *
- * @package    Hdnet
- * @author     Tim Spiekerkoetter
+ * VoteViewHelper.php.
  */
 
 namespace HDNET\Faq\ViewHelpers\Widget;
 
 /**
- * VoteViewHelper
- *
- * @author     Tim Spiekerkoetter
+ * VoteViewHelper.
  */
 class VoteViewHelper extends AbstractWidgetViewHelper
 {
-
     /**
      * AJAX Widget?
      *
@@ -24,7 +20,7 @@ class VoteViewHelper extends AbstractWidgetViewHelper
     protected $ajaxWidget = true;
 
     /**
-     * Controller
+     * Controller.
      *
      * @var \HDNET\Faq\ViewHelpers\Widget\Controller\VoteController
      * @inject
@@ -33,13 +29,14 @@ class VoteViewHelper extends AbstractWidgetViewHelper
     protected $controller;
 
     /**
-     * Render
+     * Render.
      *
-     * @param int $question
+     * @param int   $question
      * @param array $counters
      *
-     * @return \TYPO3\CMS\Extbase\Mvc\ResponseInterface
      * @throws \TYPO3\CMS\Fluid\Core\Widget\Exception\MissingControllerException
+     *
+     * @return \TYPO3\CMS\Extbase\Mvc\ResponseInterface
      */
     public function render($question, array $counters)
     {

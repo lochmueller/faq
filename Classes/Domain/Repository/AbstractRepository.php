@@ -1,10 +1,10 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * AbstractRepository.php
+ * AbstractRepository.php.
  *
  * General file information
- *
- * @author     Tim Spiekerkoetter
  */
 
 namespace HDNET\Faq\Domain\Repository;
@@ -14,17 +14,17 @@ use TYPO3\CMS\Extbase\Persistence\Generic\Query;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
- * AbstractRepository
+ * AbstractRepository.
  *
  * General class information
  */
 abstract class AbstractRepository extends Repository
 {
-
     /**
-     * Return the current tablename
+     * Return the current tablename.
      *
      * @throws Exception
+     *
      * @return string
      */
     public function getTableName()
@@ -32,7 +32,7 @@ abstract class AbstractRepository extends Repository
         $query = $this->createQuery();
         if ($query instanceof Query) {
             $source = $query->getSource();
-            if (method_exists($source, 'getSelectorName')) {
+            if (\method_exists($source, 'getSelectorName')) {
                 return $source->getSelectorName();
             }
         }
@@ -41,7 +41,7 @@ abstract class AbstractRepository extends Repository
     }
 
     /**
-     * Find objects by the given ids in the given order
+     * Find objects by the given ids in the given order.
      *
      * @param array $uids
      *
@@ -52,10 +52,11 @@ abstract class AbstractRepository extends Repository
         $return = [];
         foreach ($uids as $uid) {
             $obj = $this->findByUid($uid);
-            if (is_object($obj)) {
+            if (\is_object($obj)) {
                 $return[] = $obj;
             }
         }
+
         return $return;
     }
 }

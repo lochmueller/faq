@@ -1,8 +1,8 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * Build up the Question category
- *
- * @author     Tim Lochmüller
+ * Build up the Question category.
  */
 
 namespace HDNET\Faq\Domain\Repository;
@@ -10,20 +10,19 @@ namespace HDNET\Faq\Domain\Repository;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
- * Build up the Question category
+ * Build up the Question category.
  */
 class QuestioncategoryRepository extends AbstractRepository
 {
-
     /**
-     * Default sorting
+     * Default sorting.
      *
      * @var array
      */
     protected $defaultOrderings = ['sorting' => QueryInterface::ORDER_ASCENDING];
 
     /**
-     * Create query
+     * Create query.
      *
      * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface
      */
@@ -32,14 +31,15 @@ class QuestioncategoryRepository extends AbstractRepository
         $query = parent::createQuery();
         $query->getQuerySettings()
             ->setRespectStoragePage(false);
+
         return $query;
     }
 
     /**
-     * Find the categories in the right order (default: default, $sorting=TRUE: alphabetical)
+     * Find the categories in the right order (default: default, $sorting=TRUE: alphabetical).
      *
-     * @param int $topCategory
-     * @param boolean $sorting
+     * @param int  $topCategory
+     * @param bool $sorting
      *
      * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
@@ -50,6 +50,7 @@ class QuestioncategoryRepository extends AbstractRepository
         if ($sorting) {
             $query->setOrderings(['title' => QueryInterface::ORDER_ASCENDING]);
         }
+
         return $query->execute();
     }
 }

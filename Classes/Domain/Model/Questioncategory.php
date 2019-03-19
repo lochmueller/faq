@@ -1,22 +1,21 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * Questioncategory / Fragen Kategorie
- *
- * @author     Tim Lochmüller
+ * Questioncategory / Fragen Kategorie.
  */
 
 namespace HDNET\Faq\Domain\Model;
 
 /**
- * Questioncategory / Fragen Kategorie
+ * Questioncategory / Fragen Kategorie.
  *
  * @db
  */
 class Questioncategory extends AbstractModel
 {
-
     /**
-     * Title
+     * Title.
      *
      * @var string
      * @db
@@ -24,7 +23,7 @@ class Questioncategory extends AbstractModel
     protected $title;
 
     /**
-     * Parent
+     * Parent.
      *
      * @var \HDNET\Faq\Domain\Model\Questioncategory
      * @db  int(11) DEFAULT '0' NOT NULL
@@ -32,7 +31,7 @@ class Questioncategory extends AbstractModel
     protected $parent;
 
     /**
-     * Set the title
+     * Set the title.
      *
      * @param string $title
      */
@@ -42,7 +41,7 @@ class Questioncategory extends AbstractModel
     }
 
     /**
-     * Get the title
+     * Get the title.
      *
      * @return string
      */
@@ -52,7 +51,7 @@ class Questioncategory extends AbstractModel
     }
 
     /**
-     * Set the parent
+     * Set the parent.
      *
      * @param \HDNET\Faq\Domain\Model\Questioncategory $parent
      */
@@ -62,7 +61,7 @@ class Questioncategory extends AbstractModel
     }
 
     /**
-     * Get the parent
+     * Get the parent.
      *
      * @return \HDNET\Faq\Domain\Model\Questioncategory
      */

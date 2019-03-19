@@ -1,10 +1,10 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * AbstractController.php
+ * AbstractController.php.
  *
  * General file information
- *
- * @author     Tim Spiekerkoetter
  */
 
 namespace HDNET\Faq\Controller;
@@ -14,19 +14,17 @@ use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
- * AbstractController
+ * AbstractController.
  *
  * General class information
  */
 abstract class AbstractController extends ActionController
 {
-
     /**
      * Initializes the view before invoking an action method.
-     * Add content object data to view
+     * Add content object data to view.
      *
      * @param ViewInterface $view The view to be initialized
-     * @return void
      */
     protected function initializeView(ViewInterface $view)
     {
@@ -35,7 +33,7 @@ abstract class AbstractController extends ActionController
     }
 
     /**
-     * Disable indexing of this page
+     * Disable indexing of this page.
      */
     protected function disableIndexing()
     {

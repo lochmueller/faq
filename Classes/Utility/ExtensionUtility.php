@@ -1,19 +1,20 @@
 <?php
 
+declare(strict_types = 1);
+
 /**
- * ExtensionUtility
+ * ExtensionUtility.
  */
 
 namespace HDNET\Faq\Utility;
 
 /**
- * ExtensionUtility
+ * ExtensionUtility.
  */
 class ExtensionUtility
 {
-
     /**
-     * Get the autoloader configuration
+     * Get the autoloader configuration.
      *
      * @return array
      */

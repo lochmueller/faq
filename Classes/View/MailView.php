@@ -1,6 +1,8 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * E-Mail View
+ * E-Mail View.
  *
  * Usage:
  * $this->view->assign('from', [$email => $name]); (optional)
@@ -10,8 +12,6 @@
  * $this->view->assign('filesStream', ['path1', 'path2']); (optional)
  * $this->view->render();
  * $this->forward(...);
- *
- * @author     Tim Lochmüller
  */
 
 namespace HDNET\Faq\View;
@@ -22,27 +22,25 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\TemplateView;
 
 /**
- * E-Mail View
- *
- * @author     Tim Lochmüller
+ * E-Mail View.
  */
 class MailView extends TemplateView
 {
-
     /**
-     * Mail processing object
+     * Mail processing object.
      *
      * @var MailMessage
      */
     protected $mail;
 
     /**
-     * Start the download
+     * Start the download.
      *
      * @param null $actionName
      *
      * @throws \Exception
-     * @return boolean
+     *
+     * @return bool
      */
     public function render($actionName = null)
     {
@@ -56,18 +54,29 @@ class MailView extends TemplateView
     }
 
     /**
-     * (re)create mail property
+     * Get the Swift mail object.
+     *
+     * @return MailMessage
+     */
+    public function getMail()
+    {
+        return $this->mail;
+    }
+
+    /**
+     * (re)create mail property.
      *
      * @return MailView
      */
     protected function startMail()
     {
         $this->mail = GeneralUtility::makeInstance(MailMessage::class);
+
         return $this;
     }
 
     /**
-     * assign mail defaults
+     * assign mail defaults.
      *
      * @return MailView
      */
@@ -76,11 +85,12 @@ class MailView extends TemplateView
         $host = GeneralUtility::getIndpEnv('TYPO3_HOST');
 
         $this->mail->setFrom(['noreply@' . $host => 'Webseite ' . $host]);
+
         return $this;
     }
 
     /**
-     * assign general variables
+     * assign general variables.
      *
      * @return MailView
      */
@@ -88,19 +98,20 @@ class MailView extends TemplateView
     {
         $variableContainer = $this->getTemplateVariableContainer();
         foreach ($variableContainer->getAllIdentifiers() as $identifier) {
-            $methodName = 'set' . ucfirst($identifier);
-            if (method_exists($this->mail, $methodName)) {
-                call_user_func([
+            $methodName = 'set' . \ucfirst($identifier);
+            if (\method_exists($this->mail, $methodName)) {
+                \call_user_func([
                     $this->mail,
-                    $methodName
+                    $methodName,
                 ], $variableContainer->get($identifier));
             }
         }
+
         return $this;
     }
 
     /**
-     * assign files
+     * assign files.
      *
      * @return MailView
      */
@@ -111,16 +122,17 @@ class MailView extends TemplateView
             $files = $variableContainer->get('files');
             foreach ($files as $file) {
                 $file = GeneralUtility::getFileAbsFileName($file);
-                if (is_file($file)) {
+                if (\is_file($file)) {
                     $this->mail->attach(Swift_Attachment::fromPath($file));
                 }
             }
         }
+
         return $this;
     }
 
     /**
-     * assign files from stream
+     * assign files from stream.
      *
      * @return MailView
      */
@@ -133,11 +145,12 @@ class MailView extends TemplateView
                 $this->mail->attach(Swift_Attachment::newInstance($data, $filename));
             }
         }
+
         return $this;
     }
 
     /**
-     * assign content
+     * assign content.
      *
      * @return MailView
      */
@@ -153,17 +166,19 @@ class MailView extends TemplateView
         $request->setFormat($resetFormat);
 
         $this->mail->setBody($html, 'text/html');
-        if (isset($txt) && strlen($txt)) {
+        if (isset($txt) && \mb_strlen($txt)) {
             $this->mail->addPart($txt, 'text/plain');
         }
+
         return $this;
     }
 
     /**
-     * Send mail or throw an exception
+     * Send mail or throw an exception.
+     *
+     * @throws \Exception
      *
      * @return int
-     * @throws \Exception
      */
     protected function sendMail()
     {
@@ -175,22 +190,12 @@ class MailView extends TemplateView
     }
 
     /**
-     * Get template variable container
+     * Get template variable container.
      *
      * @return \TYPO3\CMS\Fluid\Core\ViewHelper\TemplateVariableContainer
      */
     private function getTemplateVariableContainer()
     {
         return $this->baseRenderingContext->getTemplateVariableContainer();
-    }
-
-    /**
-     * Get the Swift mail object
-     *
-     * @return MailMessage
-     */
-    public function getMail()
-    {
-        return $this->mail;
     }
 }

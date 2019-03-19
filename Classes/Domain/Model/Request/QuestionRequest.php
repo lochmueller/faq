@@ -1,20 +1,19 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * Request Faq
- *
- * @author     Tim Lochmüller
+ * Request Faq.
  */
 
 namespace HDNET\Faq\Domain\Model\Request;
 
 /**
- * Request Faq
+ * Request Faq.
  */
 class QuestionRequest extends AbstractRequest
 {
-
     /**
-     * Question
+     * Question.
      *
      * @var string
      * @validate NotEmpty
@@ -22,7 +21,7 @@ class QuestionRequest extends AbstractRequest
     protected $question;
 
     /**
-     * E-Mail
+     * E-Mail.
      *
      * @var string
      * @validate NotEmpty
@@ -31,7 +30,7 @@ class QuestionRequest extends AbstractRequest
     protected $email;
 
     /**
-     * Set E-mail
+     * Set E-mail.
      *
      * @param string $email
      */
@@ -41,7 +40,7 @@ class QuestionRequest extends AbstractRequest
     }
 
     /**
-     * Get E-Mail
+     * Get E-Mail.
      *
      * @return string
      */
@@ -51,7 +50,7 @@ class QuestionRequest extends AbstractRequest
     }
 
     /**
-     * Set question
+     * Set question.
      *
      * @param string $question
      */
@@ -61,7 +60,7 @@ class QuestionRequest extends AbstractRequest
     }
 
     /**
-     * Get question
+     * Get question.
      *
      * @return string
      */

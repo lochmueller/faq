@@ -1,9 +1,8 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * Vote.php
- *
- * @package    Hdnet
- * @author     Tim Spiekerkoetter
+ * Vote.php.
  */
 
 namespace HDNET\Faq\Domain\Model\Request;
@@ -11,26 +10,23 @@ namespace HDNET\Faq\Domain\Model\Request;
 use HDNET\Faq\Exception\AlreadyVotedException;
 
 /**
- * Vote
- *
- * @author     Tim Spiekerkoetter
+ * Vote.
  */
 class Vote extends AbstractRequest
 {
-
     const MODE_TOP = 1;
 
     const MODE_FLOP = 2;
 
     /**
-     * Question
+     * Question.
      *
      * @var \HDNET\Faq\Domain\Model\Question
      */
     protected $question;
 
     /**
-     * One of the MODE_* variables
+     * One of the MODE_* variables.
      *
      * @var int
      * @validate NumberRange(minimum=1, maximum=2)
@@ -38,36 +34,19 @@ class Vote extends AbstractRequest
     protected $mode;
 
     /**
-     * Update question
+     * Update question.
      */
     public function updateQuestion()
     {
         $method = $this->buildModeMethod();
-        call_user_func([
+        \call_user_func([
             $this->getQuestion(),
-            'increase' . $method
+            'increase' . $method,
         ]);
     }
 
     /**
-     * Build mode method
-     *
-     * @return string
-     */
-    protected function buildModeMethod()
-    {
-        switch ($this->getMode()) {
-            case Vote::MODE_TOP:
-                return 'TopCounter';
-            case Vote::MODE_FLOP:
-                return 'FlopCounter';
-            default:
-                throw new \BadMethodCallException;
-        }
-    }
-
-    /**
-     * Get mode
+     * Get mode.
      *
      * @return int
      */
@@ -77,7 +56,7 @@ class Vote extends AbstractRequest
     }
 
     /**
-     * Set mode
+     * Set mode.
      *
      * @param int $mode
      */
@@ -87,7 +66,7 @@ class Vote extends AbstractRequest
     }
 
     /**
-     * Get question
+     * Get question.
      *
      * @return \HDNET\Faq\Domain\Model\Question
      */
@@ -97,7 +76,7 @@ class Vote extends AbstractRequest
     }
 
     /**
-     * Set question
+     * Set question.
      *
      * @param \HDNET\Faq\Domain\Model\Question $question
      */
@@ -107,21 +86,22 @@ class Vote extends AbstractRequest
     }
 
     /**
-     * Get question votes
+     * Get question votes.
      *
      * @return int
      */
     public function getQuestionVotes()
     {
         $method = $this->buildModeMethod();
-        return call_user_func([
+
+        return \call_user_func([
             $this->getQuestion(),
-            'get' . $method
+            'get' . $method,
         ]);
     }
 
     /**
-     * Check against
+     * Check against.
      *
      * @param array $votes
      *
@@ -129,9 +109,26 @@ class Vote extends AbstractRequest
      */
     public function checkAgainst(array $votes)
     {
-        if (in_array($this->getQuestion()
-            ->getUid(), $votes)) {
+        if (\in_array($this->getQuestion()
+            ->getUid(), $votes, true)) {
             throw new AlreadyVotedException();
+        }
+    }
+
+    /**
+     * Build mode method.
+     *
+     * @return string
+     */
+    protected function buildModeMethod()
+    {
+        switch ($this->getMode()) {
+            case self::MODE_TOP:
+                return 'TopCounter';
+            case self::MODE_FLOP:
+                return 'FlopCounter';
+            default:
+                throw new \BadMethodCallException();
         }
     }
 }

@@ -1,8 +1,8 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * Build up the Question
- *
- * @author     Tim Lochmüller
+ * Build up the Question.
  */
 
 namespace HDNET\Faq\Domain\Repository;
@@ -15,13 +15,12 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
- * Build up the Question
+ * Build up the Question.
  */
 class QuestionRepository extends AbstractRepository
 {
-
     /**
-     * Orderings
+     * Orderings.
      *
      * @var array
      */
@@ -30,12 +29,10 @@ class QuestionRepository extends AbstractRepository
     ];
 
     /**
-     * Get the top questions
+     * Get the top questions.
      *
-     * @param int $limit
-     *
-     * @param int $topCategoryId
-     *
+     * @param int   $limit
+     * @param int   $topCategoryId
      * @param array $topQuestions
      *
      * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
@@ -62,21 +59,21 @@ class QuestionRepository extends AbstractRepository
             $results = $query->execute()
                 ->toArray();
 
-            $questions = array_merge($questions, $results);
+            $questions = \array_merge($questions, $results);
         }
 
         return $questions;
     }
 
     /**
-     * Get the newest questions
+     * Get the newest questions.
      *
      * @param int $limit
-     *
      * @param int $topCategoryId
      *
-     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
+     *
+     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
     public function findNewest($limit = 5, $topCategoryId = 0)
     {
@@ -92,6 +89,7 @@ class QuestionRepository extends AbstractRepository
         if ($limit) {
             $query->setLimit($limit);
         }
+
         return $query->execute();
     }
 
@@ -100,33 +98,35 @@ class QuestionRepository extends AbstractRepository
      *
      * @param int $topCategoryId
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
      */
     public function findAll($topCategoryId = 0)
     {
         if (!$topCategoryId) {
             return parent::findAll();
-        } else {
-            $query = $this->createQuery();
-
-            $constraintsOr = [];
-            $constraintsOr[] = $query->contains('categories', $topCategoryId);
-            $constraintsOr[] = $query->equals('categories.parent', $topCategoryId);
-
-            $query->matching($query->logicalOr($constraintsOr));
-            return $query->execute();
         }
+        $query = $this->createQuery();
+
+        $constraintsOr = [];
+        $constraintsOr[] = $query->contains('categories', $topCategoryId);
+        $constraintsOr[] = $query->equals('categories.parent', $topCategoryId);
+
+        $query->matching($query->logicalOr($constraintsOr));
+
+        return $query->execute();
     }
 
     /**
-     * Find by FAQ model
+     * Find by FAQ model.
      *
      * @param Faq $faq
      * @param int $topCategoryId
      *
-     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
+     *
+     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
     public function findByFaq(Faq $faq, $topCategoryId = 0)
     {
@@ -139,9 +139,9 @@ class QuestionRepository extends AbstractRepository
         $constraints = [];
         $constraints[] = $query->logicalOr($constraintsOr);
 
-        $categories = GeneralUtility::intExplode(',', implode(',', $faq->getCategories()), true);
+        $categories = GeneralUtility::intExplode(',', \implode(',', $faq->getCategories()), true);
         if ($faq->getCategory() instanceof Questioncategory) {
-            $categories[] = (int) $faq->getCategory()
+            $categories[] = (int)$faq->getCategory()
                 ->getUid();
         }
 
@@ -153,14 +153,14 @@ class QuestionRepository extends AbstractRepository
             $constraints[] = $query->logicalOr($catSelection);
         }
 
-        if (strlen($faq->getSearchWord())) {
+        if (\mb_strlen($faq->getSearchWord())) {
             $constraints[] = $query->logicalOr([
                 $query->like('title', '%' . $faq->getSearchWord() . '%'),
-                $query->like('answer', '%' . $faq->getSearchWord() . '%')
+                $query->like('answer', '%' . $faq->getSearchWord() . '%'),
             ]);
         }
 
-        if (sizeof($constraints)) {
+        if (\count($constraints)) {
             $query->matching($query->logicalAnd($constraints));
         }
 
@@ -168,14 +168,15 @@ class QuestionRepository extends AbstractRepository
     }
 
     /**
-     * Get the teaser questions
+     * Get the teaser questions.
      *
-     * @param  array $topQuestions
+     * @param array $topQuestions
      * @param array $categories
-     * @param int $limit
+     * @param int   $limit
+     *
+     * @throws \Exception
      *
      * @return array
-     * @throws \Exception
      */
     public function findByTeaserConfiguration(array $topQuestions, array $categories, $limit)
     {
@@ -188,11 +189,10 @@ class QuestionRepository extends AbstractRepository
                 ->getRestrictions()
                 ->removeAll();
 
-
             $where = [
-                $queryBuilder->expr()->eq($t . '.uid', 'mm.uid_local')
+                $queryBuilder->expr()->eq($t . '.uid', 'mm.uid_local'),
             ];
-            if (sizeof($topQuestions)) {
+            if (\count($topQuestions)) {
                 $where[] = $queryBuilder->expr()->notIn($t . '.uid', $topQuestions);
             }
             if (!empty($categories)) {
@@ -207,23 +207,24 @@ class QuestionRepository extends AbstractRepository
                 ->execute()
                 ->fetchAll();
 
-            shuffle($rows);
+            \shuffle($rows);
 
             foreach ($rows as $row) {
-                $q = $this->findByUid((int) $row['uid']);
+                $q = $this->findByUid((int)$row['uid']);
                 if ($q instanceof Question) {
                     $questions[] = $q;
                 }
             }
         }
+
         return $questions;
     }
 
     /**
-     * Get the Questsions with the given IDS and reduce the limit
+     * Get the Questsions with the given IDS and reduce the limit.
      *
      * @param array $ids
-     * @param int $limit
+     * @param int   $limit
      *
      * @return array
      */
@@ -231,12 +232,13 @@ class QuestionRepository extends AbstractRepository
     {
         $questions = [];
         foreach ($ids as $id) {
-            $q = $this->findByUid((int) $id);
+            $q = $this->findByUid((int)$id);
             if ($q instanceof Question) {
                 $questions[] = $q;
-                $limit--;
+                --$limit;
             }
         }
+
         return $questions;
     }
 }

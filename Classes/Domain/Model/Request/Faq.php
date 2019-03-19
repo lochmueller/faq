@@ -1,41 +1,40 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * Request Faq
- *
- * @author     Tim Lochmüller
+ * Request Faq.
  */
 
 namespace HDNET\Faq\Domain\Model\Request;
 
 /**
- * Request Faq
+ * Request Faq.
  */
 class Faq extends AbstractRequest
 {
-
     /**
-     * Category
+     * Category.
      *
      * @var \HDNET\Faq\Domain\Model\Questioncategory
      */
     protected $category;
 
     /**
-     * Categories (for checkbox selection)
+     * Categories (for checkbox selection).
      *
      * @var array
      */
     protected $categories = [];
 
     /**
-     * Search word
+     * Search word.
      *
      * @var string
      */
     protected $searchWord;
 
     /**
-     * Set the category
+     * Set the category.
      *
      * @param \HDNET\Faq\Domain\Model\Questioncategory $category
      */
@@ -45,7 +44,7 @@ class Faq extends AbstractRequest
     }
 
     /**
-     * Get the category
+     * Get the category.
      *
      * @return \HDNET\Faq\Domain\Model\Questioncategory
      */
@@ -55,23 +54,23 @@ class Faq extends AbstractRequest
     }
 
     /**
-     * Set and trim the search word
+     * Set and trim the search word.
      *
      * @param string $searchWord
      */
     public function setSearchWord($searchWord)
     {
-        $this->searchWord = trim($searchWord);
+        $this->searchWord = \trim($searchWord);
     }
 
     /**
-     * get the trim search word
+     * get the trim search word.
      *
      * @return string
      */
     public function getSearchWord()
     {
-        return trim($this->searchWord);
+        return \trim($this->searchWord);
     }
 
     /**

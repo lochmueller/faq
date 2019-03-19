@@ -1,8 +1,8 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * Question / Frage
- *
- * @author     Tim Lochmüller
+ * Question / Frage.
  */
 
 namespace HDNET\Faq\Domain\Model;
@@ -10,15 +10,14 @@ namespace HDNET\Faq\Domain\Model;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
- * Question / Frage
+ * Question / Frage.
  *
  * @db
  */
 class Question extends AbstractModel
 {
-
     /**
-     * Title
+     * Title.
      *
      * @var string
      * @db
@@ -26,7 +25,7 @@ class Question extends AbstractModel
     protected $title;
 
     /**
-     * Answer
+     * Answer.
      *
      * @var string
      * @db
@@ -34,7 +33,7 @@ class Question extends AbstractModel
     protected $answer;
 
     /**
-     * Tags
+     * Tags.
      *
      * @var string
      * @db
@@ -42,7 +41,7 @@ class Question extends AbstractModel
     protected $tags;
 
     /**
-     * Top Counter
+     * Top Counter.
      *
      * @var int
      * @db
@@ -50,7 +49,7 @@ class Question extends AbstractModel
     protected $topCounter;
 
     /**
-     * Flop Counter
+     * Flop Counter.
      *
      * @var int
      * @db
@@ -58,7 +57,7 @@ class Question extends AbstractModel
     protected $flopCounter;
 
     /**
-     * Categories
+     * Categories.
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HDNET\Faq\Domain\Model\Questioncategory>
      * @db int(11) DEFAULT '0' NOT NULL
@@ -74,7 +73,7 @@ class Question extends AbstractModel
     }
 
     /**
-     * Set the title
+     * Set the title.
      *
      * @param string $title
      */
@@ -84,7 +83,7 @@ class Question extends AbstractModel
     }
 
     /**
-     * Get the title
+     * Get the title.
      *
      * @return string
      */
@@ -94,7 +93,7 @@ class Question extends AbstractModel
     }
 
     /**
-     * Set answer
+     * Set answer.
      *
      * @param string $answer
      */
@@ -104,7 +103,7 @@ class Question extends AbstractModel
     }
 
     /**
-     * Get answer
+     * Get answer.
      *
      * @return string
      */
@@ -114,7 +113,7 @@ class Question extends AbstractModel
     }
 
     /**
-     * Set tags
+     * Set tags.
      *
      * @param string $tags
      */
@@ -124,7 +123,7 @@ class Question extends AbstractModel
     }
 
     /**
-     * Get tags
+     * Get tags.
      *
      * @return string
      */
@@ -134,7 +133,7 @@ class Question extends AbstractModel
     }
 
     /**
-     * Set the top counter
+     * Set the top counter.
      *
      * @param int $topCounter
      */
@@ -144,7 +143,7 @@ class Question extends AbstractModel
     }
 
     /**
-     * Get the top counter
+     * Get the top counter.
      *
      * @return int
      */
@@ -154,7 +153,7 @@ class Question extends AbstractModel
     }
 
     /**
-     * Set the categories
+     * Set the categories.
      *
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories
      */
@@ -164,7 +163,7 @@ class Question extends AbstractModel
     }
 
     /**
-     * Get the categories
+     * Get the categories.
      *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
@@ -174,7 +173,7 @@ class Question extends AbstractModel
     }
 
     /**
-     * Set the Flop Counter
+     * Set the Flop Counter.
      *
      * @param int $flopCounter
      */
@@ -184,7 +183,7 @@ class Question extends AbstractModel
     }
 
     /**
-     * Get the flop counter
+     * Get the flop counter.
      *
      * @return int
      */

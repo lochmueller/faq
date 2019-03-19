@@ -1,8 +1,8 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * Request Abstraction
- *
- * @author     Tim Lochmüller
+ * Request Abstraction.
  */
 
 namespace HDNET\Faq\Domain\Model\Request;
@@ -10,9 +10,8 @@ namespace HDNET\Faq\Domain\Model\Request;
 use HDNET\Faq\Domain\Model\AbstractModel;
 
 /**
- * Request Abstraction
+ * Request Abstraction.
  */
 abstract class AbstractRequest extends AbstractModel
 {
-
 }

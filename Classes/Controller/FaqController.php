@@ -1,8 +1,8 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * FAQ
- *
- * @author     Tim Lochmüller
+ * FAQ.
  */
 
 namespace HDNET\Faq\Controller;
@@ -13,17 +13,16 @@ use HDNET\Faq\Domain\Model\Request\QuestionRequest;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * FAQ
+ * FAQ.
  */
 class FaqController extends AbstractController
 {
-
     const TEASER_MODE_VOTING = 0;
 
     const TEASER_MODE_CUSTOM = 1;
 
     /**
-     * Question repository
+     * Question repository.
      *
      * @var \HDNET\Faq\Domain\Repository\QuestionRepository
      * @inject
@@ -32,7 +31,7 @@ class FaqController extends AbstractController
     protected $questionRepository;
 
     /**
-     * Question category repository
+     * Question category repository.
      *
      * @var \HDNET\Faq\Domain\Repository\QuestioncategoryRepository
      * @inject
@@ -41,23 +40,23 @@ class FaqController extends AbstractController
     protected $questioncategoryRepository;
 
     /**
-     * Index action
+     * Index action.
      *
      * @param \HDNET\Faq\Domain\Model\Request\Faq $faq
-     * @param bool $showAll
+     * @param bool                                $showAll
      */
     public function indexAction(Faq $faq = null, $showAll = false)
     {
         $topCategory = (int)$this->settings['faq']['topCategory'];
 
-        if ((bool)$this->settings['overrideShowAll'] === true) {
+        if (true === (bool)$this->settings['overrideShowAll']) {
             $showAll = true;
         }
-        if ((int)$this->settings['overrideTopCategory'] !== 0) {
+        if (0 !== (int)$this->settings['overrideTopCategory']) {
             $topCategory = (int)$this->settings['overrideTopCategory'];
         }
 
-        if (is_object($faq)) {
+        if (\is_object($faq)) {
             $questions = $this->questionRepository->findByFaq($faq, $topCategory);
             $showResults = true;
         } elseif ($showAll) {
@@ -68,7 +67,7 @@ class FaqController extends AbstractController
             $showResults = false;
         }
 
-        if ($this->settings['topMode'] == self::TEASER_MODE_VOTING) {
+        if (self::TEASER_MODE_VOTING === $this->settings['topMode']) {
             $topQuestions = $this->questionRepository->findTop(
                 (int)$this->settings['faq']['limitTop'],
                 $topCategory,
@@ -82,7 +81,7 @@ class FaqController extends AbstractController
             ));
         }
 
-        if ($faq === null) {
+        if (null === $faq) {
             $faq = $this->objectManager->get(Faq::class);
         }
 
@@ -98,12 +97,12 @@ class FaqController extends AbstractController
             'categories' => $this->questioncategoryRepository->findByParent(
                 $topCategory,
                 (bool)$this->settings['faq']['categorySort'] ?: false
-            )
+            ),
         ]);
     }
 
     /**
-     * Render the teaser action
+     * Render the teaser action.
      */
     public function teaserAction()
     {
@@ -119,7 +118,7 @@ class FaqController extends AbstractController
     }
 
     /**
-     * Render the detail action
+     * Render the detail action.
      *
      * @param \HDNET\Faq\Domain\Model\Question $question
      */
@@ -129,7 +128,7 @@ class FaqController extends AbstractController
     }
 
     /**
-     * Enter form
+     * Enter form.
      *
      * @param \HDNET\Faq\Domain\Model\Request\QuestionRequest $question
      * @ignorevalidation $question
@@ -137,7 +136,7 @@ class FaqController extends AbstractController
      */
     public function formAction(QuestionRequest $question = null)
     {
-        if ($question === null) {
+        if (null === $question) {
             $question = new QuestionRequest();
         }
 
@@ -145,10 +144,11 @@ class FaqController extends AbstractController
     }
 
     /**
-     * Send action
+     * Send action.
      *
      * @param \HDNET\Faq\Domain\Model\Request\QuestionRequest $question
-     * @param string $captcha
+     * @param string                                          $captcha
+     *
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      */
     public function sendAction(QuestionRequest $question, $captcha = null)
@@ -169,9 +169,10 @@ class FaqController extends AbstractController
     }
 
     /**
-     * user action
+     * user action.
      *
      * @param \HDNET\Faq\Domain\Model\Request\QuestionRequest $question
+     *
      * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
      */
     public function userAction(QuestionRequest $question)
@@ -188,21 +189,7 @@ class FaqController extends AbstractController
     }
 
     /**
-     * Get the target Email address
-     *
-     * @return string
-     * @throws \Exception
-     */
-    protected function getTargetEmailAddress()
-    {
-        if (isset($this->settings['faq']['targetEmail']) && GeneralUtility::validEmail(trim($this->settings['faq']['targetEmail']))) {
-            return trim($this->settings['faq']['targetEmail']);
-        }
-        throw new \Exception('No target e-mail address found', 123718231823);
-    }
-
-    /**
-     * Send action
+     * Send action.
      *
      * @param \HDNET\Faq\Domain\Model\Request\QuestionRequest $question
      */
@@ -210,5 +197,20 @@ class FaqController extends AbstractController
     {
         $this->disableIndexing();
         $this->view->assign('question', $question);
+    }
+
+    /**
+     * Get the target Email address.
+     *
+     * @throws \Exception
+     *
+     * @return string
+     */
+    protected function getTargetEmailAddress()
+    {
+        if (isset($this->settings['faq']['targetEmail']) && GeneralUtility::validEmail(\trim($this->settings['faq']['targetEmail']))) {
+            return \trim($this->settings['faq']['targetEmail']);
+        }
+        throw new \Exception('No target e-mail address found', 123718231823);
     }
 }

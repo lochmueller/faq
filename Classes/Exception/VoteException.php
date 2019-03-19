@@ -1,19 +1,15 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * VoteException.php
- *
- * @package    Hdnet
- * @author     Tim Spiekerkoetter
+ * VoteException.php.
  */
 
 namespace HDNET\Faq\Exception;
 
 /**
- * VoteException
- *
- * @author     Tim Spiekerkoetter
+ * VoteException.
  */
 class VoteException extends AbstractException
 {
-
 }

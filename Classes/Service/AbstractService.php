@@ -1,8 +1,8 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * AbstractService.php
- * @package    Hdnet
- * @author     Tim Spiekerkoetter
+ * AbstractService.php.
  */
 
 namespace HDNET\Faq\Service;
@@ -10,11 +10,8 @@ namespace HDNET\Faq\Service;
 use TYPO3\CMS\Core\SingletonInterface;
 
 /**
- * AbstractService
- *
- * @author     Tim Spiekerkoetter
+ * AbstractService.
  */
 abstract class AbstractService implements SingletonInterface
 {
-
 }

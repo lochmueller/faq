@@ -1,19 +1,15 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * AlreadyVotedException.php
- *
- * @package    Hdnet
- * @author     Tim Spiekerkoetter
+ * AlreadyVotedException.php.
  */
 
 namespace HDNET\Faq\Exception;
 
 /**
- * AlreadyVotedException
- *
- * @author     Tim Spiekerkoetter
+ * AlreadyVotedException.
  */
 class AlreadyVotedException extends VoteException
 {
-
 }

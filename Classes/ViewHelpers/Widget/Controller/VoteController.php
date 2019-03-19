@@ -1,9 +1,8 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * VoteController.php
- *
- * @package    Hdnet
- * @author     Tim Spiekerkoetter
+ * VoteController.php.
  */
 
 namespace HDNET\Faq\ViewHelpers\Widget\Controller;
@@ -15,15 +14,12 @@ use HDNET\Faq\Exception\AlreadyVotedException;
 use HDNET\Faq\Exception\VoteException;
 
 /**
- * VoteController
- *
- * @author     Tim Spiekerkoetter
+ * VoteController.
  */
 class VoteController extends AbstractWidgetController
 {
-
     /**
-     * Session service
+     * Session service.
      *
      * @var \HDNET\Faq\Service\SessionService
      * @inject
@@ -32,7 +28,7 @@ class VoteController extends AbstractWidgetController
     protected $sessionService;
 
     /**
-     * Question repository
+     * Question repository.
      *
      * @var \HDNET\Faq\Domain\Repository\QuestionRepository
      * @inject
@@ -41,26 +37,27 @@ class VoteController extends AbstractWidgetController
     protected $questionRepository;
 
     /**
-     * Index action
+     * Index action.
      */
     public function indexAction()
     {
         $this->view->assignMultiple([
             'top' => $this->widgetConfiguration['counters']['top'],
             'flop' => $this->widgetConfiguration['counters']['flop'],
-            'question' => $this->widgetConfiguration['question']
+            'question' => $this->widgetConfiguration['question'],
         ]);
     }
 
     /**
-     * Vote action
+     * Vote action.
      *
      * @param Question $question
-     * @param int $mode
+     * @param int      $mode
      *
-     * @return string
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
+     *
+     * @return string
      */
     public function voteAction(Question $question, $mode)
     {
@@ -71,7 +68,7 @@ class VoteController extends AbstractWidgetController
         $result = [
             'state' => 'ERROR',
             'description' => 'Unknown',
-            'currentCounter' => 0
+            'currentCounter' => 0,
         ];
 
         $sessionIdentifier = 'topflop';
@@ -79,7 +76,7 @@ class VoteController extends AbstractWidgetController
         try {
             $ids = $this->sessionService->setAndGet($sessionIdentifier, []);
             $vote->checkAgainst($ids);
-            array_push($ids, $vote->getQuestion()
+            \array_push($ids, $vote->getQuestion()
                 ->getUid());
             $this->sessionService->set($sessionIdentifier, $ids);
             $vote->updateQuestion();
@@ -101,6 +98,6 @@ class VoteController extends AbstractWidgetController
             $result['description'] = $e->getMessage();
         }
 
-        return json_encode($result);
+        return \json_encode($result);
     }
 }

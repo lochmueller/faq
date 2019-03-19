@@ -1,19 +1,15 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * AbstractWidgetViewHelper.php
- *
- * @package    Hdnet
- * @author     Tim Spiekerkoetter
+ * AbstractWidgetViewHelper.php.
  */
 
 namespace HDNET\Faq\ViewHelpers\Widget;
 
 /**
- * AbstractWidgetViewHelper
- *
- * @author     Tim Spiekerkoetter
+ * AbstractWidgetViewHelper.
  */
 abstract class AbstractWidgetViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetViewHelper
 {
-
 }

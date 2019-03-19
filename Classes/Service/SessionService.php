@@ -1,29 +1,26 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * SessionService.php
- * @package    Hdnet
- * @author     Tim Spiekerkoetter
+ * SessionService.php.
  */
 
 namespace HDNET\Faq\Service;
 
 /**
- * SessionService
- *
- * @author     Tim Spiekerkoetter
+ * SessionService.
  */
 class SessionService extends AbstractService
 {
-
     /**
-     * Frontend user
+     * Frontend user.
      *
      * @var \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication
      */
     protected $frontendUser;
 
     /**
-     * Init the current object
+     * Init the current object.
      */
     public function initializeObject()
     {
@@ -31,10 +28,11 @@ class SessionService extends AbstractService
     }
 
     /**
-     * Set and Get
+     * Set and Get.
      *
      * @param string $sessionIdentifier
-     * @param mixed $value
+     * @param mixed  $value
+     *
      * @return mixed
      */
     public function setAndGet($sessionIdentifier, $value)
@@ -42,13 +40,15 @@ class SessionService extends AbstractService
         if (!$this->has($sessionIdentifier)) {
             $this->set($sessionIdentifier, $value);
         }
+
         return $this->get($sessionIdentifier);
     }
 
     /**
-     * Has
+     * Has.
      *
      * @param $sessionIdentifier
+     *
      * @return bool
      */
     public function has($sessionIdentifier)
@@ -57,9 +57,10 @@ class SessionService extends AbstractService
     }
 
     /**
-     * Get
+     * Get.
      *
      * @param string $sessionIdentifier
+     *
      * @return mixed
      */
     public function get($sessionIdentifier)
@@ -68,10 +69,10 @@ class SessionService extends AbstractService
     }
 
     /**
-     * Set
+     * Set.
      *
      * @param string $sessionIdentifier
-     * @param mixed $value
+     * @param mixed  $value
      */
     public function set($sessionIdentifier, $value)
     {

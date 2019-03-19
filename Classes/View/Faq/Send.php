@@ -1,8 +1,8 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * Send
- *
- * @author  Tim Lochmüller
+ * Send.
  */
 
 namespace HDNET\Faq\View\Faq\Send;
@@ -10,9 +10,8 @@ namespace HDNET\Faq\View\Faq\Send;
 use HDNET\Faq\View\MailView;
 
 /**
- * Send
+ * Send.
  */
 class Send extends MailView
 {
-
 }

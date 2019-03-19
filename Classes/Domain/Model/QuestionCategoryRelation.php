@@ -1,8 +1,8 @@
 <?php
+
+declare(strict_types = 1);
 /**
- * Relation
- *
- * @author  Tim Lochmüller
+ * Relation.
  */
 
 namespace HDNET\Faq\Domain\Model;
@@ -10,12 +10,11 @@ namespace HDNET\Faq\Domain\Model;
 use HDNET\Autoloader\Domain\Model\AbstractAdvancedRelation;
 
 /**
- * Relation
+ * Relation.
  *
  * @smartExclude EnableFields,Language,Workspaces
  * @db           tx_faq_mm_question_questioncategory
  */
 class QuestionCategoryRelation extends AbstractAdvancedRelation
 {
-
 }
