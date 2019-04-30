@@ -7,15 +7,17 @@
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin($_EXTKEY, 'FaqTeaser', 'FAQ Teaser');
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin($_EXTKEY, 'FaqEnter', 'FAQ Eingabe');
 
-$GLOBALS['TCA']['pages']['columns']['module']['config']['items'][$_EXTKEY]['0'] = 'LLL:EXT:faq/Resources/Private/Language/locallang.xlf:sysfolder';
-$GLOBALS['TCA']['pages']['columns']['module']['config']['items'][$_EXTKEY]['1'] = $_EXTKEY;
-
 // module icon
 $extensionIcon = \HDNET\Autoloader\Utility\IconUtility::getByExtensionKey('faq', true);
 /** @var \TYPO3\CMS\Core\Imaging\IconRegistry $iconRegistry */
 $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
 $iconRegistry->registerIcon(
     'apps-pagetree-folder-contains-faq',
+    \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
+    ['source' => $extensionIcon]
+);
+$iconRegistry->registerIcon(
+    'contains-faq',
     \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
     ['source' => $extensionIcon]
 );
