@@ -31,6 +31,11 @@ class Questioncategory extends AbstractModel
     protected $parent;
 
     /**
+     * @var int
+     */
+    protected $_languageUid = 0;
+
+    /**
      * Set the title.
      *
      * @param string $title
@@ -68,5 +73,14 @@ class Questioncategory extends AbstractModel
     public function getParent()
     {
         return $this->parent;
+    }
+
+    /**
+     * Public getter for the languageUid
+     * @return int
+     */
+    public function getLanguageUid()
+    {
+        return $this->_languageUid;
     }
 }

@@ -22,6 +22,11 @@ $custom = [
                 ],
             ],
         ],
+        '_languageUid' => [
+            'config' => [
+                'type' => 'passthrough'
+            ]
+        ],
     ],
 ];
 

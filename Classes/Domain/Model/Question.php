@@ -57,6 +57,11 @@ class Question extends AbstractModel
     protected $flopCounter;
 
     /**
+     * @var int
+     */
+    protected $_languageUid = 0;
+
+    /**
      * Categories.
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HDNET\Faq\Domain\Model\Questioncategory>
@@ -190,5 +195,14 @@ class Question extends AbstractModel
     public function getFlopCounter()
     {
         return (int)$this->flopCounter;
+    }
+
+    /**
+     * Public getter for the languageUid
+     * @return int
+     */
+    public function getLanguageId()
+    {
+        return $this->_languageUid;
     }
 }
