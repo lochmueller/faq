@@ -31,7 +31,7 @@ class Faq extends AbstractRequest
      *
      * @var string
      */
-    protected $searchWord;
+    protected $searchWord = '';
 
     /**
      * Set the category.

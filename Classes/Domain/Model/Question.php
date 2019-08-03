@@ -22,7 +22,7 @@ class Question extends AbstractModel
      * @var string
      * @db
      */
-    protected $title;
+    protected $title = '';
 
     /**
      * Answer.
@@ -30,7 +30,7 @@ class Question extends AbstractModel
      * @var string
      * @db
      */
-    protected $answer;
+    protected $answer = '';
 
     /**
      * Tags.
@@ -38,7 +38,7 @@ class Question extends AbstractModel
      * @var string
      * @db
      */
-    protected $tags;
+    protected $tags = '';
 
     /**
      * Top Counter.
@@ -46,7 +46,7 @@ class Question extends AbstractModel
      * @var int
      * @db
      */
-    protected $topCounter;
+    protected $topCounter = 0;
 
     /**
      * Flop Counter.
@@ -54,7 +54,7 @@ class Question extends AbstractModel
      * @var int
      * @db
      */
-    protected $flopCounter;
+    protected $flopCounter = 0;
 
     /**
      * @var int
