@@ -26,7 +26,7 @@ class Questioncategory extends AbstractModel
      * Parent.
      *
      * @var \HDNET\Faq\Domain\Model\Questioncategory
-     * @db  int(11) DEFAULT '0' NOT NULL
+     * @db int(11) DEFAULT '0'
      */
     protected $parent;
 
