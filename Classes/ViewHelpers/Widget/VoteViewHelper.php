@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 /**
  * VoteViewHelper.php.
  */
@@ -28,17 +28,26 @@ class VoteViewHelper extends AbstractWidgetViewHelper
      */
     protected $controller;
 
+
+    /**
+     * Initialize arguments.
+     *
+     * @throws \TYPO3Fluid\Fluid\Core\ViewHelper\Exception
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+        $this->registerArgument('question', 'int', '', true);
+        $this->registerArgument('counters', 'array', '', true);
+    }
+
     /**
      * Render.
      *
-     * @param int   $question
-     * @param array $counters
-     *
-     * @throws \TYPO3\CMS\Fluid\Core\Widget\Exception\MissingControllerException
-     *
      * @return \TYPO3\CMS\Extbase\Mvc\ResponseInterface
+     * @throws \TYPO3\CMS\Fluid\Core\Widget\Exception\MissingControllerException
      */
-    public function render($question, array $counters)
+    public function render()
     {
         return $this->initiateSubRequest();
     }
