@@ -208,8 +208,8 @@ class FaqController extends AbstractController
      */
     protected function getTargetEmailAddress()
     {
-        if (isset($this->settings['faq']['targetEmail']) && GeneralUtility::validEmail(\trim($this->settings['faq']['targetEmail']))) {
-            return \trim($this->settings['faq']['targetEmail']);
+        if (isset($this->settings['faq']['targetEmail']) && GeneralUtility::validEmail(\trim((string)$this->settings['faq']['targetEmail']))) {
+            return \trim((string)$this->settings['faq']['targetEmail']);
         }
         throw new \Exception('No target e-mail address found', 123718231823);
     }
