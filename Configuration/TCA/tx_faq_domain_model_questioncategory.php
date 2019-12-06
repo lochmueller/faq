@@ -25,8 +25,8 @@ $custom = [
         ],
         '_languageUid' => [
             'config' => [
-                'type' => 'passthrough'
-            ]
+                'type' => 'passthrough',
+            ],
         ],
     ],
 ];

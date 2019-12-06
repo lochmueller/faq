@@ -43,8 +43,6 @@ abstract class AbstractRepository extends Repository
     /**
      * Find objects by the given ids in the given order.
      *
-     * @param array $uids
-     *
      * @return array
      */
     public function findByUidsSorted(array $uids)

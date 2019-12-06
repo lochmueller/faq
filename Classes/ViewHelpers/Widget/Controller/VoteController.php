@@ -51,8 +51,7 @@ class VoteController extends AbstractWidgetController
     /**
      * Vote action.
      *
-     * @param Question $question
-     * @param int      $mode
+     * @param int $mode
      *
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException

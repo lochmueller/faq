@@ -121,7 +121,6 @@ class QuestionRepository extends AbstractRepository
     /**
      * Find by FAQ model.
      *
-     * @param Faq $faq
      * @param int $topCategoryId
      *
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
@@ -170,9 +169,7 @@ class QuestionRepository extends AbstractRepository
     /**
      * Get the teaser questions.
      *
-     * @param array $topQuestions
-     * @param array $categories
-     * @param int   $limit
+     * @param int $limit
      *
      * @throws \Exception
      *
@@ -223,8 +220,7 @@ class QuestionRepository extends AbstractRepository
     /**
      * Get the Questsions with the given IDS and reduce the limit.
      *
-     * @param array $ids
-     * @param int   $limit
+     * @param int $limit
      *
      * @return array
      */

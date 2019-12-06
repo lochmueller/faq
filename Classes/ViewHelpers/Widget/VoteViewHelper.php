@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 /**
  * VoteViewHelper.php.
  */
@@ -28,7 +28,6 @@ class VoteViewHelper extends AbstractWidgetViewHelper
      */
     protected $controller;
 
-
     /**
      * Initialize arguments.
      *
@@ -44,8 +43,9 @@ class VoteViewHelper extends AbstractWidgetViewHelper
     /**
      * Render.
      *
-     * @return \TYPO3\CMS\Extbase\Mvc\ResponseInterface
      * @throws \TYPO3\CMS\Fluid\Core\Widget\Exception\MissingControllerException
+     *
+     * @return \TYPO3\CMS\Extbase\Mvc\ResponseInterface
      */
     public function render()
     {

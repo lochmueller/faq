@@ -76,7 +76,8 @@ class Questioncategory extends AbstractModel
     }
 
     /**
-     * Public getter for the languageUid
+     * Public getter for the languageUid.
+     *
      * @return int
      */
     public function getLanguageUid()

@@ -103,8 +103,6 @@ class Vote extends AbstractRequest
     /**
      * Check against.
      *
-     * @param array $votes
-     *
      * @throws AlreadyVotedException
      */
     public function checkAgainst(array $votes)
