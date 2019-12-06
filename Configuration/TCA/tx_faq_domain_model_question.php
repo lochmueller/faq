@@ -7,9 +7,12 @@ use HDNET\Faq\Domain\Model\Question;
 
 $base = ModelUtility::getTcaInformation(Question::class);
 
+$configuration = (array)@\unserialize((string) $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['faq']);
+$enableManuallySorting = isset($configuration['enableManuallySorting']) ? (bool) $configuration['enableManuallySorting'] : false;
+
 $custom = [
     'ctrl' => [
-        'sortby' => null,
+        'sortby' => $enableManuallySorting ? 'sorting' : null,
     ],
     'columns' => [
         'title' => [

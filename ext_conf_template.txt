@@ -1,0 +1,2 @@
+# cat=basic/enable; type=boolean; label=Enable manuelly sorting : Allow the questions sort by the editor and use this as sorting
+enableManuallySorting = 0

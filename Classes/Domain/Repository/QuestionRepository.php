@@ -29,6 +29,26 @@ class QuestionRepository extends AbstractRepository
     ];
 
     /**
+     * Constructs a new Repository
+     *
+     * @param \TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager
+     */
+    public function __construct(\TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager)
+    {
+        parent::__construct($objectManager);
+
+        $configuration = (array) @\unserialize((string) $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['faq']);
+        $enableManuallySorting = isset($configuration['enableManuallySorting']) ? (bool) $configuration['enableManuallySorting'] : false;
+
+        if ($enableManuallySorting) {
+            $this->defaultOrderings = [
+                'sorting' => QueryInterface::ORDER_ASCENDING,
+            ];
+        }
+    }
+
+
+    /**
      * Get the top questions.
      *
      * @param int   $limit
