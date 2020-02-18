@@ -67,7 +67,7 @@ class FaqController extends AbstractController
             $showResults = false;
         }
 
-        if (self::TEASER_MODE_VOTING === $this->settings['topMode']) {
+        if (self::TEASER_MODE_VOTING === (int)$this->settings['topMode']) {
             $topQuestions = $this->questionRepository->findTop(
                 (int)$this->settings['faq']['limitTop'],
                 $topCategory,
