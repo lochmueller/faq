@@ -8,18 +8,18 @@
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'HDNET.' . $_EXTKEY,
+    'HDNET.faq',
     'Faq',
     ['Faq' => 'index,detail'],
     ['Faq' => 'index']
 );
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'HDNET.' . $_EXTKEY,
+    'HDNET.faq',
     'FaqTeaser',
     ['Faq' => 'teaser']
 );
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'HDNET.' . $_EXTKEY,
+    'HDNET.faq',
     'FaqEnter',
     ['Faq' => 'form,send,user,thanks'],
     ['Faq' => 'send,user,thanks']
