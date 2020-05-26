@@ -25,9 +25,9 @@
     }
   ],
   "require": {
-    "php": ">=7.0.0",
-    "lochmueller/autoloader": "^4.0||^5.0||^6.0||^6.1||^6.2",
-    "typo3/cms-core": "~8.7.0||~9.5.0||dev-master"
+    "php": "^7.0||^7.1||^7.2||^7.3",
+    "lochmueller/autoloader": "^6.0||^6.1||^6.2",
+    "typo3/cms-core": "~8.7.0||~9.5.17"
   },
   "replace": {
     "typo3-ter/faq": "self.version"
