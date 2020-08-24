@@ -45,5 +45,5 @@ plugin.tx_faq {
 	}
 }
 
-
+# Note. This require jQuery in front of this lib
 page.includeJSFooter.faq = typo3conf/ext/faq/Resources/Public/JavaScript/faq.js
