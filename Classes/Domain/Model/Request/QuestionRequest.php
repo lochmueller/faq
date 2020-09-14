@@ -7,6 +7,8 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\Domain\Model\Request;
 
+use TYPO3\CMS\Extbase\Annotation\Validate;
+
 /**
  * Request Faq.
  */
@@ -16,7 +18,7 @@ class QuestionRequest extends AbstractRequest
      * Question.
      *
      * @var string
-     * @validate NotEmpty
+     * @Validate(validator="NotEmpty")
      */
     protected $question;
 
@@ -24,8 +26,8 @@ class QuestionRequest extends AbstractRequest
      * E-Mail.
      *
      * @var string
-     * @validate NotEmpty
-     * @validate EmailAddress
+     * @Validate(validator="NotEmpty")
+     * @Validate(validator="EmailAddress")
      */
     protected $email;
 
@@ -34,7 +36,7 @@ class QuestionRequest extends AbstractRequest
      *
      * @param string $email
      */
-    public function setEmail($email)
+    public function setEmail(string $email): void
     {
         $this->email = $email;
     }
@@ -44,7 +46,7 @@ class QuestionRequest extends AbstractRequest
      *
      * @return string
      */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -54,7 +56,7 @@ class QuestionRequest extends AbstractRequest
      *
      * @param string $question
      */
-    public function setQuestion($question)
+    public function setQuestion(string $question): void
     {
         $this->question = $question;
     }
@@ -64,7 +66,7 @@ class QuestionRequest extends AbstractRequest
      *
      * @return string
      */
-    public function getQuestion()
+    public function getQuestion(): string
     {
         return $this->question;
     }

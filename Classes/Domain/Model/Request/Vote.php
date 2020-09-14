@@ -7,7 +7,9 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\Domain\Model\Request;
 
+use HDNET\Faq\Domain\Model\Question;
 use HDNET\Faq\Exception\AlreadyVotedException;
+use TYPO3\CMS\Extbase\Annotation\Validate;
 
 /**
  * Vote.
@@ -21,7 +23,7 @@ class Vote extends AbstractRequest
     /**
      * Question.
      *
-     * @var \HDNET\Faq\Domain\Model\Question
+     * @var Question
      */
     protected $question;
 
@@ -29,14 +31,14 @@ class Vote extends AbstractRequest
      * One of the MODE_* variables.
      *
      * @var int
-     * @validate NumberRange(minimum=1, maximum=2)
+     * @Validate(validator="NumberRange", options={"minimum=1", "maximum=2"})
      */
     protected $mode;
 
     /**
      * Update question.
      */
-    public function updateQuestion()
+    public function updateQuestion(): void
     {
         $method = $this->buildModeMethod();
         \call_user_func([
@@ -50,7 +52,7 @@ class Vote extends AbstractRequest
      *
      * @return int
      */
-    public function getMode()
+    public function getMode(): int
     {
         return $this->mode;
     }
@@ -60,7 +62,7 @@ class Vote extends AbstractRequest
      *
      * @param int $mode
      */
-    public function setMode($mode)
+    public function setMode(int $mode): void
     {
         $this->mode = $mode;
     }
@@ -68,9 +70,9 @@ class Vote extends AbstractRequest
     /**
      * Get question.
      *
-     * @return \HDNET\Faq\Domain\Model\Question
+     * @return Question
      */
-    public function getQuestion()
+    public function getQuestion() :Question
     {
         return $this->question;
     }
@@ -78,9 +80,9 @@ class Vote extends AbstractRequest
     /**
      * Set question.
      *
-     * @param \HDNET\Faq\Domain\Model\Question $question
+     * @param Question $question
      */
-    public function setQuestion($question)
+    public function setQuestion($question): void
     {
         $this->question = $question;
     }
@@ -90,7 +92,7 @@ class Vote extends AbstractRequest
      *
      * @return int
      */
-    public function getQuestionVotes()
+    public function getQuestionVotes(): int
     {
         $method = $this->buildModeMethod();
 
@@ -105,7 +107,7 @@ class Vote extends AbstractRequest
      *
      * @throws AlreadyVotedException
      */
-    public function checkAgainst(array $votes)
+    public function checkAgainst(array $votes): void
     {
         if (\in_array($this->getQuestion()
             ->getUid(), $votes, true)) {
@@ -118,7 +120,7 @@ class Vote extends AbstractRequest
      *
      * @return string
      */
-    protected function buildModeMethod()
+    protected function buildModeMethod(): string
     {
         switch ($this->getMode()) {
             case self::MODE_TOP:

@@ -10,7 +10,12 @@ namespace HDNET\Faq\Controller;
 use HDNET\Faq\Domain\Model\Question;
 use HDNET\Faq\Domain\Model\Request\Faq;
 use HDNET\Faq\Domain\Model\Request\QuestionRequest;
+use HDNET\Faq\Domain\Repository\QuestionCategoryRepository;
+use HDNET\Faq\Domain\Repository\QuestionRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
+use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 
 /**
  * FAQ.
@@ -24,26 +29,29 @@ class FaqController extends AbstractController
     /**
      * Question repository.
      *
-     * @var \HDNET\Faq\Domain\Repository\QuestionRepository
-     * @inject
-     * @TYPO3\CMS\Extbase\Annotation\Inject
+     * @var QuestionRepository
      */
     protected $questionRepository;
 
     /**
      * Question category repository.
      *
-     * @var \HDNET\Faq\Domain\Repository\QuestioncategoryRepository
-     * @inject
-     * @TYPO3\CMS\Extbase\Annotation\Inject
+     * @var QuestionCategoryRepository
      */
-    protected $questioncategoryRepository;
+    protected $questionCategoryRepository;
+
+    public function __construct(QuestionRepository $questionRepository, QuestionCategoryRepository $questionCategoryRepository)
+    {
+        $this->questionRepository = $questionRepository;
+        $this->questionCategoryRepository = $questionCategoryRepository;
+    }
 
     /**
      * Index action.
      *
-     * @param \HDNET\Faq\Domain\Model\Request\Faq $faq
-     * @param bool                                $showAll
+     * @param Faq|null $faq
+     * @param bool $showAll
+     * @throws InvalidQueryException
      */
     public function indexAction(Faq $faq = null, $showAll = false)
     {
@@ -94,7 +102,7 @@ class FaqController extends AbstractController
                 $topCategory
             ),
             'topQuestions' => $topQuestions,
-            'categories' => $this->questioncategoryRepository->findByParent(
+            'categories' => $this->questionCategoryRepository->findByParent(
                 $topCategory,
                 (bool)$this->settings['faq']['categorySort'] ?: false
             ),
@@ -120,7 +128,7 @@ class FaqController extends AbstractController
     /**
      * Render the detail action.
      *
-     * @param \HDNET\Faq\Domain\Model\Question $question
+     * @param Question $question
      */
     public function detailAction(Question $question)
     {
@@ -130,9 +138,8 @@ class FaqController extends AbstractController
     /**
      * Enter form.
      *
-     * @param \HDNET\Faq\Domain\Model\Request\QuestionRequest $question
-     * @ignorevalidation $question
-     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation $question
+     * @param QuestionRequest|null $question
+     * @IgnoreValidation(argumentName="question")
      */
     public function formAction(QuestionRequest $question = null)
     {
@@ -146,10 +153,10 @@ class FaqController extends AbstractController
     /**
      * Send action.
      *
-     * @param \HDNET\Faq\Domain\Model\Request\QuestionRequest $question
-     * @param string                                          $captcha
+     * @param QuestionRequest $question
+     * @param null $captcha
      *
-     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
+     * @throws StopActionException
      */
     public function sendAction(QuestionRequest $question, $captcha = null)
     {
@@ -171,9 +178,9 @@ class FaqController extends AbstractController
     /**
      * user action.
      *
-     * @param \HDNET\Faq\Domain\Model\Request\QuestionRequest $question
+     * @param QuestionRequest $question
      *
-     * @throws \TYPO3\CMS\Extbase\Mvc\Exception\StopActionException
+     * @throws StopActionException
      */
     public function userAction(QuestionRequest $question)
     {
@@ -191,7 +198,7 @@ class FaqController extends AbstractController
     /**
      * Send action.
      *
-     * @param \HDNET\Faq\Domain\Model\Request\QuestionRequest $question
+     * @param QuestionRequest $question
      */
     public function thanksAction(QuestionRequest $question)
     {

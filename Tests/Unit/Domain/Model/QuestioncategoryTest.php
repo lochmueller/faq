@@ -7,7 +7,7 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\Tests\Unit\Domain\Model;
 
-use HDNET\Faq\Domain\Model\Questioncategory;
+use HDNET\Faq\Domain\Model\QuestionCategory;
 
 /**
  * QuestioncategoryTest.
@@ -18,7 +18,7 @@ use HDNET\Faq\Domain\Model\Questioncategory;
 class QuestioncategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 {
     /**
-     * @var Questioncategory
+     * @var QuestionCategory
      */
     protected $fileDomainModelInstance;
 
@@ -27,7 +27,7 @@ class QuestioncategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     protected function setUp()
     {
-        $this->fileDomainModelInstance = new Questioncategory();
+        $this->fileDomainModelInstance = new QuestionCategory();
     }
 
     public function testTitleCanBeSet()

@@ -3,9 +3,9 @@
 declare(strict_types = 1);
 use HDNET\Autoloader\Utility\ArrayUtility;
 use HDNET\Autoloader\Utility\ModelUtility;
-use HDNET\Faq\Domain\Model\Questioncategory;
+use HDNET\Faq\Domain\Model\QuestionCategory;
 
-$base = ModelUtility::getTcaInformation(Questioncategory::class);
+$base = ModelUtility::getTcaInformation(QuestionCategory::class);
 
 $custom = [
     'columns' => [

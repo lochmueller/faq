@@ -8,11 +8,14 @@ declare(strict_types = 1);
 namespace HDNET\Faq\Domain\Repository;
 
 use HDNET\Faq\Domain\Model\Question;
-use HDNET\Faq\Domain\Model\Questioncategory;
+use HDNET\Faq\Domain\Model\QuestionCategory;
 use HDNET\Faq\Domain\Model\Request\Faq;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManagerInterface;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 /**
  * Build up the Question.
@@ -31,9 +34,9 @@ class QuestionRepository extends AbstractRepository
     /**
      * Constructs a new Repository
      *
-     * @param \TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager
+     * @param ObjectManagerInterface $objectManager
      */
-    public function __construct(\TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager)
+    public function __construct(ObjectManagerInterface $objectManager)
     {
         parent::__construct($objectManager);
 
@@ -55,7 +58,7 @@ class QuestionRepository extends AbstractRepository
      * @param int   $topCategoryId
      * @param array $topQuestions
      *
-     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @return array|QueryResultInterface
      */
     public function findTop($limit = 5, $topCategoryId = 0, $topQuestions = [])
     {
@@ -91,9 +94,9 @@ class QuestionRepository extends AbstractRepository
      * @param int $limit
      * @param int $topCategoryId
      *
-     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
+     * @return array|QueryResultInterface
+     *@throws InvalidQueryException
      *
-     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
     public function findNewest($limit = 5, $topCategoryId = 0)
     {
@@ -118,9 +121,9 @@ class QuestionRepository extends AbstractRepository
      *
      * @param int $topCategoryId
      *
-     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
+     * @throws InvalidQueryException
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface|array
+     * @return QueryResultInterface|array
      */
     public function findAll($topCategoryId = 0)
     {
@@ -143,9 +146,9 @@ class QuestionRepository extends AbstractRepository
      *
      * @param int $topCategoryId
      *
-     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
+     * @return array|QueryResultInterface
+     * @throws InvalidQueryException
      *
-     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
      */
     public function findByFaq(Faq $faq, $topCategoryId = 0)
     {
@@ -159,7 +162,7 @@ class QuestionRepository extends AbstractRepository
         $constraints[] = $query->logicalOr($constraintsOr);
 
         $categories = GeneralUtility::intExplode(',', \implode(',', $faq->getCategories()), true);
-        if ($faq->getCategory() instanceof Questioncategory) {
+        if ($faq->getCategory() instanceof QuestionCategory) {
             $categories[] = (int)$faq->getCategory()
                 ->getUid();
         }
@@ -195,7 +198,7 @@ class QuestionRepository extends AbstractRepository
      *
      * @return array
      */
-    public function findByTeaserConfiguration(array $topQuestions, array $categories, $limit)
+    public function findByTeaserConfiguration(array $topQuestions, array $categories, $limit): array
     {
         $questions = $this->getStaticQuestionsAndReduceLimit($topQuestions, $limit);
         if ($limit > 0) {
@@ -244,7 +247,7 @@ class QuestionRepository extends AbstractRepository
      *
      * @return array
      */
-    protected function getStaticQuestionsAndReduceLimit(array $ids, &$limit)
+    protected function getStaticQuestionsAndReduceLimit(array $ids, &$limit): array
     {
         $questions = [];
         foreach ($ids as $id) {
