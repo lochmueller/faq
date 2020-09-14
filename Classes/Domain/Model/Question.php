@@ -7,12 +7,15 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\Domain\Model;
 
+use HDNET\Autoloader\Annotation\DatabaseField;
+use HDNET\Autoloader\Annotation\DatabaseTable;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * Question / Frage.
  *
- * @db
+ * @DatabaseTable
+ *
  */
 class Question extends AbstractModel
 {
@@ -20,7 +23,7 @@ class Question extends AbstractModel
      * Title.
      *
      * @var string
-     * @db
+     * @DatabaseField(type="string")
      */
     protected $title = '';
 
@@ -28,7 +31,7 @@ class Question extends AbstractModel
      * Answer.
      *
      * @var string
-     * @db
+     * @DatabaseField(type="string")
      */
     protected $answer = '';
 
@@ -36,7 +39,7 @@ class Question extends AbstractModel
      * Tags.
      *
      * @var string
-     * @db
+     * @DatabaseField(type="string")
      */
     protected $tags = '';
 
@@ -44,7 +47,7 @@ class Question extends AbstractModel
      * Top Counter.
      *
      * @var int
-     * @db
+     * @DatabaseField(type="int")
      */
     protected $topCounter = 0;
 
@@ -52,7 +55,7 @@ class Question extends AbstractModel
      * Flop Counter.
      *
      * @var int
-     * @db
+     * @DatabaseField(type="int")
      */
     protected $flopCounter = 0;
 
@@ -64,8 +67,8 @@ class Question extends AbstractModel
     /**
      * Categories.
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HDNET\Faq\Domain\Model\Questioncategory>
-     * @db int(11) DEFAULT '0' NOT NULL
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HDNET\Faq\Domain\Model\QuestionCategory>
+     * @DatabaseField(type="int", sql="int(11) DEFAULT '0' NOT NULL")
      */
     protected $categories;
 
@@ -82,7 +85,7 @@ class Question extends AbstractModel
      *
      * @param string $title
      */
-    public function setTitle($title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
@@ -92,7 +95,7 @@ class Question extends AbstractModel
      *
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -102,7 +105,7 @@ class Question extends AbstractModel
      *
      * @param string $answer
      */
-    public function setAnswer($answer)
+    public function setAnswer($answer): void
     {
         $this->answer = $answer;
     }
@@ -112,7 +115,7 @@ class Question extends AbstractModel
      *
      * @return string
      */
-    public function getAnswer()
+    public function getAnswer(): string
     {
         return $this->answer;
     }

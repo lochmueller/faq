@@ -7,26 +7,29 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\Domain\Model;
 
+use HDNET\Autoloader\Annotation\DatabaseField;
+use HDNET\Autoloader\Annotation\DatabaseTable;
+
 /**
  * Questioncategory / Fragen Kategorie.
  *
- * @db
+ * @DatabaseTable
  */
-class Questioncategory extends AbstractModel
+class QuestionCategory extends AbstractModel
 {
     /**
      * Title.
      *
      * @var string
-     * @db
+     * @DatabaseField(type="string")
      */
     protected $title;
 
     /**
      * Parent.
      *
-     * @var \HDNET\Faq\Domain\Model\Questioncategory
-     * @db int(11) DEFAULT '0'
+     * @var \HDNET\Faq\Domain\Model\QuestionCategory
+     * @DatabaseField(type="int", sql="int(11) DEFAULT '0' NOT NULL")
      */
     protected $parent;
 
@@ -58,7 +61,7 @@ class Questioncategory extends AbstractModel
     /**
      * Set the parent.
      *
-     * @param \HDNET\Faq\Domain\Model\Questioncategory $parent
+     * @param \HDNET\Faq\Domain\Model\QuestionCategory $parent
      */
     public function setParent($parent)
     {
@@ -68,7 +71,7 @@ class Questioncategory extends AbstractModel
     /**
      * Get the parent.
      *
-     * @return \HDNET\Faq\Domain\Model\Questioncategory
+     * @return \HDNET\Faq\Domain\Model\QuestionCategory
      */
     public function getParent()
     {
