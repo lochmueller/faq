@@ -67,7 +67,7 @@ class Question extends AbstractModel
     /**
      * Categories.
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HDNET\Faq\Domain\Model\QuestionCategory>
+     * @var ObjectStorage<QuestionCategory>
      * @DatabaseField(type="int", sql="int(11) DEFAULT '0' NOT NULL")
      */
     protected $categories;
@@ -105,7 +105,7 @@ class Question extends AbstractModel
      *
      * @param string $answer
      */
-    public function setAnswer($answer): void
+    public function setAnswer(string $answer): void
     {
         $this->answer = $answer;
     }
@@ -125,7 +125,7 @@ class Question extends AbstractModel
      *
      * @param string $tags
      */
-    public function setTags($tags)
+    public function setTags(string $tags): void
     {
         $this->tags = $tags;
     }
@@ -135,7 +135,7 @@ class Question extends AbstractModel
      *
      * @return string
      */
-    public function getTags()
+    public function getTags(): string
     {
         return $this->tags;
     }
@@ -145,7 +145,7 @@ class Question extends AbstractModel
      *
      * @param int $topCounter
      */
-    public function setTopCounter($topCounter)
+    public function setTopCounter(int $topCounter): void
     {
         $this->topCounter = $topCounter;
     }
@@ -155,7 +155,7 @@ class Question extends AbstractModel
      *
      * @return int
      */
-    public function getTopCounter()
+    public function getTopCounter(): int
     {
         return (int)$this->topCounter;
     }
@@ -163,9 +163,9 @@ class Question extends AbstractModel
     /**
      * Set the categories.
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories
+     * @param ObjectStorage $categories
      */
-    public function setCategories($categories)
+    public function setCategories($categories): void
     {
         $this->categories = $categories;
     }
@@ -173,9 +173,9 @@ class Question extends AbstractModel
     /**
      * Get the categories.
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return ObjectStorage
      */
-    public function getCategories()
+    public function getCategories(): ObjectStorage
     {
         return $this->categories;
     }
@@ -185,7 +185,7 @@ class Question extends AbstractModel
      *
      * @param int $flopCounter
      */
-    public function setFlopCounter($flopCounter)
+    public function setFlopCounter(int $flopCounter): void
     {
         $this->flopCounter = $flopCounter;
     }
@@ -195,7 +195,7 @@ class Question extends AbstractModel
      *
      * @return int
      */
-    public function getFlopCounter()
+    public function getFlopCounter(): int
     {
         return (int)$this->flopCounter;
     }
@@ -205,7 +205,7 @@ class Question extends AbstractModel
      *
      * @return int
      */
-    public function getLanguageId()
+    public function getLanguageId(): int
     {
         return $this->_languageUid;
     }

@@ -86,7 +86,7 @@ class Faq extends AbstractRequest
     /**
      * @param array $categories
      */
-    public function setCategories($categories): void
+    public function setCategories(array $categories): void
     {
         $this->categories = $categories;
     }

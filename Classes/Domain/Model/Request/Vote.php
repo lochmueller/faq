@@ -82,7 +82,7 @@ class Vote extends AbstractRequest
      *
      * @param Question $question
      */
-    public function setQuestion($question): void
+    public function setQuestion(Question $question): void
     {
         $this->question = $question;
     }

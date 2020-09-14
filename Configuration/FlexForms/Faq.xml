@@ -90,13 +90,13 @@
                             <label>Override Top category</label>
                             <config>
                                 <type>select</type>
-                                <renderType>selectTree</renderType>
+                                <renderType>selectSingle</renderType>
                                 <foreign_table>tx_faq_domain_model_questioncategory</foreign_table>
                                 <size>1</size>
                                 <items type="array">
                                     <numIndex index="0" type="array">
-                                        <numIndex index="0">test</numIndex>
-                                        <numIndex index="1">test3</numIndex>
+                                        <numIndex index="0"></numIndex>
+                                        <numIndex index="1"></numIndex>
                                     </numIndex>
                                 </items>
                             </config>

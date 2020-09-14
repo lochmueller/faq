@@ -28,7 +28,7 @@ class QuestionCategory extends AbstractModel
     /**
      * Parent.
      *
-     * @var \HDNET\Faq\Domain\Model\QuestionCategory
+     * @var QuestionCategory
      * @DatabaseField(type="int", sql="int(11) DEFAULT '0' NOT NULL")
      */
     protected $parent;
@@ -43,7 +43,7 @@ class QuestionCategory extends AbstractModel
      *
      * @param string $title
      */
-    public function setTitle($title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
@@ -53,7 +53,7 @@ class QuestionCategory extends AbstractModel
      *
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -61,9 +61,9 @@ class QuestionCategory extends AbstractModel
     /**
      * Set the parent.
      *
-     * @param \HDNET\Faq\Domain\Model\QuestionCategory $parent
+     * @param QuestionCategory $parent
      */
-    public function setParent($parent)
+    public function setParent(QuestionCategory $parent): void
     {
         $this->parent = $parent;
     }
@@ -71,9 +71,9 @@ class QuestionCategory extends AbstractModel
     /**
      * Get the parent.
      *
-     * @return \HDNET\Faq\Domain\Model\QuestionCategory
+     * @return QuestionCategory
      */
-    public function getParent()
+    public function getParent(): QuestionCategory
     {
         return $this->parent;
     }
@@ -83,7 +83,7 @@ class QuestionCategory extends AbstractModel
      *
      * @return int
      */
-    public function getLanguageUid()
+    public function getLanguageUid(): int
     {
         return $this->_languageUid;
     }

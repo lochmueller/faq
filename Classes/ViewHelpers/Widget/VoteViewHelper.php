@@ -7,6 +7,11 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\ViewHelpers\Widget;
 
+use HDNET\Faq\ViewHelpers\Widget\Controller\VoteController;
+use TYPO3\CMS\Extbase\Mvc\ResponseInterface;
+use TYPO3\CMS\Fluid\Core\Widget\Exception\MissingControllerException;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Exception;
+
 /**
  * VoteViewHelper.
  */
@@ -22,16 +27,19 @@ class VoteViewHelper extends AbstractWidgetViewHelper
     /**
      * Controller.
      *
-     * @var \HDNET\Faq\ViewHelpers\Widget\Controller\VoteController
-     * @inject
-     * @TYPO3\CMS\Extbase\Annotation\Inject
+     * @var VoteController
      */
     protected $controller;
+
+    public function __construct(VoteController $voteController)
+    {
+        $this->controller = $voteController;
+    }
 
     /**
      * Initialize arguments.
      *
-     * @throws \TYPO3Fluid\Fluid\Core\ViewHelper\Exception
+     * @throws Exception
      */
     public function initializeArguments()
     {
@@ -43,9 +51,9 @@ class VoteViewHelper extends AbstractWidgetViewHelper
     /**
      * Render.
      *
-     * @throws \TYPO3\CMS\Fluid\Core\Widget\Exception\MissingControllerException
+     * @throws MissingControllerException
      *
-     * @return \TYPO3\CMS\Extbase\Mvc\ResponseInterface
+     * @return ResponseInterface
      */
     public function render()
     {

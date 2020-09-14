@@ -54,11 +54,12 @@ class QuestionRepository extends AbstractRepository
     /**
      * Get the top questions.
      *
-     * @param int   $limit
-     * @param int   $topCategoryId
+     * @param int $limit
+     * @param int $topCategoryId
      * @param array $topQuestions
      *
      * @return array|QueryResultInterface
+     * @throws InvalidQueryException
      */
     public function findTop($limit = 5, $topCategoryId = 0, $topQuestions = [])
     {
@@ -144,11 +145,11 @@ class QuestionRepository extends AbstractRepository
     /**
      * Find by FAQ model.
      *
+     * @param Faq $faq
      * @param int $topCategoryId
      *
      * @return array|QueryResultInterface
      * @throws InvalidQueryException
-     *
      */
     public function findByFaq(Faq $faq, $topCategoryId = 0)
     {
@@ -192,13 +193,14 @@ class QuestionRepository extends AbstractRepository
     /**
      * Get the teaser questions.
      *
+     * @param array $topQuestions
+     * @param array $categories
      * @param int $limit
      *
-     * @throws \Exception
-     *
      * @return array
+     * @throws \Exception
      */
-    public function findByTeaserConfiguration(array $topQuestions, array $categories, $limit): array
+    public function findByTeaserConfiguration(array $topQuestions, array $categories, int $limit): array
     {
         $questions = $this->getStaticQuestionsAndReduceLimit($topQuestions, $limit);
         if ($limit > 0) {
@@ -243,11 +245,12 @@ class QuestionRepository extends AbstractRepository
     /**
      * Get the Questsions with the given IDS and reduce the limit.
      *
+     * @param array $ids
      * @param int $limit
      *
      * @return array
      */
-    protected function getStaticQuestionsAndReduceLimit(array $ids, &$limit): array
+    protected function getStaticQuestionsAndReduceLimit(array $ids, int &$limit): array
     {
         $questions = [];
         foreach ($ids as $id) {

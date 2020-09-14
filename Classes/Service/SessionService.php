@@ -7,6 +7,8 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\Service;
 
+use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
+
 /**
  * SessionService.
  */
@@ -15,14 +17,14 @@ class SessionService extends AbstractService
     /**
      * Frontend user.
      *
-     * @var \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication
+     * @var FrontendUserAuthentication
      */
     protected $frontendUser;
 
     /**
      * Init the current object.
      */
-    public function initializeObject()
+    public function initializeObject(): void
     {
         $this->frontendUser = $GLOBALS['TSFE']->fe_user;
     }
@@ -31,11 +33,11 @@ class SessionService extends AbstractService
      * Set and Get.
      *
      * @param string $sessionIdentifier
-     * @param mixed  $value
+     * @param mixed $value
      *
      * @return mixed
      */
-    public function setAndGet($sessionIdentifier, $value)
+    public function setAndGet(string $sessionIdentifier, $value)
     {
         if (!$this->has($sessionIdentifier)) {
             $this->set($sessionIdentifier, $value);
@@ -51,7 +53,7 @@ class SessionService extends AbstractService
      *
      * @return bool
      */
-    public function has($sessionIdentifier)
+    public function has($sessionIdentifier): bool
     {
         return (bool)$this->get($sessionIdentifier);
     }
@@ -63,7 +65,7 @@ class SessionService extends AbstractService
      *
      * @return mixed
      */
-    public function get($sessionIdentifier)
+    public function get(string $sessionIdentifier)
     {
         return $this->frontendUser->getSessionData($sessionIdentifier);
     }
@@ -74,7 +76,7 @@ class SessionService extends AbstractService
      * @param string $sessionIdentifier
      * @param mixed  $value
      */
-    public function set($sessionIdentifier, $value)
+    public function set(string $sessionIdentifier, $value)
     {
         $this->frontendUser->setAndSaveSessionData($sessionIdentifier, $value);
     }
