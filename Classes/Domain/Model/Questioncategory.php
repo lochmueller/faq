@@ -7,26 +7,29 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\Domain\Model;
 
+use HDNET\Autoloader\Annotation\DatabaseField;
+use HDNET\Autoloader\Annotation\DatabaseTable;
+
 /**
  * Questioncategory / Fragen Kategorie.
  *
- * @db
+ * @DatabaseTable
  */
-class Questioncategory extends AbstractModel
+class QuestionCategory extends AbstractModel
 {
     /**
      * Title.
      *
      * @var string
-     * @db
+     * @DatabaseField(type="string")
      */
     protected $title;
 
     /**
      * Parent.
      *
-     * @var \HDNET\Faq\Domain\Model\Questioncategory
-     * @db int(11) DEFAULT '0'
+     * @var QuestionCategory
+     * @DatabaseField(type="int", sql="int(11) DEFAULT '0' NOT NULL")
      */
     protected $parent;
 
@@ -40,7 +43,7 @@ class Questioncategory extends AbstractModel
      *
      * @param string $title
      */
-    public function setTitle($title)
+    public function setTitle(string $title): void
     {
         $this->title = $title;
     }
@@ -50,7 +53,7 @@ class Questioncategory extends AbstractModel
      *
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -58,9 +61,9 @@ class Questioncategory extends AbstractModel
     /**
      * Set the parent.
      *
-     * @param \HDNET\Faq\Domain\Model\Questioncategory $parent
+     * @param QuestionCategory $parent
      */
-    public function setParent($parent)
+    public function setParent(QuestionCategory $parent): void
     {
         $this->parent = $parent;
     }
@@ -68,9 +71,9 @@ class Questioncategory extends AbstractModel
     /**
      * Get the parent.
      *
-     * @return \HDNET\Faq\Domain\Model\Questioncategory
+     * @return QuestionCategory
      */
-    public function getParent()
+    public function getParent(): QuestionCategory
     {
         return $this->parent;
     }
@@ -80,7 +83,7 @@ class Questioncategory extends AbstractModel
      *
      * @return int
      */
-    public function getLanguageUid()
+    public function getLanguageUid(): int
     {
         return $this->_languageUid;
     }

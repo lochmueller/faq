@@ -10,8 +10,12 @@ namespace HDNET\Faq\ViewHelpers\Widget\Controller;
 use HDNET\Autoloader\Utility\TranslateUtility;
 use HDNET\Faq\Domain\Model\Question;
 use HDNET\Faq\Domain\Model\Request\Vote;
+use HDNET\Faq\Domain\Repository\QuestionRepository;
 use HDNET\Faq\Exception\AlreadyVotedException;
 use HDNET\Faq\Exception\VoteException;
+use HDNET\Faq\Service\SessionService;
+use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
+use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 
 /**
  * VoteController.
@@ -21,25 +25,29 @@ class VoteController extends AbstractWidgetController
     /**
      * Session service.
      *
-     * @var \HDNET\Faq\Service\SessionService
-     * @inject
-     * @TYPO3\CMS\Extbase\Annotation\Inject
+     * @var SessionService
      */
     protected $sessionService;
 
     /**
      * Question repository.
      *
-     * @var \HDNET\Faq\Domain\Repository\QuestionRepository
-     * @inject
-     * @TYPO3\CMS\Extbase\Annotation\Inject
+     * @var QuestionRepository
+     *
      */
     protected $questionRepository;
+
+    public function __construct(SessionService $sessionService, QuestionRepository $questionRepository)
+    {
+        $this->sessionService = $sessionService;
+        $this->questionRepository = $questionRepository;
+
+    }
 
     /**
      * Index action.
      */
-    public function indexAction()
+    public function indexAction(): void
     {
         $this->view->assignMultiple([
             'top' => $this->widgetConfiguration['counters']['top'],
@@ -51,14 +59,14 @@ class VoteController extends AbstractWidgetController
     /**
      * Vote action.
      *
+     * @param Question $question
      * @param int $mode
      *
-     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
-     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException
-     *
      * @return string
+     * @throws IllegalObjectTypeException
+     * @throws UnknownObjectException
      */
-    public function voteAction(Question $question, $mode)
+    public function voteAction(Question $question, int $mode)
     {
         $vote = $this->objectManager->get(Vote::class);
         $vote->setMode($mode);

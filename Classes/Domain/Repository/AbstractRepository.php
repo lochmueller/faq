@@ -27,7 +27,7 @@ abstract class AbstractRepository extends Repository
      *
      * @return string
      */
-    public function getTableName()
+    public function getTableName(): string
     {
         $query = $this->createQuery();
         if ($query instanceof Query) {
@@ -45,7 +45,7 @@ abstract class AbstractRepository extends Repository
      *
      * @return array
      */
-    public function findByUidsSorted(array $uids)
+    public function findByUidsSorted(array $uids): array
     {
         $return = [];
         foreach ($uids as $uid) {

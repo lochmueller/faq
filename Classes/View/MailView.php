@@ -16,7 +16,6 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\View;
 
-use Swift_Attachment;
 use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\TemplateView;
@@ -123,7 +122,7 @@ class MailView extends TemplateView
             foreach ($files as $file) {
                 $file = GeneralUtility::getFileAbsFileName($file);
                 if (\is_file($file)) {
-                    $this->mail->attach(Swift_Attachment::fromPath($file));
+                    $this->mail->attachFromPath($file);
                 }
             }
         }
@@ -142,7 +141,7 @@ class MailView extends TemplateView
         if ($variableContainer->exists('filesStream')) {
             $filesStream = $variableContainer->get('filesStream');
             foreach ($filesStream as $filename => $data) {
-                $this->mail->attach(Swift_Attachment::newInstance($data, $filename));
+                $this->mail->attachFromPath($data, $filename);
             }
         }
 
@@ -156,6 +155,7 @@ class MailView extends TemplateView
      */
     protected function assignContent()
     {
+
         $html = parent::render();
         $request = $this->controllerContext->getRequest();
         $resetFormat = $request->getFormat();
@@ -192,10 +192,12 @@ class MailView extends TemplateView
     /**
      * Get template variable container.
      *
-     * @return \TYPO3\CMS\Fluid\Core\ViewHelper\TemplateVariableContainer
+     *
      */
     private function getTemplateVariableContainer()
     {
-        return $this->baseRenderingContext->getTemplateVariableContainer();
+        return $this->baseRenderingContext->getVariableProvider();
+        #return $this->baseRenderingContext->getViewHelperVariableContainer();
+        #return $this->baseRenderingContext->getTemplateVariableContainer();
     }
 }

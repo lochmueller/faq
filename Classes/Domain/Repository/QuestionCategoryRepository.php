@@ -8,11 +8,12 @@ declare(strict_types = 1);
 namespace HDNET\Faq\Domain\Repository;
 
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 /**
  * Build up the Question category.
  */
-class QuestioncategoryRepository extends AbstractRepository
+class QuestionCategoryRepository extends AbstractRepository
 {
     /**
      * Default sorting.
@@ -24,9 +25,9 @@ class QuestioncategoryRepository extends AbstractRepository
     /**
      * Create query.
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryInterface
+     * @return QueryInterface
      */
-    public function createQuery()
+    public function createQuery(): QueryInterface
     {
         $query = parent::createQuery();
         $query->getQuerySettings()
@@ -41,9 +42,9 @@ class QuestioncategoryRepository extends AbstractRepository
      * @param int  $topCategory
      * @param bool $sorting
      *
-     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @return array|QueryResultInterface
      */
-    public function findByParent($topCategory, $sorting = false)
+    public function findByParent(int $topCategory, bool $sorting = false)
     {
         $query = $this->createQuery();
         $query->matching($query->equals('parent', $topCategory));

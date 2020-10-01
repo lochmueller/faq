@@ -90,6 +90,7 @@
                             <label>Override Top category</label>
                             <config>
                                 <type>select</type>
+                                <renderType>selectSingle</renderType>
                                 <foreign_table>tx_faq_domain_model_questioncategory</foreign_table>
                                 <size>1</size>
                                 <items type="array">

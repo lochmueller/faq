@@ -7,6 +7,8 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\Domain\Model\Request;
 
+use HDNET\Faq\Domain\Model\QuestionCategory;
+
 /**
  * Request Faq.
  */
@@ -15,7 +17,7 @@ class Faq extends AbstractRequest
     /**
      * Category.
      *
-     * @var \HDNET\Faq\Domain\Model\Questioncategory
+     * @var QuestionCategory
      */
     protected $category;
 
@@ -36,9 +38,9 @@ class Faq extends AbstractRequest
     /**
      * Set the category.
      *
-     * @param \HDNET\Faq\Domain\Model\Questioncategory $category
+     * @param QuestionCategory $category
      */
-    public function setCategory($category)
+    public function setCategory(QuestionCategory $category): void
     {
         $this->category = $category;
     }
@@ -46,9 +48,9 @@ class Faq extends AbstractRequest
     /**
      * Get the category.
      *
-     * @return \HDNET\Faq\Domain\Model\Questioncategory
+     * @return QuestionCategory
      */
-    public function getCategory()
+    public function getCategory(): QuestionCategory
     {
         return $this->category;
     }
@@ -58,7 +60,7 @@ class Faq extends AbstractRequest
      *
      * @param string $searchWord
      */
-    public function setSearchWord($searchWord)
+    public function setSearchWord(string $searchWord): void
     {
         $this->searchWord = \trim((string)$searchWord);
     }
@@ -68,7 +70,7 @@ class Faq extends AbstractRequest
      *
      * @return string
      */
-    public function getSearchWord()
+    public function getSearchWord(): string
     {
         return \trim((string)$this->searchWord);
     }
@@ -76,7 +78,7 @@ class Faq extends AbstractRequest
     /**
      * @return array
      */
-    public function getCategories()
+    public function getCategories(): array
     {
         return $this->categories;
     }
@@ -84,7 +86,7 @@ class Faq extends AbstractRequest
     /**
      * @param array $categories
      */
-    public function setCategories($categories)
+    public function setCategories(array $categories): void
     {
         $this->categories = $categories;
     }
