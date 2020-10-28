@@ -49,11 +49,9 @@ class FaqController extends AbstractController
     /**
      * Index action.
      *
-     * @param bool $showAll
-     *
      * @throws InvalidQueryException
      */
-    public function indexAction(Faq $faq = null, $showAll = false): void
+    public function indexAction(Faq $faq = null, bool $showAll = false): void
     {
         $topCategory = (int)$this->settings['faq']['topCategory'];
 
@@ -150,11 +148,9 @@ class FaqController extends AbstractController
     /**
      * Send action.
      *
-     * @param null $captcha
-     *
      * @throws StopActionException
      */
-    public function sendAction(QuestionRequest $question, $captcha = null): void
+    public function sendAction(QuestionRequest $question, string $captcha = null): void
     {
         // @todo integrate captcha based on $this->settings['enableCaptcha']
         // * @validate $captcha \SJBR\SrFreecap\Validation\Validator\CaptchaValidator && Not Empty
