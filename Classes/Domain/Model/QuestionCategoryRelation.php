@@ -13,7 +13,8 @@ use HDNET\Autoloader\Domain\Model\AbstractAdvancedRelation;
 
 /**
  * Relation.
- * @SmartExclude(excludes={"EnableFields","Language","Workspaces"})
+ *
+ * @SmartExclude(excludes={"EnableFields", "Language", "Workspaces"})
  * @DatabaseTable(tableName="tx_faq_mm_question_questioncategory")
  */
 class QuestionCategoryRelation extends AbstractAdvancedRelation

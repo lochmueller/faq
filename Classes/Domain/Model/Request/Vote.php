@@ -49,8 +49,6 @@ class Vote extends AbstractRequest
 
     /**
      * Get mode.
-     *
-     * @return int
      */
     public function getMode(): int
     {
@@ -59,8 +57,6 @@ class Vote extends AbstractRequest
 
     /**
      * Set mode.
-     *
-     * @param int $mode
      */
     public function setMode(int $mode): void
     {
@@ -69,18 +65,14 @@ class Vote extends AbstractRequest
 
     /**
      * Get question.
-     *
-     * @return Question
      */
-    public function getQuestion() :Question
+    public function getQuestion(): Question
     {
         return $this->question;
     }
 
     /**
      * Set question.
-     *
-     * @param Question $question
      */
     public function setQuestion(Question $question): void
     {
@@ -89,8 +81,6 @@ class Vote extends AbstractRequest
 
     /**
      * Get question votes.
-     *
-     * @return int
      */
     public function getQuestionVotes(): int
     {
@@ -117,8 +107,6 @@ class Vote extends AbstractRequest
 
     /**
      * Build mode method.
-     *
-     * @return string
      */
     protected function buildModeMethod(): string
     {

@@ -33,7 +33,6 @@ class VoteController extends AbstractWidgetController
      * Question repository.
      *
      * @var QuestionRepository
-     *
      */
     protected $questionRepository;
 
@@ -41,7 +40,6 @@ class VoteController extends AbstractWidgetController
     {
         $this->sessionService = $sessionService;
         $this->questionRepository = $questionRepository;
-
     }
 
     /**
@@ -59,12 +57,10 @@ class VoteController extends AbstractWidgetController
     /**
      * Vote action.
      *
-     * @param Question $question
-     * @param int $mode
-     *
-     * @return string
      * @throws IllegalObjectTypeException
      * @throws UnknownObjectException
+     *
+     * @return string
      */
     public function voteAction(Question $question, int $mode)
     {

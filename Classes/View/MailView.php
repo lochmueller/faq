@@ -155,7 +155,6 @@ class MailView extends TemplateView
      */
     protected function assignContent()
     {
-
         $html = parent::render();
         $request = $this->controllerContext->getRequest();
         $resetFormat = $request->getFormat();
@@ -191,13 +190,11 @@ class MailView extends TemplateView
 
     /**
      * Get template variable container.
-     *
-     *
      */
     private function getTemplateVariableContainer()
     {
         return $this->baseRenderingContext->getVariableProvider();
-        #return $this->baseRenderingContext->getViewHelperVariableContainer();
-        #return $this->baseRenderingContext->getTemplateVariableContainer();
+        //return $this->baseRenderingContext->getViewHelperVariableContainer();
+        //return $this->baseRenderingContext->getTemplateVariableContainer();
     }
 }

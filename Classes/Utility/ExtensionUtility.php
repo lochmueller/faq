@@ -15,8 +15,6 @@ class ExtensionUtility
 {
     /**
      * Get the autoloader configuration.
-     *
-     * @return array
      */
     public static function getAutoloaderConfiguration(): array
     {

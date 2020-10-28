@@ -33,8 +33,6 @@ class QuestionRequest extends AbstractRequest
 
     /**
      * Set E-mail.
-     *
-     * @param string $email
      */
     public function setEmail(string $email): void
     {
@@ -43,8 +41,6 @@ class QuestionRequest extends AbstractRequest
 
     /**
      * Get E-Mail.
-     *
-     * @return string
      */
     public function getEmail(): string
     {
@@ -53,8 +49,6 @@ class QuestionRequest extends AbstractRequest
 
     /**
      * Set question.
-     *
-     * @param string $question
      */
     public function setQuestion(string $question): void
     {
@@ -63,8 +57,6 @@ class QuestionRequest extends AbstractRequest
 
     /**
      * Get question.
-     *
-     * @return string
      */
     public function getQuestion(): string
     {

@@ -32,16 +32,14 @@ class QuestionRepository extends AbstractRepository
     ];
 
     /**
-     * Constructs a new Repository
-     *
-     * @param ObjectManagerInterface $objectManager
+     * Constructs a new Repository.
      */
     public function __construct(ObjectManagerInterface $objectManager)
     {
         parent::__construct($objectManager);
 
-        $configuration = (array) @\unserialize((string) $GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['faq']);
-        $enableManuallySorting = isset($configuration['enableManuallySorting']) ? (bool) $configuration['enableManuallySorting'] : false;
+        $configuration = (array)@\unserialize((string)$GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['faq']);
+        $enableManuallySorting = isset($configuration['enableManuallySorting']) ? (bool)$configuration['enableManuallySorting'] : false;
 
         if ($enableManuallySorting) {
             $this->defaultOrderings = [
@@ -50,16 +48,16 @@ class QuestionRepository extends AbstractRepository
         }
     }
 
-
     /**
      * Get the top questions.
      *
-     * @param int $limit
-     * @param int $topCategoryId
+     * @param int   $limit
+     * @param int   $topCategoryId
      * @param array $topQuestions
      *
-     * @return array|QueryResultInterface
      * @throws InvalidQueryException
+     *
+     * @return array|QueryResultInterface
      */
     public function findTop($limit = 5, $topCategoryId = 0, $topQuestions = [])
     {
@@ -95,9 +93,9 @@ class QuestionRepository extends AbstractRepository
      * @param int $limit
      * @param int $topCategoryId
      *
-     * @return array|QueryResultInterface
      *@throws InvalidQueryException
      *
+     * @return array|QueryResultInterface
      */
     public function findNewest($limit = 5, $topCategoryId = 0)
     {
@@ -145,11 +143,11 @@ class QuestionRepository extends AbstractRepository
     /**
      * Find by FAQ model.
      *
-     * @param Faq $faq
      * @param int $topCategoryId
      *
-     * @return array|QueryResultInterface
      * @throws InvalidQueryException
+     *
+     * @return array|QueryResultInterface
      */
     public function findByFaq(Faq $faq, $topCategoryId = 0)
     {
@@ -193,11 +191,6 @@ class QuestionRepository extends AbstractRepository
     /**
      * Get the teaser questions.
      *
-     * @param array $topQuestions
-     * @param array $categories
-     * @param int $limit
-     *
-     * @return array
      * @throws \Exception
      */
     public function findByTeaserConfiguration(array $topQuestions, array $categories, int $limit): array
@@ -244,11 +237,6 @@ class QuestionRepository extends AbstractRepository
 
     /**
      * Get the Questsions with the given IDS and reduce the limit.
-     *
-     * @param array $ids
-     * @param int $limit
-     *
-     * @return array
      */
     protected function getStaticQuestionsAndReduceLimit(array $ids, int &$limit): array
     {

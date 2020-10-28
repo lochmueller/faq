@@ -15,7 +15,6 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  * Question / Frage.
  *
  * @DatabaseTable
- *
  */
 class Question extends AbstractModel
 {
@@ -82,8 +81,6 @@ class Question extends AbstractModel
 
     /**
      * Set the title.
-     *
-     * @param string $title
      */
     public function setTitle(string $title): void
     {
@@ -92,8 +89,6 @@ class Question extends AbstractModel
 
     /**
      * Get the title.
-     *
-     * @return string
      */
     public function getTitle(): string
     {
@@ -102,8 +97,6 @@ class Question extends AbstractModel
 
     /**
      * Set answer.
-     *
-     * @param string $answer
      */
     public function setAnswer(string $answer): void
     {
@@ -112,8 +105,6 @@ class Question extends AbstractModel
 
     /**
      * Get answer.
-     *
-     * @return string
      */
     public function getAnswer(): string
     {
@@ -122,8 +113,6 @@ class Question extends AbstractModel
 
     /**
      * Set tags.
-     *
-     * @param string $tags
      */
     public function setTags(string $tags): void
     {
@@ -132,8 +121,6 @@ class Question extends AbstractModel
 
     /**
      * Get tags.
-     *
-     * @return string
      */
     public function getTags(): string
     {
@@ -142,8 +129,6 @@ class Question extends AbstractModel
 
     /**
      * Set the top counter.
-     *
-     * @param int $topCounter
      */
     public function setTopCounter(int $topCounter): void
     {
@@ -152,8 +137,6 @@ class Question extends AbstractModel
 
     /**
      * Get the top counter.
-     *
-     * @return int
      */
     public function getTopCounter(): int
     {
@@ -172,8 +155,6 @@ class Question extends AbstractModel
 
     /**
      * Get the categories.
-     *
-     * @return ObjectStorage
      */
     public function getCategories(): ObjectStorage
     {
@@ -182,8 +163,6 @@ class Question extends AbstractModel
 
     /**
      * Set the Flop Counter.
-     *
-     * @param int $flopCounter
      */
     public function setFlopCounter(int $flopCounter): void
     {
@@ -192,8 +171,6 @@ class Question extends AbstractModel
 
     /**
      * Get the flop counter.
-     *
-     * @return int
      */
     public function getFlopCounter(): int
     {
@@ -202,8 +179,6 @@ class Question extends AbstractModel
 
     /**
      * Public getter for the languageUid.
-     *
-     * @return int
      */
     public function getLanguageId(): int
     {

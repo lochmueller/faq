@@ -24,8 +24,6 @@ abstract class AbstractRepository extends Repository
      * Return the current tablename.
      *
      * @throws Exception
-     *
-     * @return string
      */
     public function getTableName(): string
     {
@@ -42,8 +40,6 @@ abstract class AbstractRepository extends Repository
 
     /**
      * Find objects by the given ids in the given order.
-     *
-     * @return array
      */
     public function findByUidsSorted(array $uids): array
     {

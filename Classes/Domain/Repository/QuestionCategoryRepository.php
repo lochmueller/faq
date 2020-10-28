@@ -24,8 +24,6 @@ class QuestionCategoryRepository extends AbstractRepository
 
     /**
      * Create query.
-     *
-     * @return QueryInterface
      */
     public function createQuery(): QueryInterface
     {
@@ -38,9 +36,6 @@ class QuestionCategoryRepository extends AbstractRepository
 
     /**
      * Find the categories in the right order (default: default, $sorting=TRUE: alphabetical).
-     *
-     * @param int  $topCategory
-     * @param bool $sorting
      *
      * @return array|QueryResultInterface
      */

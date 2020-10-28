@@ -32,7 +32,6 @@ class SessionService extends AbstractService
     /**
      * Set and Get.
      *
-     * @param string $sessionIdentifier
      * @param mixed $value
      *
      * @return mixed
@@ -50,8 +49,6 @@ class SessionService extends AbstractService
      * Has.
      *
      * @param $sessionIdentifier
-     *
-     * @return bool
      */
     public function has($sessionIdentifier): bool
     {
@@ -60,8 +57,6 @@ class SessionService extends AbstractService
 
     /**
      * Get.
-     *
-     * @param string $sessionIdentifier
      *
      * @return mixed
      */
@@ -73,8 +68,7 @@ class SessionService extends AbstractService
     /**
      * Set.
      *
-     * @param string $sessionIdentifier
-     * @param mixed  $value
+     * @param mixed $value
      */
     public function set(string $sessionIdentifier, $value)
     {

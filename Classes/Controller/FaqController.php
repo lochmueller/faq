@@ -49,8 +49,8 @@ class FaqController extends AbstractController
     /**
      * Index action.
      *
-     * @param Faq|null $faq
      * @param bool $showAll
+     *
      * @throws InvalidQueryException
      */
     public function indexAction(Faq $faq = null, $showAll = false): void
@@ -127,8 +127,6 @@ class FaqController extends AbstractController
 
     /**
      * Render the detail action.
-     *
-     * @param Question $question
      */
     public function detailAction(Question $question): void
     {
@@ -138,7 +136,6 @@ class FaqController extends AbstractController
     /**
      * Enter form.
      *
-     * @param QuestionRequest|null $question
      * @IgnoreValidation(argumentName="question")
      */
     public function formAction(QuestionRequest $question = null): void
@@ -153,7 +150,6 @@ class FaqController extends AbstractController
     /**
      * Send action.
      *
-     * @param QuestionRequest $question
      * @param null $captcha
      *
      * @throws StopActionException
@@ -178,8 +174,6 @@ class FaqController extends AbstractController
     /**
      * user action.
      *
-     * @param QuestionRequest $question
-     *
      * @throws StopActionException
      */
     public function userAction(QuestionRequest $question): void
@@ -197,8 +191,6 @@ class FaqController extends AbstractController
 
     /**
      * Send action.
-     *
-     * @param QuestionRequest $question
      */
     public function thanksAction(QuestionRequest $question): void
     {
@@ -210,8 +202,6 @@ class FaqController extends AbstractController
      * Get the target Email address.
      *
      * @throws \Exception
-     *
-     * @return string
      */
     protected function getTargetEmailAddress(): string
     {

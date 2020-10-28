@@ -15,7 +15,7 @@ use HDNET\Autoloader\Annotation\DatabaseTable;
  *
  * @DatabaseTable
  */
-class QuestionCategory extends AbstractModel
+class Questioncategory extends AbstractModel
 {
     /**
      * Title.
@@ -40,8 +40,6 @@ class QuestionCategory extends AbstractModel
 
     /**
      * Set the title.
-     *
-     * @param string $title
      */
     public function setTitle(string $title): void
     {
@@ -50,8 +48,6 @@ class QuestionCategory extends AbstractModel
 
     /**
      * Get the title.
-     *
-     * @return string
      */
     public function getTitle(): string
     {
@@ -60,28 +56,22 @@ class QuestionCategory extends AbstractModel
 
     /**
      * Set the parent.
-     *
-     * @param QuestionCategory $parent
      */
-    public function setParent(QuestionCategory $parent): void
+    public function setParent(self $parent): void
     {
         $this->parent = $parent;
     }
 
     /**
      * Get the parent.
-     *
-     * @return QuestionCategory
      */
-    public function getParent(): QuestionCategory
+    public function getParent(): self
     {
         return $this->parent;
     }
 
     /**
      * Public getter for the languageUid.
-     *
-     * @return int
      */
     public function getLanguageUid(): int
     {
