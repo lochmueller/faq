@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 /**
- * QuestioncategoryTest.
+ * QuestionCategoryTest.
  */
 
 namespace HDNET\Faq\Tests\Unit\Domain\Model;
@@ -10,12 +10,12 @@ namespace HDNET\Faq\Tests\Unit\Domain\Model;
 use HDNET\Faq\Domain\Model\QuestionCategory;
 
 /**
- * QuestioncategoryTest.
+ * QuestionCategoryTest.
  *
  * @internal
  * @coversNothing
  */
-class QuestioncategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class QuestionCategoryTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 {
     /**
      * @var QuestionCategory
