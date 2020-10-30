@@ -15,7 +15,7 @@ use HDNET\Autoloader\Annotation\DatabaseTable;
  *
  * @DatabaseTable
  */
-class Questioncategory extends AbstractModel
+class QuestionCategory extends AbstractModel
 {
     /**
      * Title.
