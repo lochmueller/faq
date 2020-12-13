@@ -122,7 +122,7 @@ class FaqController extends AbstractController
             $teaserCategories,
             $teaserLimit
         );
-        $this->addSchemaOrgHeader([$question]);
+        $this->addSchemaOrgHeader($questions);
         $this->view->assign('questions', $questions);
     }
 
