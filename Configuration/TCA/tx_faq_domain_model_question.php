@@ -45,6 +45,11 @@ $custom = [
                 'type' => 'passthrough',
             ],
         ],
+        'crdate' => [
+            'config' => [
+                'type' => 'passthrough',
+            ],
+        ],
     ],
 ];
 

@@ -118,6 +118,14 @@
                             </config>
                         </TCEforms>
                     </settings.hideSearch>
+                    <settings.faq.addSchmemaOrgHeader>
+                    	<TCEforms>
+                    		<label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.addSchemaOrgHeader</label>
+                    		<config>
+                    			<type>check</type>
+                    		</config>
+                    	</TCEforms>
+                    </settings.faq.addSchmemaOrgHeader>
                 </el>
             </ROOT>
         </sheet1>
