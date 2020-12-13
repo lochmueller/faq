@@ -154,7 +154,7 @@ class FaqController extends AbstractController
      *
      * @throws StopActionException
      */
-    public function sendAction(QuestionRequest $question, $captcha = null): void
+    public function sendAction(QuestionRequest $question, string $captcha = null): void
     {
         // @todo integrate captcha based on $this->settings['enableCaptcha']
         // * @validate $captcha \SJBR\SrFreecap\Validation\Validator\CaptchaValidator && Not Empty
