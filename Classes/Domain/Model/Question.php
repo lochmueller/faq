@@ -70,6 +70,11 @@ class Question extends AbstractModel
      * @DatabaseField(type="int", sql="int(11) DEFAULT '0' NOT NULL")
      */
     protected $categories;
+    
+    /**
+     * @var \DateTime
+     */
+    protected $crdate;
 
     /**
      * Question constructor.
@@ -77,6 +82,7 @@ class Question extends AbstractModel
     public function __construct()
     {
         $this->categories = new ObjectStorage();
+        $this->crdate = new \DateTime();
     }
 
     /**
@@ -183,5 +189,10 @@ class Question extends AbstractModel
     public function getLanguageId(): int
     {
         return $this->_languageUid;
+    }
+    
+    public function getCrdate(): \DateTime
+    {
+        return $this->crdate;
     }
 }

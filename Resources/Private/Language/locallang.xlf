@@ -63,6 +63,9 @@
 		<trans-unit id="flexform.showTop">
 			<source>Show top questions</source>
 		</trans-unit>
+		<trans-unit id="flexform.addSchemaOrgHeader">
+			<source>Add the schema.org header?</source>
+		</trans-unit>
 		<trans-unit id="form.captcha">
 			<source>Type the characters*</source>
 		</trans-unit>

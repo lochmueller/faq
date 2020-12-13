@@ -82,6 +82,10 @@
 			<source>Show top questions</source>
 			<target>Top FAQs anzeigen</target>
 		</trans-unit>
+		<trans-unit id="flexform.addSchemaOrgHeader">
+			<source>Add the schema.org header?</source>
+			<target>Sollen die Schema.org Header hinzugefügt werden?</target>
+		</trans-unit>
 		<trans-unit id="form.captcha" approved="yes">
 			<source>Type the characters*</source>
 			<target>Bitte geben Sie die unten stehenden Buchstaben in das Feld ein.*</target>

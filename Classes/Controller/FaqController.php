@@ -90,6 +90,8 @@ class FaqController extends AbstractController
         if (null === $faq) {
             $faq = $this->objectManager->get(Faq::class);
         }
+        
+        $this->addSchemaOrgHeader($questions);
 
         $this->view->assignMultiple([
             'showResults' => $showResults,
@@ -120,6 +122,7 @@ class FaqController extends AbstractController
             $teaserCategories,
             $teaserLimit
         );
+        $this->addSchemaOrgHeader([$question]);
         $this->view->assign('questions', $questions);
     }
 
@@ -128,6 +131,7 @@ class FaqController extends AbstractController
      */
     public function detailAction(Question $question): void
     {
+        $this->addSchemaOrgHeader([$question]);
         $this->view->assign('question', $question);
     }
 
@@ -150,7 +154,7 @@ class FaqController extends AbstractController
      *
      * @throws StopActionException
      */
-    public function sendAction(QuestionRequest $question, string $captcha = null): void
+    public function sendAction(QuestionRequest $question, $captcha = null): void
     {
         // @todo integrate captcha based on $this->settings['enableCaptcha']
         // * @validate $captcha \SJBR\SrFreecap\Validation\Validator\CaptchaValidator && Not Empty
@@ -205,5 +209,47 @@ class FaqController extends AbstractController
             return \trim((string)$this->settings['faq']['targetEmail']);
         }
         throw new \Exception('No target e-mail address found', 123718231823);
+    }
+
+    protected function addSchemaOrgHeader(iterable $questions): void
+    {
+        if (!$this->settings['faq']['addSchmemaOrgHeader']) {
+            return;
+        }
+        
+        $additionalHeaderData = '
+        <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [';
+        foreach ($questions as $question) {
+            $additionalHeaderData .= \str_replace([
+                'QUESTION_TEXT',
+                'CREATED',
+                'ANSWER_TEXT',
+            ],
+                [
+                    $question->getTitle(),
+                    $question->getCrdate()->format('Y-m-d H:i:s'),
+                    $question->getAnswer(),
+                ],
+                '{
+                "@type": "Question",
+                "name": "QUESTION_TEXT",
+                "dateCreated": "CREATED",
+                "acceptedAnswer": {
+                    "@type": "answer",
+                    "text": "ANSWER_TEXT",
+                    "dateCreated": "CREATED"
+                }
+            },');
+        }
+        $additionalHeaderData = \substr($additionalHeaderData, 0, -1);
+        $additionalHeaderData .= '
+            ]
+        }
+        </script>';
+        $this->response->addAdditionalHeaderData($additionalHeaderData);
     }
 }
