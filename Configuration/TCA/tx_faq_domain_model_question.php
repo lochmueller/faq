@@ -24,7 +24,6 @@ $custom = [
             'config' => [
                 'type' => 'text',
             ],
-            'defaultExtras' => 'richtext:rte_transform[flag=rte_enabled|mode=ts_css]',
         ],
         'categories' => [
             'config' => [
