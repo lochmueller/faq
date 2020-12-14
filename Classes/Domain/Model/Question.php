@@ -9,6 +9,7 @@ namespace HDNET\Faq\Domain\Model;
 
 use HDNET\Autoloader\Annotation\DatabaseField;
 use HDNET\Autoloader\Annotation\DatabaseTable;
+use HDNET\Autoloader\Annotation\EnableRichText;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
