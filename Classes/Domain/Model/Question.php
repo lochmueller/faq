@@ -31,6 +31,7 @@ class Question extends AbstractModel
      *
      * @var string
      * @DatabaseField(type="string")
+     * @EnableRichText()
      */
     protected $answer = '';
 
