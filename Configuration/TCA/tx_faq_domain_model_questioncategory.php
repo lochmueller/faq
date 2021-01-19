@@ -14,6 +14,7 @@ $custom = [
                 'type' => 'select',
                 'renderType' => 'selectTree',
                 'foreign_table' => 'tx_faq_domain_model_questioncategory',
+                'foreign_table_where' => 'tx_faq_domain_model_questioncategory.sys_language_uid IN (0,-1)',
                 'maxitems' => 1,
                 'minitems' => 0,
                 'default' => 0,
