@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 /**
  * FAQ.
  */
@@ -12,8 +12,11 @@ use HDNET\Faq\Domain\Model\Request\Faq;
 use HDNET\Faq\Domain\Model\Request\QuestionRequest;
 use HDNET\Faq\Domain\Repository\QuestionCategoryRepository;
 use HDNET\Faq\Domain\Repository\QuestionRepository;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
+use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 
@@ -51,7 +54,7 @@ class FaqController extends AbstractController
      *
      * @throws InvalidQueryException
      */
-    public function indexAction(Faq $faq = null, bool $showAll = false): void
+    public function indexAction(Faq $faq = null, bool $showAll = false): ResponseInterface
     {
         $topCategory = (int)$this->settings['faq']['topCategory'];
 
@@ -90,7 +93,7 @@ class FaqController extends AbstractController
         if (null === $faq) {
             $faq = $this->objectManager->get(Faq::class);
         }
-        
+
         $this->addSchemaOrgHeader($questions);
 
         $this->view->assignMultiple([
@@ -107,6 +110,8 @@ class FaqController extends AbstractController
                 (bool)$this->settings['faq']['categorySort'] ?: false
             ),
         ]);
+
+        return $this->htmlResponse();
     }
 
     /**
@@ -154,7 +159,7 @@ class FaqController extends AbstractController
      *
      * @throws StopActionException
      */
-    public function sendAction(QuestionRequest $question, string $captcha = null): void
+    public function sendAction(QuestionRequest $question, string $captcha = null): ResponseInterface
     {
         // @todo integrate captcha based on $this->settings['enableCaptcha']
         // * @validate $captcha \SJBR\SrFreecap\Validation\Validator\CaptchaValidator && Not Empty
@@ -168,7 +173,7 @@ class FaqController extends AbstractController
             $this->view->assign('captcha', $captcha);
             $this->view->render();
         }
-        $this->forward('user');
+        return new ForwardResponse('user');
     }
 
     /**
@@ -176,7 +181,7 @@ class FaqController extends AbstractController
      *
      * @throws StopActionException
      */
-    public function userAction(QuestionRequest $question): void
+    public function userAction(QuestionRequest $question): ResponseInterface
     {
         if (GeneralUtility::validEmail($question->getEmail())) {
             $this->view->assignMultiple([
@@ -186,7 +191,7 @@ class FaqController extends AbstractController
             ]);
             $this->view->render();
         }
-        $this->forward('thanks');
+        return new ForwardResponse('thanks');
     }
 
     /**
@@ -216,7 +221,7 @@ class FaqController extends AbstractController
         if (!$this->settings['faq']['addSchmemaOrgHeader']) {
             return;
         }
-        
+
         $additionalHeaderData = '
         <script type="application/ld+json">
         {

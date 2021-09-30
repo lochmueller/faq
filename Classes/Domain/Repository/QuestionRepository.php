@@ -11,8 +11,8 @@ use HDNET\Faq\Domain\Model\Question;
 use HDNET\Faq\Domain\Model\QuestionCategory;
 use HDNET\Faq\Domain\Model\Request\Faq;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Utility\ClassNamingUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManagerInterface;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
@@ -34,9 +34,10 @@ class QuestionRepository extends AbstractRepository
     /**
      * Constructs a new Repository.
      */
-    public function __construct(ObjectManagerInterface $objectManager)
+    public function __construct()
     {
-        parent::__construct($objectManager);
+        // Replace with parent constructor call in TYPO3 v12
+        $this->objectType = ClassNamingUtility::translateRepositoryNameToModelName($this->getRepositoryClassName());
 
         $configuration = (array)@\unserialize((string)$GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['faq']);
         $enableManuallySorting = isset($configuration['enableManuallySorting']) ? (bool)$configuration['enableManuallySorting'] : false;
