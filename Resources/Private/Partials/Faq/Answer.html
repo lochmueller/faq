@@ -8,10 +8,5 @@
 
 	<div class="content">
 		<f:format.html>{question.answer}</f:format.html>
-		<f:if condition="{settings.enableVoting}">
-			<ul class="rating clearfix">
-				<hf:widget.vote question="{question.uid}" counters="{top: question.topCounter, flop: question.flopCounter}"/>
-			</ul>
-		</f:if>
 	</div>
 </li>

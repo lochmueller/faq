@@ -9,6 +9,7 @@ namespace HDNET\Faq\ViewHelpers\Widget;
 
 /**
  * AbstractWidgetViewHelper.
+ * @deprecated
  */
 abstract class AbstractWidgetViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetViewHelper
 {

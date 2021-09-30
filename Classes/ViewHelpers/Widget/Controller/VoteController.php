@@ -19,6 +19,7 @@ use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
 
 /**
  * VoteController.
+ * @deprecated
  */
 class VoteController extends AbstractWidgetController
 {

@@ -14,6 +14,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Exception;
 
 /**
  * VoteViewHelper.
+ * @deprecated
  */
 class VoteViewHelper extends AbstractWidgetViewHelper
 {
