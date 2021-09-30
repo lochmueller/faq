@@ -26,8 +26,8 @@
   ],
   "require": {
     "php": "^7.3||^7.4",
-    "lochmueller/autoloader": "^7.1",
-    "typo3/cms-core": "^10.4"
+    "lochmueller/autoloader": "^7.2",
+    "typo3/cms-core": "^11.4"
   },
   "replace": {
     "typo3-ter/faq": "self.version"
@@ -54,7 +54,8 @@
       "web-dir": ".Build/Web",
       "Package": {
         "partOfMinimalUsableSystem": true
-      }
+      },
+      "extension-key": "faq"
     }
   },
   "scripts": {
