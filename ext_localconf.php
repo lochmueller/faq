@@ -8,19 +8,19 @@
 );
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'HDNET.faq',
+    'faq',
     'Faq',
-    ['Faq' => 'index,detail'],
-    ['Faq' => 'index']
+    [\HDNET\Faq\Controller\FaqController::class => 'index,detail'],
+    [\HDNET\Faq\Controller\FaqController::class => 'index']
 );
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'HDNET.faq',
+    'faq',
     'FaqTeaser',
-    ['Faq' => 'teaser']
+    [\HDNET\Faq\Controller\FaqController::class => 'teaser']
 );
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-    'HDNET.faq',
+    'faq',
     'FaqEnter',
-    ['Faq' => 'form,send,user,thanks'],
-    ['Faq' => 'send,user,thanks']
+    [\HDNET\Faq\Controller\FaqController::class => 'form,send,user,thanks,submit'],
+    [\HDNET\Faq\Controller\FaqController::class => 'send,user,thanks,submit']
 );
