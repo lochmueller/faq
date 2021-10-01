@@ -42,6 +42,22 @@
                             </config>
                         </TCEforms>
                     </settings.faq.limitPerPage>
+                    <settings.faq.enablePagination>
+                        <TCEforms>
+                            <label>Pagination</label>
+                            <config>
+                                <type>check</type>
+                                <renderType>checkboxToggle</renderType>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">Enable pagination</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                        <invertStateDisplay>true</invertStateDisplay>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.faq.enablePagination>
                     <settings.topMode>
                         <TCEforms>
                             <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode</label>

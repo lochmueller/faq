@@ -6,21 +6,6 @@
 
 	<f:render partial="FormErrors"/>
 
-	<f:form action="send" object="{question}" objectName="question" class="clearfix">
-		<label class="none" for="addquestion-question">
-			<f:translate key="form.question">Ihre Frage</f:translate>
-		</label>
-		<f:form.textarea property="question" id="addquestion-question" rows="6" cols="5"/>
+	<formvh:render factoryClass="HDNET\Faq\Domain\Factory\QuestionFormFactory"/>
 
-		<label class="blue" for="addquestion-email"><strong>
-			<f:translate key="form.email">E-Mail-Adresse (für unsere Antwort)</f:translate>
-		</strong></label>
-		<f:form.textfield property="email" class="text" id="addquestion-email"/>
-
-		<f:if condition="{settings.enableCaptcha}">
-			<f:render partial="Captcha"/>
-		</f:if>
-
-		<f:form.submit value="{f:translate(key: 'form.submit')}" class="submit button layout100 align-center"/>
-	</f:form>
 </div>
