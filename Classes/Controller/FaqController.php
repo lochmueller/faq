@@ -7,18 +7,26 @@ declare(strict_types=1);
 
 namespace HDNET\Faq\Controller;
 
+use HDNET\Faq\Domain\Factory\QuestionFormFactory;
 use HDNET\Faq\Domain\Model\Question;
 use HDNET\Faq\Domain\Model\Request\Faq;
 use HDNET\Faq\Domain\Model\Request\QuestionRequest;
 use HDNET\Faq\Domain\Repository\QuestionCategoryRepository;
 use HDNET\Faq\Domain\Repository\QuestionRepository;
+use HDNET\Faq\Service\FormService;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\Response;
+use TYPO3\CMS\Core\Pagination\ArrayPaginator;
+use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
+use TYPO3\CMS\Extbase\Mvc\RequestInterface;
+use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
+use TYPO3\CMS\Extbase\Validation\Validator\NotEmptyValidator;
+use TYPO3\CMS\Form\Domain\Model\FormDefinition;
 
 /**
  * FAQ.
@@ -43,10 +51,20 @@ class FaqController extends AbstractController
      */
     protected $questionCategoryRepository;
 
-    public function __construct(QuestionRepository $questionRepository, QuestionCategoryRepository $questionCategoryRepository)
+    /**
+     * @var FormService
+     */
+    protected $formValidationService;
+
+    public function __construct(
+        QuestionRepository $questionRepository,
+        QuestionCategoryRepository $questionCategoryRepository,
+        FormService $formValidationService
+    )
     {
         $this->questionRepository = $questionRepository;
         $this->questionCategoryRepository = $questionCategoryRepository;
+        $this->formValidationService = $formValidationService;
     }
 
     /**
@@ -96,10 +114,22 @@ class FaqController extends AbstractController
 
         $this->addSchemaOrgHeader($questions);
 
+        if ($this->request->getQueryParams()['tx_faq_faq']['currentPage']) {
+            $currentPage = intval($this->request->getQueryParams()['tx_faq_faq']['currentPage']);
+        } else {
+            $currentPage = 1;
+        }
+
+        $paginator = new QueryResultPaginator($questions, $currentPage, (int)$this->settings['faq']['limitPerPage']);
+        $pagination = new SimplePagination($paginator);
+
         $this->view->assignMultiple([
             'showResults' => $showResults,
             'faq' => $faq,
             'questions' => $questions,
+            'paginator' => $paginator,
+            'pagination' => $pagination,
+            'pages' => range(1, $pagination->getLastPageNumber()),
             'newQuestions' => $this->questionRepository->findNewest(
                 (int)$this->settings['faq']['limitNewest'],
                 $topCategory
@@ -174,6 +204,16 @@ class FaqController extends AbstractController
             $this->view->render();
         }
         return new ForwardResponse('user');
+    }
+
+    public function submitAction(): ResponseInterface
+    {
+
+        if($this->formValidationService->validate($this->request, QuestionFormFactory::class)) {
+            $this->formValidationService->executeFinisher($this->request, QuestionFormFactory::class);
+        }
+
+        return new Response();
     }
 
     /**
