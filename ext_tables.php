@@ -3,9 +3,9 @@
 
 \HDNET\Autoloader\Loader::extTables('HDNET', 'faq', \HDNET\Faq\Utility\ExtensionUtility::getAutoloaderConfiguration());
 
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('faq', 'Faq', 'FAQ');
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('faq', 'FaqTeaser', 'FAQ Teaser');
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('faq', 'FaqEnter', 'FAQ Eingabe');
+//\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('faq', 'Faq', 'FAQ');
+//\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('faq', 'FaqTeaser', 'FAQ Teaser');
+//\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin('faq', 'FaqEnter', 'FAQ Eingabe');
 
 // module icon
 $extensionIcon = \HDNET\Autoloader\Utility\IconUtility::getByExtensionKey('faq', true);

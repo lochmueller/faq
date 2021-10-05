@@ -11,25 +11,9 @@
                 </TCEforms>
                 <type>array</type>
                 <el>
-                    <settings.faq.showNewest>
+                    <settings.faq.itemsPerPage>
                         <TCEforms>
-                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.showNewest</label>
-                            <config>
-                                <type>check</type>
-                            </config>
-                        </TCEforms>
-                    </settings.faq.showNewest>
-                    <settings.faq.showTop>
-                        <TCEforms>
-                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.showTop</label>
-                            <config>
-                                <type>check</type>
-                            </config>
-                        </TCEforms>
-                    </settings.faq.showTop>
-                    <settings.faq.limitPerPage>
-                        <TCEforms>
-                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.limitPerPage</label>
+                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.itemsPerPage</label>
                             <config>
                                 <type>input</type>
                                 <size>5</size>
@@ -41,100 +25,15 @@
                                 <default>10</default>
                             </config>
                         </TCEforms>
-                    </settings.faq.limitPerPage>
+                    </settings.faq.itemsPerPage>
                     <settings.faq.enablePagination>
                         <TCEforms>
-                            <label>Pagination</label>
+                            <label>Enable pagination</label>
                             <config>
                                 <type>check</type>
-                                <renderType>checkboxToggle</renderType>
-                                <items type="array">
-                                    <numIndex index="0" type="array">
-                                        <numIndex index="0">Enable pagination</numIndex>
-                                        <numIndex index="1"></numIndex>
-                                        <invertStateDisplay>true</invertStateDisplay>
-                                    </numIndex>
-                                </items>
                             </config>
                         </TCEforms>
                     </settings.faq.enablePagination>
-                    <settings.topMode>
-                        <TCEforms>
-                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode</label>
-                            <onChange>reload</onChange>
-                            <config>
-                                <type>select</type>
-                                <renderType>selectSingle</renderType>
-                                <items type="array">
-                                    <numIndex index="0" type="array">
-                                        <numIndex index="0">
-                                            LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode.votings
-                                        </numIndex>
-                                        <numIndex index="1">0</numIndex>
-                                    </numIndex>
-                                    <numIndex index="1" type="array">
-                                        <numIndex index="0">
-                                            LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode.custom
-                                        </numIndex>
-                                        <numIndex index="1">1</numIndex>
-                                    </numIndex>
-                                </items>
-                            </config>
-                        </TCEforms>
-                    </settings.topMode>
-                    <settings.custom>
-                        <TCEforms>
-                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode.custom</label>
-                            <displayCond>FIELD:settings.topMode:=:1</displayCond>
-                            <config>
-                                <type>group</type>
-                                <internal_type>db</internal_type>
-                                <allowed>tx_faq_domain_model_question</allowed>
-                                <maxitems>99</maxitems>
-                                <mintems>0</mintems>
-                                <size>5</size>
-                                <wizards>
-                                    <suggest>
-                                        <type>suggest</type>
-                                    </suggest>
-                                </wizards>
-                            </config>
-                        </TCEforms>
-                    </settings.custom>
-                    <settings.overrideTopCategory>
-                        <TCEforms>
-                            <label>Override Top category</label>
-                            <config>
-                                <type>select</type>
-                                <renderType>selectSingle</renderType>
-                                <foreign_table>tx_faq_domain_model_questioncategory</foreign_table>
-                                <foreign_table_where>tx_faq_domain_model_questioncategory.sys_language_uid IN (0,-1)</foreign_table_where>
-                                <size>1</size>
-                                <items type="array">
-                                    <numIndex index="0" type="array">
-                                        <numIndex index="0"></numIndex>
-                                        <numIndex index="1"></numIndex>
-                                    </numIndex>
-                                </items>
-                            </config>
-                        </TCEforms>
-                    </settings.overrideTopCategory>
-                    <settings.overrideShowAll>
-                        <TCEforms>
-                            <label>Override showAll</label>
-                            <config>
-                                <type>check</type>
-                            </config>
-                        </TCEforms>
-                    </settings.overrideShowAll>
-                    <settings.hideSearch>
-                        <TCEforms>
-                            <label>Hide search (please use the other options to selecte a default result)?</label>
-                            <config>
-                                <type>check</type>
-                            </config>
-                        </TCEforms>
-                    </settings.hideSearch>
                     <settings.faq.addSchmemaOrgHeader>
                     	<TCEforms>
                     		<label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.addSchemaOrgHeader</label>

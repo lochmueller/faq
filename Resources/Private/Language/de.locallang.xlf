@@ -74,7 +74,7 @@
 			<source>Show latest questions</source>
 			<target>Neue FAQs anzeigen</target>
 		</trans-unit>
-		<trans-unit id="flexform.limitPerPage">
+		<trans-unit id="flexform.itemsPerPage">
 			<source>List: Show items per page</source>
 			<target>Liste: FAQs pro Seite anzeigen</target>
 		</trans-unit>

@@ -1,2 +1,17 @@
-# cat=basic/enable; type=boolean; label=Enable manuelly sorting : Allow the questions sort by the editor and use this as sorting
-enableManuallySorting = 0
+# cat=question/defaultQuestionReceiverEmail; type=string; label=Default question receiver email
+emailPlaceholder = your.name@domain.tld
+
+# cat=question/emailPlaceholder; type=string; label=Placeholder for Email field
+emailPlaceholder = your.name@domain.tld
+
+# cat=question/emailDescription; type=string; label=Description for Email field
+emailDescription = Your email for our response to you.
+
+# cat=question/questionPlaceholder; type=string; label=Placeholder for Question field
+questionPlaceholder = Your question to us.
+
+# cat=question/questionDescription; type=string; label=Description for Question field
+questionDescription = Please provide a useful question.
+
+# cat=question/disableFormFrontendValidation; type=boolean; label=Disable frontend (HTML) validation (Other Tamplates/Partials may override this setting)
+disableFormFrontendValidation = false

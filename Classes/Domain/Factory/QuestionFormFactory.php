@@ -4,7 +4,9 @@
 namespace HDNET\Faq\Domain\Factory;
 
 
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Mvc\Request;
 use TYPO3\CMS\Extbase\Validation\Validator\EmailAddressValidator;
 use TYPO3\CMS\Extbase\Validation\Validator\NotEmptyValidator;
 use TYPO3\CMS\Form\Domain\Configuration\ConfigurationService;
@@ -13,32 +15,43 @@ use TYPO3\CMS\Form\Domain\Model\FormDefinition;
 
 class QuestionFormFactory extends AbstractFormFactory
 {
+    protected $request;
+
+    protected $extensionConfiguration;
+
+    public function __construct(Request $request, ExtensionConfiguration $extensionConfiguration)
+    {
+        $this->request = $request;
+        $this->extensionConfiguration = $extensionConfiguration->get('faq');
+    }
 
     public function build(array $configuration, string $prototypeName = null): FormDefinition
     {
         $prototypeName = 'standard';
+        /** @var ConfigurationService $configurationService */
         $configurationService = GeneralUtility::makeInstance(ConfigurationService::class);
         $prototypeConfiguration = $configurationService->getPrototypeConfiguration($prototypeName);
 
         /** @var FormDefinition $form */
         $form = GeneralUtility::makeInstance(FormDefinition::class, 'QuestionForm', $prototypeConfiguration);
         $form->setRenderingOption('controllerAction', 'submit');
+
         $form->setRenderingOption('fluidAdditionalAttributes', [
-            'novalidate' => ''
+            'novalidate' => $this->extensionConfiguration['disableFormFrontendValidation'] ? '' : 'novalidate'
         ]);
 
         $page = $form->createPage('page');
         $question = $page->createElement('question', 'Textarea');
         $question->setLabel('Question');
         $question->addValidator(GeneralUtility::makeInstance(NotEmptyValidator::class));
-        $question->setProperty('elementDescription', 'Hiermit kaufst du eine Waschmaschine.');
-        $question->setProperty('fluidAdditionalAttributes', ['required' => 'required', 'placeholder' => 'BOOOOOOOM']);
-
+        $question->setProperty('elementDescription', $this->extensionConfiguration['questionDescription']);
+        $question->setProperty('fluidAdditionalAttributes', ['required' => 'required', 'placeholder' => $this->extensionConfiguration['questionPlaceholder']]);
 
         $email = $page->createElement('email', 'Email');
-        $email->setLabel('Email (for the answer)');
+        $email->setLabel('Email');
         $email->addValidator(GeneralUtility::makeInstance(NotEmptyValidator::class));
-        $email->setProperty('fluidAdditionalAttributes', ['required' => 'required', 'placeholder' => 'BOOOOOOOM2']);
+        $email->setProperty('elementDescription', $this->extensionConfiguration['emailDescription']);
+        $email->setProperty('fluidAdditionalAttributes', ['required' => 'required', 'placeholder' => $this->extensionConfiguration['emailPlaceholder']]);
 
         $form->createFinisher('EmailToSender', []);
         $form->createFinisher('EmailToReceiver', []);

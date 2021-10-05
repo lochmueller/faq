@@ -23,6 +23,11 @@ class FormService
     protected $errors;
 
     /**
+     * @var FormRuntime
+     */
+    protected $formRuntime;
+
+    /**
      * FormService constructor.
      */
     public function __construct()
@@ -34,12 +39,12 @@ class FormService
     public function validate(RequestInterface $request, string $factoryClassName): bool
     {
         /** @var FormFactoryInterface $factory */
-        $factory = GeneralUtility::makeInstance($factoryClassName);
+        $factory = GeneralUtility::makeInstance($factoryClassName, $request);
 
         /** @var FormDefinition $form */
         $form = $factory->build([]);
 
-        $formRuntime = $form->bind($request);
+        $this->formRuntime = $form->bind($request);
 
         $formElements = $form->getElements();
 
@@ -49,7 +54,7 @@ class FormService
             $validators = $element->getValidators();
             foreach ($validators as $validator) {
                 /** @var Result $result */
-                $result = $validator->validate($formRuntime->getElementValue($identifier));
+                $result = $validator->validate($this->getFormRuntime()->getElementValue($identifier));
                 if($result->hasErrors()) {
                     $errors[$identifier] = $result->getErrors();
                     // We continue here because it is not necessary to check other validators, because value is invalid.
@@ -110,6 +115,11 @@ class FormService
     public function getErrors(): array
     {
         return $this->errors;
+    }
+
+    public function getFormRuntime(): FormRuntime
+    {
+        return $this->formRuntime;
     }
 
 }

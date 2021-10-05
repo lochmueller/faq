@@ -1,0 +1,7 @@
+<f:debug>{_all}</f:debug>
+
+<h2>{category.title}</h2>
+	<f:for each="{questions}" as="question">
+		<f:render partial="Faq/Answer" arguments="{question: question, suffix: ''}"/>
+	</f:for>
+

@@ -57,7 +57,7 @@
 		<trans-unit id="flexform.showNewest">
 			<source>Show latest questions</source>
 		</trans-unit>
-		<trans-unit id="flexform.limitPerPage">
+		<trans-unit id="flexform.itemsPerPage">
 			<source>List: Show items per page</source>
 		</trans-unit>
 		<trans-unit id="flexform.showTop">
