@@ -104,9 +104,20 @@ class FaqController extends AbstractController
     {
         $categoryChildren = $this->questionCategoryRepository->findByParent($category->getUid());
 
+        $questionsPerSubCategory = [];
+
+        foreach ($categoryChildren as $subCategory) {
+            $questionsPerSubCategory[] = [
+                'category' => $subCategory,
+                'questions' => $this->questionRepository->findByCategories(''.$subCategory->getUid()),
+            ];
+        }
+
         $this->view->assignMultiple([
             'category' => $category,
-            'questions' => $this->questionRepository->findByCategories($categoryChildren)
+            'subCategories' => $questionsPerSubCategory,
+            'questions' => $this->questionRepository->findByCategories($categoryChildren),
+            'categories' => $this->questionCategoryRepository->findByParent(0),
         ]);
         return $this->htmlResponse();
     }

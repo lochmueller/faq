@@ -46,6 +46,7 @@ class QuestionRepository extends AbstractRepository
         $query = $this->createQuery();
 
         $constraints = [];
+        $categorySelection = [];
 
         if (!$categories instanceof QueryResult) {
             $categories = GeneralUtility::intExplode(',', $categories);
