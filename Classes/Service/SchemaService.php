@@ -26,7 +26,7 @@ class SchemaService
                 [
                     $question->getTitle(),
                     $question->getCrdate()->format('Y-m-d H:i:s'),
-                    $question->getAnswer(),
+                    strip_tags($question->getAnswer()),
                 ],
                 '{
                 "@type": "Question",

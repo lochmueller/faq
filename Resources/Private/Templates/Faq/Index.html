@@ -7,9 +7,7 @@
 			<f:if condition="{questions}">
 				<f:then>
 
-					<f:for each="{categories}" as="category">
-						<f:link.action action="category" arguments="{category: category}" class="btn btn-default">{category.title}</f:link.action>
-					</f:for>
+					<f:render partial="Faq/Categories" arguments="{categories: categories}" />
 
 					<div class="col-12">
 						<div class="accordion" id="accordionExample">

@@ -69,9 +69,14 @@ class FaqController extends AbstractController
     /**
      * @Plugin("Faq")
      */
-    public function indexAction(): ResponseInterface
+    public function indexAction(QuestionCategory $category = null): ResponseInterface
     {
-        $questions = $this->questionRepository->findAll();
+        if (!$category) {
+            $questions = $this->questionRepository->findAll();
+        } else {
+            $categoryChildren = $this->questionCategoryRepository->findByParent($category->getUid());
+            $questions = $this->questionRepository->findByCategories($categoryChildren);
+        }
 
         if ($this->addSchemaHeader) {
             $this->schemaService->addSchemaOrgHeader($questions);
@@ -96,30 +101,4 @@ class FaqController extends AbstractController
 
         return $this->htmlResponse();
     }
-
-    /**
-     * @Plugin("Faq")
-     */
-    public function categoryAction(QuestionCategory $category): ResponseInterface
-    {
-        $categoryChildren = $this->questionCategoryRepository->findByParent($category->getUid());
-
-        $questionsPerSubCategory = [];
-
-        foreach ($categoryChildren as $subCategory) {
-            $questionsPerSubCategory[] = [
-                'category' => $subCategory,
-                'questions' => $this->questionRepository->findByCategories(''.$subCategory->getUid()),
-            ];
-        }
-
-        $this->view->assignMultiple([
-            'category' => $category,
-            'subCategories' => $questionsPerSubCategory,
-            'questions' => $this->questionRepository->findByCategories($categoryChildren),
-            'categories' => $this->questionCategoryRepository->findByParent(0),
-        ]);
-        return $this->htmlResponse();
-    }
-
 }
