@@ -28,7 +28,8 @@
                     </settings.faq.itemsPerPage>
                     <settings.faq.enablePagination>
                         <TCEforms>
-                            <label>Enable pagination</label>
+                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.enablePagination</label>
+                            <description>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.enablePagination.description</description>
                             <config>
                                 <type>check</type>
                             </config>
@@ -37,11 +38,31 @@
                     <settings.faq.addSchmemaOrgHeader>
                     	<TCEforms>
                     		<label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.addSchemaOrgHeader</label>
+                            <description>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.addSchemaOrgHeader.description</description>
                     		<config>
                     			<type>check</type>
                     		</config>
                     	</TCEforms>
                     </settings.faq.addSchmemaOrgHeader>
+                    <settings.initialCategory>
+                        <TCEforms>
+                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.initialCategory</label>
+                            <description>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.initialCategory.description</description>
+                            <config>
+                                <type>select</type>
+                                <renderType>selectSingle</renderType>
+                                <foreign_table>tx_faq_domain_model_questioncategory</foreign_table>
+                                <foreign_table_where>tx_faq_domain_model_questioncategory.sys_language_uid IN (0,-1) AND tx_faq_domain_model_questioncategory.parent = ''</foreign_table_where>
+                                <size>1</size>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0"></numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.initialCategory>
                 </el>
             </ROOT>
         </sheet1>

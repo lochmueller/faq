@@ -48,7 +48,7 @@ class QuestionRepository extends AbstractRepository
         $constraints = [];
         $categorySelection = [];
 
-        if (!$categories instanceof QueryResult) {
+        if (!is_iterable($categories)) {
             $categories = GeneralUtility::intExplode(',', $categories);
         }
 

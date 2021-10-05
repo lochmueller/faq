@@ -83,9 +83,17 @@
 			<target>Top FAQs anzeigen</target>
 		</trans-unit>
 		<trans-unit id="flexform.addSchemaOrgHeader">
-			<source>Add the schema.org header?</source>
-			<target>Sollen die Schema.org Header hinzugefügt werden?</target>
+			<source>Enable schema.org Header</source>
+			<target>Schema.org Header aktivieren</target>
 		</trans-unit>
+		<trans-unit id="flexform.enablePagination">
+            <source>Enable Pagination</source>
+            <target>Paginierung aktivieren</target>
+        </trans-unit>
+        <trans-unit id="flexform.initialCategory">
+            <source>Initial selected category</source>
+            <target>Initial ausgewählte Kategorie</target>
+        </trans-unit>
 		<trans-unit id="form.captcha" approved="yes">
 			<source>Type the characters*</source>
 			<target>Bitte geben Sie die unten stehenden Buchstaben in das Feld ein.*</target>

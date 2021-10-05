@@ -58,14 +58,32 @@
 			<source>Show latest questions</source>
 		</trans-unit>
 		<trans-unit id="flexform.itemsPerPage">
-			<source>List: Show items per page</source>
+			<source>Items per subcategory</source>
 		</trans-unit>
+		<trans-unit id="flexform.itemsPerPage.description">
+            <source>List: Show items per page</source>
+        </trans-unit>
 		<trans-unit id="flexform.showTop">
 			<source>Show top questions</source>
 		</trans-unit>
 		<trans-unit id="flexform.addSchemaOrgHeader">
-			<source>Add the schema.org header?</source>
+			<source>Enable schema.org Header</source>
 		</trans-unit>
+		<trans-unit id="flexform.addSchemaOrgHeader.description">
+            <source>For details see https://schema.org/FAQPage"</source>
+        </trans-unit>
+		<trans-unit id="flexform.enablePagination">
+            <source>Enable Pagination</source>
+        </trans-unit>
+        <trans-unit id="flexform.enablePagination.description">
+            <source>Enable Pagination</source>
+        </trans-unit>
+        <trans-unit id="flexform.initialCategory">
+            <source>Initial selected category</source>
+        </trans-unit>
+        <trans-unit id="flexform.initialCategory.description">
+            <source>You can only select categories of first level</source>
+        </trans-unit>
 		<trans-unit id="form.captcha">
 			<source>Type the characters*</source>
 		</trans-unit>

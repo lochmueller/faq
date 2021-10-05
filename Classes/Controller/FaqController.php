@@ -71,15 +71,23 @@ class FaqController extends AbstractController
      */
     public function indexAction(QuestionCategory $category = null): ResponseInterface
     {
-        if (!$category) {
-            $questions = $this->questionRepository->findAll();
-        } else {
-            $categoryChildren = $this->questionCategoryRepository->findByParent($category->getUid());
-            $questions = $this->questionRepository->findByCategories($categoryChildren);
+        $categoryUid = $category ? (int) $category->getUid() : (int) $this->settings['initialCategory'];
+        $categoryChildren = $this->questionCategoryRepository->findByParent($categoryUid);
+        $questionsPerSubCategory = [];
+        $allQuestions = $this->questionRepository->findByCategories($categoryChildren);
+
+        foreach ($categoryChildren as $subCategory) {
+            $questions = $this->questionRepository->findByCategories([$subCategory]);
+            if ($questions->count() !== 0) {
+                $questionsPerSubCategory[] = [
+                    'category' => $subCategory,
+                    'questions' => $questions,
+                ];
+            }
         }
 
         if ($this->addSchemaHeader) {
-            $this->schemaService->addSchemaOrgHeader($questions);
+            $this->schemaService->addSchemaOrgHeader($allQuestions);
         }
 
         if ($this->request->getQueryParams()['tx_faq_faq']['currentPage']) {
@@ -92,7 +100,8 @@ class FaqController extends AbstractController
         $pagination = new SimplePagination($paginator);
 
         $this->view->assignMultiple([
-            'questions' => $questions,
+            'questions' => $allQuestions,
+            'subCategories' => $questionsPerSubCategory,
             'paginator' => $paginator,
             'pagination' => $pagination,
             'pages' => range(1, $pagination->getLastPageNumber()),
