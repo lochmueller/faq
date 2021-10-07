@@ -1,5 +1,14 @@
-# cat=question/defaultQuestionReceiverEmail; type=string; label=Default question receiver email
-emailPlaceholder = your.name@domain.tld
+# cat=question/defaultQuestionReceiverEmail; type=string; label=Default question sender email
+defaultFormSenderEmail = your.name@domain.tld
+
+# cat=question/defaultFormSenderName; type=string; label=Default email sender name
+defaultFormSenderName = domain.tld
+
+# cat=question/fallbackFormReceivingEmail; type=string; label=Fallback email address for receiving email
+fallbackFormReceivingEmail = your.name@domain.tld
+
+# cat=question/fallbackFormReceivingName; type=string; label=Default name for receiving email address
+fallbackFormReceivingName = your.name
 
 # cat=question/emailPlaceholder; type=string; label=Placeholder for Email field
 emailPlaceholder = your.name@domain.tld

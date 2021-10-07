@@ -7,7 +7,6 @@ namespace HDNET\Faq\Domain\Factory;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Request;
-use TYPO3\CMS\Extbase\Validation\Validator\EmailAddressValidator;
 use TYPO3\CMS\Extbase\Validation\Validator\NotEmptyValidator;
 use TYPO3\CMS\Form\Domain\Configuration\ConfigurationService;
 use TYPO3\CMS\Form\Domain\Factory\AbstractFormFactory;
@@ -35,7 +34,6 @@ class QuestionFormFactory extends AbstractFormFactory
         /** @var FormDefinition $form */
         $form = GeneralUtility::makeInstance(FormDefinition::class, 'QuestionForm', $prototypeConfiguration);
         $form->setRenderingOption('controllerAction', 'submit');
-
         $form->setRenderingOption('fluidAdditionalAttributes', [
             'novalidate' => $this->extensionConfiguration['disableFormFrontendValidation'] ? '' : 'novalidate'
         ]);

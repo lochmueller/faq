@@ -40,7 +40,7 @@ class QuestionController extends AbstractController
     public function submitAction(): ResponseInterface
     {
         if($this->formValidationService->validate($this->request, QuestionFormFactory::class)) {
-            $this->formValidationService->executeFinisher($this->request, QuestionFormFactory::class);
+            $this->formValidationService->executeFinisher($this->request, QuestionFormFactory::class, $this->settings);
         } else {
             foreach ($this->formValidationService->getErrors() as $identifier => $fieldErrors) {
                 /** @var Error $fieldError */

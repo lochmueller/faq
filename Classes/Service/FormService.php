@@ -5,6 +5,7 @@ namespace HDNET\Faq\Service;
 
 
 use HDNET\Faq\Domain\Factory\QuestionFormFactory;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Error\Result;
 use TYPO3\CMS\Extbase\Mvc\Controller\ControllerContext;
@@ -18,93 +19,91 @@ class FormService
 {
 
     /**
-     * @var array
+     * @var array $errors
      */
     protected $errors;
 
     /**
-     * @var FormRuntime
+     * @var FormRuntime $formRuntime
      */
     protected $formRuntime;
 
     /**
+     * @var ExtensionConfiguration $extensionConfiguration
+     */
+    protected $extensionConfiguration;
+
+    /**
      * FormService constructor.
      */
-    public function __construct()
+    public function __construct(ExtensionConfiguration $extensionConfiguration)
     {
         $this->errors = [];
+        $this->extensionConfiguration = $extensionConfiguration;
     }
 
 
     public function validate(RequestInterface $request, string $factoryClassName): bool
     {
         /** @var FormFactoryInterface $factory */
-        $factory = GeneralUtility::makeInstance($factoryClassName, $request);
-
-        /** @var FormDefinition $form */
+        $factory = GeneralUtility::makeInstance($factoryClassName, $request, $this->extensionConfiguration);
         $form = $factory->build([]);
 
         $this->formRuntime = $form->bind($request);
-
         $formElements = $form->getElements();
 
         $errors = [];
-
         foreach ($formElements as $identifier => $element) {
             $validators = $element->getValidators();
             foreach ($validators as $validator) {
                 /** @var Result $result */
                 $result = $validator->validate($this->getFormRuntime()->getElementValue($identifier));
-                if($result->hasErrors()) {
+                if ($result->hasErrors()) {
                     $errors[$identifier] = $result->getErrors();
                     // We continue here because it is not necessary to check other validators, because value is invalid.
                     continue;
                 }
             }
         }
-
-        /*
-         *
-         *
-            'subject' => 'Question',
-            'recipients' => [
-                '##Email##Sender##recipient##' => 'Lukas'
-            ],
-            'senderAddress' => 'lukas.schoenbeck@hdnet.com',
-            'senderName' => 'Lukas',
-         *
-         *
-         * 'subject' => 'Question Receiver',
-            'recipients' => [
-                'lukas.Receiver.recip@hdnet.de' => 'Lukas receiver'
-            ],
-            'senderAddress' => 'lukas.reciver@hdnet.com',
-            'senderName' => 'Lukas receiver',
-         *
-         */
-
-
-
         $this->errors = $errors;
         return empty($errors);
     }
 
-    public function executeFinisher(RequestInterface $request, string $factoryClassName): void
+    public function executeFinisher(RequestInterface $request, string $factoryClassName, array $pluginSettings): void
     {
         /** @var FormFactoryInterface $factory */
-        $factory = GeneralUtility::makeInstance($factoryClassName);
-
-        /** @var FormDefinition $form */
+        $factory = GeneralUtility::makeInstance($factoryClassName, $request, $this->extensionConfiguration);
         $form = $factory->build([]);
-
         $formRuntime = $form->bind($request);
 
+        $extConfig = $this->extensionConfiguration->get('faq');
+
+
         foreach ($form->getFinishers() as $finisher) {
+            $finisherIdentifier = $finisher->getFinisherIdentifier();
 
-            // Check if finisher is emailToSender or emailToReceiver
-            // Fill finisher options with data from form or from extension configurations.
-
-            $finisher->execute(new FinisherContext($formRuntime, new ControllerContext() ,$request));
+            if ('EmailToSender' === $finisherIdentifier) {
+                // Email to SVO
+                // Each option is set individually, since the option array is replaced by setOptions
+                // and existing options are overwritten
+                $finisher->setOption('subject', 'Question');
+                $finisher->setOption('recipients', [
+                    $extConfig['fallbackFormReceivingEmail'] => $pluginSettings['targetEmail'] ? $pluginSettings['targetEmail'] : $extConfig['fallbackFormReceivingName'],
+                ]);
+                $finisher->setOption('senderAddress', $extConfig['defaultFormSenderEmail']);
+                $finisher->setOption('senderName', $extConfig['defaultFormSenderName']);
+            } else if ('EmailToReceiver' === $finisherIdentifier) {
+                // Email to User
+                // Each option is set individually, since the option array is replaced by setOptions
+                // and existing options are overwritten
+                $finisher->setOption('subject', 'Question');
+                $finisher->setOption('recipients', [
+                    $formRuntime->getElementValue('email') => $formRuntime->getElementValue('email'),
+                ]);
+                $finisher->setOption('senderAddress', $extConfig['defaultFormSenderEmail']);
+                $finisher->setOption('senderName', $extConfig['defaultFormSenderName']);
+            }
+            $finisher->execute(new FinisherContext($formRuntime, new ControllerContext(), $request));
         }
 
     }
