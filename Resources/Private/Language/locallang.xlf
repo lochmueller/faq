@@ -195,6 +195,17 @@
 		<trans-unit id="tx_faq_mm_question_questioncategory.uid_local">
 			<source>uid_local</source>
 		</trans-unit>
+
+		<trans-unit id="plugin.Faq">
+			<source>Faq</source>
+		</trans-unit>
+		<trans-unit id="plugin.FaqAll">
+			<source>Faq all categories</source>
+		</trans-unit>
+		<trans-unit id="plugin.Question">
+			<source>Question Input</source>
+		</trans-unit>
+
 		</body>
 	</file>
 </xliff>
