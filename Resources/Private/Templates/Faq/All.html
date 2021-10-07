@@ -1,0 +1,20 @@
+<f:layout name="Default"/>
+
+<f:section name="content">
+
+	<ul>
+		<f:for each="{questionsPerCategory}" as="parentCategory">
+			<li>{parentCategory.category.title}</li>
+			<ul>
+				<f:for each="{parentCategory.subCategories}" as="subCategory">
+					<li>Category Title: {subCategory.category.title}<br>Category Description: {subCategory.category.description}</li>
+					<f:for each="{subCategory.questions}" as="question">
+						<f:render partial="Faq/Answer"
+											arguments="{question: question, suffix: '-all'}"/>
+					</f:for>
+				</f:for>
+			</ul>
+		</f:for>
+	</ul>
+
+</f:section>

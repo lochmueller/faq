@@ -7,6 +7,7 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\Domain\Repository;
 
+use HDNET\Faq\Domain\Model\QuestionCategory;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
@@ -49,4 +50,19 @@ class QuestionCategoryRepository extends AbstractRepository
 
         return $query->execute();
     }
+
+    public function findAllParentCategories()
+    {
+        $categories = $this->findAll();
+        $parentCategories = [];
+        /** @var QuestionCategory $category */
+        foreach ($categories as $category) {
+            if(!$category->getParent()) {
+                $parentCategories[] = $category;
+            }
+        }
+
+        return $parentCategories;
+    }
+
 }

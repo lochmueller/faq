@@ -24,7 +24,6 @@ use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 class FaqController extends AbstractController
 {
     const TEASER_MODE_VOTING = 0;
-
     const TEASER_MODE_CUSTOM = 1;
 
     /**
@@ -110,4 +109,48 @@ class FaqController extends AbstractController
 
         return $this->htmlResponse();
     }
+
+    /**
+     * @Plugin("FaqAll")
+     */
+    public function allAction(): ResponseInterface
+    {
+
+        $parentCategories = $this->questionCategoryRepository->findAllParentCategories();
+        $questionsPerCategory = [];
+
+        /** @var QuestionCategory $parentCategory */
+        foreach ($parentCategories as $parentCategory) {
+            $questionsPerSubCategory = [];
+            $categoryChildren = $this->questionCategoryRepository->findByParent($parentCategory->getUid());
+
+            foreach ($categoryChildren as $subCategory) {
+                $questions = $this->questionRepository->findByCategories([$subCategory]);
+                if ($questions->count() !== 0) {
+                    $questionsPerSubCategory[] = [
+                        'category' => $subCategory,
+                        'questions' => $questions,
+                    ];
+                }
+            }
+
+            $questionsPerCategory[] = [
+                'category' => $parentCategory,
+                'subCategories' => $questionsPerSubCategory
+            ];
+        }
+
+        if ($this->addSchemaHeader) {
+            $allQuestions = $this->questionRepository->findAll();
+            $this->schemaService->addSchemaOrgHeader($allQuestions);
+        }
+
+        $this->view->assignMultiple([
+            'questionsPerCategory' => $questionsPerCategory,
+            'categories' => $this->questionCategoryRepository->findByParent(0),
+        ]);
+
+        return $this->htmlResponse();
+    }
+
 }

@@ -63,7 +63,7 @@ class QuestionCategory extends AbstractModel
         $this->parent = $parent;
     }
 
-    public function getParent(): self
+    public function getParent(): ?self
     {
         return $this->parent;
     }
