@@ -70,6 +70,7 @@ class FaqController extends AbstractController
      */
     public function indexAction(QuestionCategory $category = null): ResponseInterface
     {
+        // TODO: Check if a category without subCategories is given
         $categoryUid = $category ? (int) $category->getUid() : (int) $this->settings['initialCategory'];
         $categoryChildren = $this->questionCategoryRepository->findByParent($categoryUid);
         $questionsPerSubCategory = [];
@@ -115,7 +116,7 @@ class FaqController extends AbstractController
      */
     public function allAction(): ResponseInterface
     {
-
+        // Todo: Check if only one oder more than 2 level(s) of categories is/are available
         $parentCategories = $this->questionCategoryRepository->findAllParentCategories();
         $questionsPerCategory = [];
 
@@ -158,7 +159,8 @@ class FaqController extends AbstractController
      */
     public function singleCategoryAction(): ResponseInterface
     {
-
+        // TODO: Check if parent category is selected. Is this valid? Or only direct parent of questions
+        // are available to select?
         $categoryUid = $this->settings['initialCategory'];
         $category = $this->questionCategoryRepository->findByUid($categoryUid);
 
