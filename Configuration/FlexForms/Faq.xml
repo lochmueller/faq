@@ -14,6 +14,7 @@
                     <settings.faq.itemsPerPage>
                         <TCEforms>
                             <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.itemsPerPage</label>
+                            <description>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.itemsPerPage.description</description>
                             <config>
                                 <type>input</type>
                                 <size>5</size>

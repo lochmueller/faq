@@ -13,7 +13,8 @@
                 <el>
                     <settings.faq.itemsPerPage>
                         <TCEforms>
-                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.itemsPerPage</label>
+                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.faqSingleCategory.itemsPerPage</label>
+                            <description>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.faqSingleCategory.itemsPerPage.description</description>
                             <config>
                                 <type>input</type>
                                 <size>5</size>
@@ -37,8 +38,8 @@
                     </settings.faq.enableAnswerPreview>
                     <settings.initialCategory>
                         <TCEforms>
-                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.initialCategory</label>
-                            <description>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.initialCategory.description</description>
+                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.faqSingleCategory.Category</label>
+                            <description>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.faqSingleCategory.Category.description</description>
                             <config>
                                 <type>select</type>
                                 <renderType>selectSingle</renderType>

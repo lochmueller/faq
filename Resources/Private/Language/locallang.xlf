@@ -6,7 +6,6 @@
 			<generator>LFEditor</generator>
 		</header>
 		<body>
-
 		<trans-unit id="flexform.faqEnter.targetEmail">
 			<source>Empfänger Email-Adresse</source>
 		</trans-unit>
@@ -16,43 +15,69 @@
 		<trans-unit id="flexform.topMode">
 			<source>Top-Fragen Modus</source>
 		</trans-unit>
-
 		<trans-unit id="flexform.topMode.title">
 			<source>Configuration</source>
 		</trans-unit>
-
 		<trans-unit id="flexform.itemsPerPage">
 			<source>Items per subcategory</source>
 		</trans-unit>
 		<trans-unit id="flexform.itemsPerPage.description">
             <source>List: Show items per page</source>
         </trans-unit>
-		<!-- TODO: add German -->
+		<trans-unit id="flexform.faqSingleCategory.itemsPerPage">
+			<source>Number of items</source>
+		</trans-unit>
+		<trans-unit id="flexform.faqSingleCategory.itemsPerPage.description">
+			<source>Number of items to show in a list.</source>
+		</trans-unit>
+		<trans-unit id="flexform.faqSingleCategory.Category">
+			<source>Selected category</source>
+		</trans-unit>
+		<trans-unit id="flexform.faqSingleCategory.Category.description">
+			<source>You can only select categories of at least the second level.</source>
+		</trans-unit>
+		<trans-unit id="flexform.allFaqsPageLink">
+			<source>All faqs page link</source>
+		</trans-unit>
+		<trans-unit id="flexform.allFaqsPageLink.description">
+			<source>The page where all faqs are displayed.</source>
+		</trans-unit>
+		<trans-unit id="flexform.allFaqsPageLinkText">
+			<source>All faqs page link text</source>
+		</trans-unit>
+		<trans-unit id="flexform.allFaqsPageLinkText.description">
+			<source>The Text of the page link where all faqs are displayed.</source>
+		</trans-unit>
+		<trans-unit id="flexform.overrideCategoryDescription">
+			<source>Overwrite category description text</source>
+		</trans-unit>
+		<trans-unit id="flexform.overrideCategoryDescription.description">
+			<source>Overwrites the category description text. If this field is empty the description or title of the selected category will be displayed.</source>
+		</trans-unit>
 		<trans-unit id="flexform.addSchemaOrgHeader">
 			<source>Enable schema.org Header</source>
 		</trans-unit>
 		<trans-unit id="flexform.addSchemaOrgHeader.description">
             <source>For details see https://schema.org/FAQPage"</source>
         </trans-unit>
-
 		<trans-unit id="flexform.enablePagination">
             <source>Enable Pagination</source>
         </trans-unit>
-		<!-- TODO: add German -->
         <trans-unit id="flexform.enablePagination.description">
             <source>Enable Pagination</source>
         </trans-unit>
-
         <trans-unit id="flexform.initialCategory">
             <source>Initial selected category</source>
         </trans-unit>
-
-		<!-- TODO: add German -->
         <trans-unit id="flexform.initialCategory.description">
             <source>You can only select categories of first level</source>
         </trans-unit>
-
-		<!-- TODO: use this one in form -->
+		<trans-unit id="flexform.enableAnswerPreview">
+            <source>Enable answer preview</source>
+        </trans-unit>
+		<trans-unit id="flexform.enableAnswerPreview.description">
+            <source>Enable answer preview to show first x character without opening the question.</source>
+        </trans-unit>
 		<trans-unit id="form.email">
 			<source>Email (for the answer)</source>
 		</trans-unit>
@@ -68,21 +93,9 @@
 		<trans-unit id="no_questions_found">
 			<source>No questions found.</source>
 		</trans-unit>
-
-
-
-
-
-
-
 		<trans-unit id="sysfolder">
 			<source>FAQ</source>
 		</trans-unit>
-
-
-
-
-
 		<trans-unit id="tt_content.hdnet_faq.header">
 			<source>hdnet_faq (Header)</source>
 		</trans-unit>
@@ -116,6 +129,9 @@
 		<trans-unit id="tx_faq_domain_model_questioncategory.title">
 			<source>Titel</source>
 		</trans-unit>
+			<trans-unit id="tx_faq_domain_model_questioncategory.description">
+			<source>Description</source>
+		</trans-unit>
 		<trans-unit id="tx_faq_mm_question_questioncategory.ident">
 			<source>ident</source>
 		</trans-unit>
@@ -134,17 +150,18 @@
 		<trans-unit id="tx_faq_mm_question_questioncategory.uid_local">
 			<source>uid_local</source>
 		</trans-unit>
-
 		<trans-unit id="plugin.Faq">
-			<source>Faq</source>
+			<source>FAQ</source>
 		</trans-unit>
 		<trans-unit id="plugin.FaqAll">
-			<source>Faq all categories</source>
+			<source>FAQ All Categories</source>
 		</trans-unit>
 		<trans-unit id="plugin.Question">
-			<source>Question Input</source>
+			<source>FAQ Question Input</source>
 		</trans-unit>
-
+		<trans-unit id="plugin.FaqSingleCategory">
+			<source>FAQ Single Category Selection</source>
+		</trans-unit>
 		</body>
 	</file>
 </xliff>
