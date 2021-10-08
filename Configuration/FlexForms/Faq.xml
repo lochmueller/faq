@@ -35,6 +35,15 @@
                             </config>
                         </TCEforms>
                     </settings.faq.enablePagination>
+                    <settings.faq.enableAnswerPreview>
+                        <TCEforms>
+                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.enableAnswerPreview</label>
+                            <description>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.enableAnswerPreview.description</description>
+                            <config>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.faq.enableAnswerPreview>
                     <settings.faq.addSchmemaOrgHeader>
                     	<TCEforms>
                     		<label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.addSchemaOrgHeader</label>
