@@ -62,6 +62,20 @@
                             <renderType>inputLink</renderType>
                         </config>
                     </settings.faq.allFaqsPageLink>
+                    <settings.faq.allFaqsPageLinkText>
+                        <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.allFaqsPageLinkText</label>
+                        <description>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.allFaqsPageLinkText.description</description>
+                        <config>
+                            <type>input</type>
+                        </config>
+                    </settings.faq.allFaqsPageLinkText>
+                    <settings.faq.overrideCategoryDescription>
+                        <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.overrideCategoryDescription</label>
+                        <description>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.overrideCategoryDescription.description</description>
+                        <config>
+                            <type>input</type>
+                        </config>
+                    </settings.faq.overrideCategoryDescription>
                 </el>
             </ROOT>
         </sheet1>

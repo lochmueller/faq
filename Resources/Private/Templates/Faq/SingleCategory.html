@@ -8,14 +8,21 @@
 		<f:then>
 			<div class="row">
 					<div class="col-2">
-						<f:if condition="{category.description}">
+						<f:if condition="{settings.faq.overrideCategoryDescription}">
 							<f:then>
-								<h3>
-									<f:format.html>{category.description}</f:format.html>
-								</h3>
+								<f:format.html>{settings.faq.overrideCategoryDescription}</f:format.html>
 							</f:then>
 							<f:else>
-								<h3>{category.title}</h3>
+								<f:if condition="{category.description}">
+									<f:then>
+										<h3>
+											<f:format.html>{category.description}</f:format.html>
+										</h3>
+									</f:then>
+									<f:else>
+										<h3>{category.title}</h3>
+									</f:else>
+								</f:if>
 							</f:else>
 						</f:if>
 					</div>
@@ -33,7 +40,14 @@
 						<f:if condition="{settings.faq.allFaqsPageLink}">
 							<f:then>
 								<f:link.typolink parameter="{settings.faq.allFaqsPageLink}">
-									Alle FAQs
+									<f:if condition="{settings.faq.allFaqsPageLinkText}">
+										<f:then>
+											{settings.faq.allFaqsPageLinkText}
+										</f:then>
+										<f:else>
+											All FAQs
+										</f:else>
+									</f:if>
 								</f:link.typolink>
 							</f:then>
 						</f:if>
