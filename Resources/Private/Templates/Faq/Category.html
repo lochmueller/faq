@@ -12,7 +12,7 @@
 <f:for each="{subCategories}" as="subCategory">
 	<h3>{subCategory.category.title}</h3>
 	<f:for each="{subCategory.questions}" as="question">
-		<f:render partial="Faq/Answer" arguments="{question: question, suffix: ''}"/>
+		<f:render partial="Faq/Answer" arguments="{question: question, suffix: '', settings: settings}"/>
 	</f:for>
 </f:for>
 

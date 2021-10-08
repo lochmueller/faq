@@ -10,6 +10,17 @@
 						aria-controls="collapse_{question.uid}{suffix}">
 			{question.title}
 		</button>
+
+		<f:if condition="{settings.faq.enableAnswerPreview}">
+			<f:then>
+				<span class="fs-6 p-3">
+					<f:format.crop maxCharacters="100">
+						{question.answer}
+					</f:format.crop>
+				</span>
+			</f:then>
+		</f:if>
+
 	</h2>
 	<div id="collapse_{question.uid}{suffix}"
 			 class="accordion-collapse collapse"

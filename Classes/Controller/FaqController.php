@@ -153,4 +153,23 @@ class FaqController extends AbstractController
         return $this->htmlResponse();
     }
 
+    /**
+     * @Plugin("FaqSingleCategory")
+     */
+    public function singleCategoryAction(): ResponseInterface
+    {
+
+        $categoryUid = $this->settings['initialCategory'];
+        $category = $this->questionCategoryRepository->findByUid($categoryUid);
+
+        $questions = $this->questionRepository->findByCategory($category);
+
+        $this->view->assignMultiple([
+            'category' => $category,
+            'questions' => $questions,
+        ]);
+
+
+        return $this->htmlResponse();
+    }
 }

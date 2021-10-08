@@ -66,4 +66,9 @@ class QuestionRepository extends AbstractRepository
 
         return $result;
     }
+
+    public function findByCategory($category)
+    {
+        return $this->findByCategories([$category]);
+    }
 }

@@ -10,7 +10,7 @@
 					<li>Category Title: {subCategory.category.title}<br>Category Description: {subCategory.category.description}</li>
 					<f:for each="{subCategory.questions}" as="question">
 						<f:render partial="Faq/Answer"
-											arguments="{question: question, suffix: '-all'}"/>
+											arguments="{question: question, suffix: '-all', settings: settings}"/>
 					</f:for>
 				</f:for>
 			</ul>
