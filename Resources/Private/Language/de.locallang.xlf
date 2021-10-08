@@ -6,50 +6,6 @@
 			<generator>LFEditor</generator>
 		</header>
 		<body>
-		<trans-unit id="answer.helpful" approved="yes">
-			<source>helpful</source>
-			<target>hilfreich</target>
-		</trans-unit>
-		<trans-unit id="answer.not_helpful" approved="yes">
-			<source>not helpful</source>
-			<target>nicht hilfreich</target>
-		</trans-unit>
-		<trans-unit id="detail.back" approved="yes">
-			<source>back</source>
-			<target>zurück</target>
-		</trans-unit>
-		<trans-unit id="eid.error.multivote" approved="yes">
-			<source>Sie haben für diese Frage bereits abgestimmt!</source>
-			<target>Sie haben für diese Frage bereits abgestimmt!</target>
-		</trans-unit>
-		<trans-unit id="search" approved="yes">
-			<source>Search</source>
-			<target>Suchen</target>
-		</trans-unit>
-		<trans-unit id="eid.error.question" approved="yes">
-			<source>Keine gültige Frage ausgewählt!</source>
-			<target>Keine gültige Frage ausgewählt!</target>
-		</trans-unit>
-		<trans-unit id="eid.ok" approved="yes">
-			<source>Vielen Dank für Ihre Wertung.</source>
-			<target>Vielen Dank für Ihre Wertung.</target>
-		</trans-unit>
-		<trans-unit id="error.captcha.1221560718" approved="yes">
-			<source>The field must not be empty.</source>
-			<target>The field must not be empty.</target>
-		</trans-unit>
-		<trans-unit id="error.captcha.9221561048" approved="yes">
-			<source>Entered word does not match the image</source>
-			<target>Entered word does not match the image</target>
-		</trans-unit>
-		<trans-unit id="error.question.email.1221560718" approved="yes">
-			<source>The field must not be empty.</source>
-			<target>The field must not be empty.</target>
-		</trans-unit>
-		<trans-unit id="error.question.question.1221560718" approved="yes">
-			<source>The field must not be empty.</source>
-			<target>The field must not be empty.</target>
-		</trans-unit>
 		<trans-unit id="flexform.faqEnter.targetEmail" approved="yes">
 			<source>Empfänger Email-Adresse</source>
 			<target>Empfänger Email-Adresse</target>
@@ -62,25 +18,9 @@
 			<source>Top-Fragen Modus</source>
 			<target>Top-Fragen Modus</target>
 		</trans-unit>
-		<trans-unit id="flexform.topMode.custom" approved="yes">
-			<source>Auswahl</source>
-			<target>Auswahl</target>
-		</trans-unit>
-		<trans-unit id="flexform.topMode.votings" approved="yes">
-			<source>Votings</source>
-			<target>Votings</target>
-		</trans-unit>
-		<trans-unit id="flexform.showNewest">
-			<source>Show latest questions</source>
-			<target>Neue FAQs anzeigen</target>
-		</trans-unit>
 		<trans-unit id="flexform.itemsPerPage">
 			<source>List: Show items per page</source>
 			<target>Liste: FAQs pro Seite anzeigen</target>
-		</trans-unit>
-		<trans-unit id="flexform.showTop">
-			<source>Show top questions</source>
-			<target>Top FAQs anzeigen</target>
 		</trans-unit>
 		<trans-unit id="flexform.addSchemaOrgHeader">
 			<source>Enable schema.org Header</source>
@@ -94,14 +34,6 @@
             <source>Initial selected category</source>
             <target>Initial ausgewählte Kategorie</target>
         </trans-unit>
-		<trans-unit id="form.captcha" approved="yes">
-			<source>Type the characters*</source>
-			<target>Bitte geben Sie die unten stehenden Buchstaben in das Feld ein.*</target>
-		</trans-unit>
-		<trans-unit id="form.captcha.popup" approved="yes">
-			<source>This field is for spam protection.</source>
-			<target>Diese Funktionalität hilft uns, Spam zu filtern und Sie als echten Menschen zu verifizieren.</target>
-		</trans-unit>
 		<trans-unit id="form.email" approved="yes">
 			<source>Email (for the answer)</source>
 			<target>E-Mail-Adresse (für unsere Antwort)</target>
@@ -121,50 +53,6 @@
 		<trans-unit id="no_questions_found" approved="yes">
 			<source>No questions found.</source>
 			<target>Es konnten keine FAQ gefunden werden.</target>
-		</trans-unit>
-		<trans-unit id="recently" approved="yes">
-			<source>Recently asked questions</source>
-			<target>Kürzlich angelegte Fragen</target>
-		</trans-unit>
-		<trans-unit id="results" approved="yes">
-			<source>Results:</source>
-			<target>Suchergebnisse:</target>
-		</trans-unit>
-		<trans-unit id="search.all" approved="yes">
-			<source>show all questions</source>
-			<target>alle Fragen zeigen</target>
-		</trans-unit>
-		<trans-unit id="search.category.default" approved="yes">
-			<source>Please select</source>
-			<target>Bitte wählen</target>
-		</trans-unit>
-		<trans-unit id="search.text" approved="yes">
-			<source>What are you looking for?</source>
-			<target>Wonach suchen Sie?</target>
-		</trans-unit>
-		<trans-unit id="search.topic" approved="yes">
-			<source>Select a topic</source>
-			<target>Thema wählen</target>
-		</trans-unit>
-		<trans-unit id="teaser.all" approved="yes">
-			<source>+ all questions</source>
-			<target>+ alle Fragen</target>
-		</trans-unit>
-		<trans-unit id="teaser.faq" approved="yes">
-			<source>Frequently Asked Questions</source>
-			<target>Häufige Fragen</target>
-		</trans-unit>
-		<trans-unit id="thanks.headline" approved="yes">
-			<source>Thank you!</source>
-			<target>Vielen Dank!</target>
-		</trans-unit>
-		<trans-unit id="thanks.text" approved="yes">
-			<source>We will get back to you.</source>
-			<target>Wir haben Ihre Frage erhalten und werden Ihnen diese beantworten und/oder in unsere FAQ mit aufnehmen!</target>
-		</trans-unit>
-		<trans-unit id="top" approved="yes">
-			<source>Most asked questions</source>
-			<target>Top Fragen</target>
 		</trans-unit>
 		<trans-unit id="tt_content.hdnet_faq.header" approved="yes">
 			<source>hdnet_faq (Header)</source>
@@ -209,6 +97,10 @@
 		<trans-unit id="tx_faq_domain_model_questioncategory.title" approved="yes">
 			<source>Titel</source>
 			<target>Titel</target>
+		</trans-unit>
+		<trans-unit id="flexform.itemsPerPage.description" approved="yes">
+			<source>List: Show items per page</source>
+			<target>Liste: Zeige Elemente pro Seite</target>
 		</trans-unit>
 		</body>
 	</file>
