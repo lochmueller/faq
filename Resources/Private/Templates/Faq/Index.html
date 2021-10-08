@@ -7,11 +7,7 @@
 	<f:if condition="{questions}">
 		<f:then>
 
-			<f:if condition="!{settings.faq.disableCategoryFilter}">
-				<f:then>
-					<f:render partial="Faq/Categories" arguments="{categories: categories}"/>
-				</f:then>
-			</f:if>
+			<f:render partial="Faq/Categories" arguments="{categories: categories}"/>
 
 			<div class="row">
 
