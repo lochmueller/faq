@@ -15,7 +15,6 @@ use HDNET\Faq\Service\SchemaService;
 use Psr\Http\Message\ResponseInterface;
 use HDNET\Autoloader\Annotation\Plugin;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
-use TYPO3\CMS\Extbase\Mvc\Request;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 
 /**
@@ -70,11 +69,14 @@ class FaqController extends AbstractController
      */
     public function indexAction(QuestionCategory $category = null): ResponseInterface
     {
-        // TODO: Check if a category without subCategories is given
-        $categoryUid = $category ? (int) $category->getUid() : (int) $this->settings['initialCategory'];
+        $categoryUid = $category ? (int)$category->getUid() : (int)$this->settings['initialCategory'];
         $categoryChildren = $this->questionCategoryRepository->findByParent($categoryUid);
         $questionsPerSubCategory = [];
-        $allQuestions = $this->questionRepository->findByCategories($categoryChildren);
+        $allQuestions = [];
+        $questions = null;
+        if (!empty($categoryChildren->toArray())) {
+            $allQuestions = $this->questionRepository->findByCategories($categoryChildren);
+        }
 
         foreach ($categoryChildren as $subCategory) {
             $questions = $this->questionRepository->findByCategories([$subCategory]);
@@ -96,15 +98,19 @@ class FaqController extends AbstractController
             $currentPage = 1;
         }
 
-        $paginator = new QueryResultPaginator($questions, $currentPage, (int)$this->settings['faq']['itemsPerPage']);
-        $pagination = new SimplePagination($paginator);
+        $paginator = null;
+        $pagination = null;
+        if ($questions) {
+            $paginator = new QueryResultPaginator($questions, $currentPage, (int)$this->settings['faq']['itemsPerPage']);
+            $pagination = new SimplePagination($paginator);
+        }
 
         $this->view->assignMultiple([
             'questions' => $allQuestions,
             'subCategories' => $questionsPerSubCategory,
             'paginator' => $paginator,
             'pagination' => $pagination,
-            'pages' => range(1, $pagination->getLastPageNumber()),
+            'pages' => $pagination ? range(1, $pagination->getLastPageNumber()) : [],
             'categories' => $this->questionCategoryRepository->findByParent(0),
         ]);
 
@@ -147,7 +153,7 @@ class FaqController extends AbstractController
             'category' => $category,
             'questions' => $this->questionRepository->findByCategory($category)->toArray(),
         ];
-        if($childCategories) {
+        if ($childCategories) {
             $childElements = [];
             foreach ($childCategories as $childCategory) {
                 $childElements[] = $this->getQuestionRek($childCategory);
@@ -167,7 +173,7 @@ class FaqController extends AbstractController
         $questions = [];
         $categoryUid = $this->settings['initialCategory'];
 
-        if("" === $categoryUid) {
+        if ("" === $categoryUid) {
             $errors[] = 'plugin.FaqSingleCategory.errors.noCategorySelected';
         } else {
             $category = $this->questionCategoryRepository->findByUid($categoryUid);

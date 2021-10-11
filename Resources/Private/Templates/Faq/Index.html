@@ -1,18 +1,11 @@
 <f:layout name="Default"/>
 
 <f:section name="content">
-
-	<f:debug>{_all}</f:debug>
-
+	<f:render partial="Faq/Categories" arguments="{categories: categories}"/>
 	<f:if condition="{questions}">
 		<f:then>
-
-			<f:render partial="Faq/Categories" arguments="{categories: categories}"/>
-
 			<div class="row">
-
 				<f:for each="{subCategories}" as="subCategory" iteration="categoryIterator">
-
 					<div class="col-2">
 						<f:if condition="{subCategory.category.description}">
 							<f:then>
@@ -25,21 +18,19 @@
 							</f:else>
 						</f:if>
 					</div>
-
 					<div class="col-10">
 						<div class="accordion" id="accordionExample">
 							<f:for each="{subCategory.questions}" as="question" iteration="questionIterator">
 								<f:if condition="{questionIterator.cycle} > {settings.faq.itemsPerPage}">
 									<f:then>
-											<f:render partial="Faq/Answer"
-																arguments="{question: question, suffix: '', questionIterator: questionIterator, settings: settings}"/>
+										<f:render partial="Faq/Answer"
+															arguments="{question: question, suffix: '', questionIterator: questionIterator, settings: settings}"/>
 									</f:then>
 									<f:else>
 										<f:render partial="Faq/Answer"
 															arguments="{question: question, suffix: '', questionIterator: questionIterator, settings: settings}"/>
 									</f:else>
 								</f:if>
-
 							</f:for>
 						</div>
 						<f:if condition="{f:count(subject: subCategory.questions)} > {settings.faq.itemsPerPage}">
@@ -49,28 +40,23 @@
 							</f:then>
 						</f:if>
 					</div>
-
 				</f:for>
-
 			</div>
-
 			<f:if condition="{paginator.numberOfPages} > 1">
 				<f:if condition="{settings.faq.enablePagination}">
 					<f:then>
 						<div class="col-12 mt-5">
-							<f:render partial="Paginator" arguments="{pagination: pagination, pages: pages, paginator: paginator}"/>
+							<f:render partial="Paginator"
+												arguments="{pagination: pagination, pages: pages, paginator: paginator}"/>
 						</div>
 					</f:then>
 				</f:if>
 			</f:if>
-
 		</f:then>
 		<f:else>
 			<f:translate key="no_questions_found">
-				<p>Es konnten keine FAQ gefunden werden.<br/>Bitte versuchen Sie es erneut mit ein anderen Suchbegriff.</p>
-				<p><strong>Alternativ können Sie uns auch direkt eine Frage stellen.</strong></p>
+				<p>No questions found.</p>
 			</f:translate>
 		</f:else>
 	</f:if>
-
 </f:section>
