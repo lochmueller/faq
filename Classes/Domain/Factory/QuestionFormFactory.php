@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types = 1);
 
 namespace HDNET\Faq\Domain\Factory;
-
 
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -35,7 +35,7 @@ class QuestionFormFactory extends AbstractFormFactory
         $form = GeneralUtility::makeInstance(FormDefinition::class, 'QuestionForm', $prototypeConfiguration);
         $form->setRenderingOption('controllerAction', 'submit');
         $form->setRenderingOption('fluidAdditionalAttributes', [
-            'novalidate' => $this->extensionConfiguration['disableFormFrontendValidation'] ? '' : 'novalidate'
+            'novalidate' => $this->extensionConfiguration['disableFormFrontendValidation'] ? '' : 'novalidate',
         ]);
 
         $page = $form->createPage('page');
@@ -55,6 +55,7 @@ class QuestionFormFactory extends AbstractFormFactory
         $form->createFinisher('EmailToReceiver', []);
 
         $this->triggerFormBuildingFinished($form);
+
         return $form;
     }
 }

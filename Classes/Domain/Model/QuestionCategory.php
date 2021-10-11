@@ -39,7 +39,7 @@ class QuestionCategory extends AbstractModel
      *
      * @var string
      * @DatabaseField(type="string")
-     * @EnableRichText()
+     * @EnableRichText
      */
     protected $description;
 
@@ -82,5 +82,4 @@ class QuestionCategory extends AbstractModel
     {
         $this->description = $description;
     }
-
 }

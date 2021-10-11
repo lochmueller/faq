@@ -7,16 +7,9 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\Domain\Repository;
 
-use HDNET\Faq\Domain\Model\Question;
-use HDNET\Faq\Domain\Model\QuestionCategory;
-use HDNET\Faq\Domain\Model\Request\Faq;
-use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\ClassNamingUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
-use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
 /**
  * Build up the Question.
@@ -48,7 +41,7 @@ class QuestionRepository extends AbstractRepository
         $constraints = [];
         $categorySelection = [];
 
-        if (!is_iterable($categories)) {
+        if (!\is_iterable($categories)) {
             $categories = GeneralUtility::intExplode(',', $categories);
         }
 

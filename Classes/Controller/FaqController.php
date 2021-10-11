@@ -1,19 +1,19 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 /**
  * FAQ.
  */
 
 namespace HDNET\Faq\Controller;
 
+use HDNET\Autoloader\Annotation\Plugin;
 use HDNET\Faq\Domain\Model\QuestionCategory;
 use HDNET\Faq\Domain\Repository\QuestionCategoryRepository;
 use HDNET\Faq\Domain\Repository\QuestionRepository;
 use HDNET\Faq\Service\FormService;
 use HDNET\Faq\Service\SchemaService;
 use Psr\Http\Message\ResponseInterface;
-use HDNET\Autoloader\Annotation\Plugin;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 
@@ -22,7 +22,6 @@ use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
  */
 class FaqController extends AbstractController
 {
-
     /**
      * Question repository.
      *
@@ -52,8 +51,7 @@ class FaqController extends AbstractController
         QuestionCategoryRepository $questionCategoryRepository,
         FormService $formValidationService,
         SchemaService $schemaService
-    )
-    {
+    ) {
         $this->questionRepository = $questionRepository;
         $this->questionCategoryRepository = $questionCategoryRepository;
         $this->formValidationService = $formValidationService;
@@ -78,7 +76,7 @@ class FaqController extends AbstractController
 
         foreach ($categoryChildren as $subCategory) {
             $questions = $this->questionRepository->findByCategories([$subCategory]);
-            if ($questions->count() !== 0) {
+            if (0 !== $questions->count()) {
                 $questionsPerSubCategory[] = [
                     'category' => $subCategory,
                     'questions' => $questions,
@@ -91,7 +89,7 @@ class FaqController extends AbstractController
         }
 
         if ($this->request->getQueryParams()['tx_faq_faq']['currentPage']) {
-            $currentPage = intval($this->request->getQueryParams()['tx_faq_faq']['currentPage']);
+            $currentPage = (int)($this->request->getQueryParams()['tx_faq_faq']['currentPage']);
         } else {
             $currentPage = 1;
         }
@@ -108,7 +106,7 @@ class FaqController extends AbstractController
             'subCategories' => $questionsPerSubCategory,
             'paginator' => $paginator,
             'pagination' => $pagination,
-            'pages' => $pagination ? range(1, $pagination->getLastPageNumber()) : [],
+            'pages' => $pagination ? \range(1, $pagination->getLastPageNumber()) : [],
             'categories' => $this->questionCategoryRepository->findByParent(0),
         ]);
 
@@ -142,6 +140,32 @@ class FaqController extends AbstractController
     }
 
     /**
+     * @Plugin("FaqSingleCategory")
+     */
+    public function singleCategoryAction(): ResponseInterface
+    {
+        $errors = [];
+        $category = null;
+        $questions = [];
+        $categoryUid = $this->settings['initialCategory'];
+
+        if ('' === $categoryUid) {
+            $errors[] = 'plugin.FaqSingleCategory.errors.noCategorySelected';
+        } else {
+            $category = $this->questionCategoryRepository->findByUid($categoryUid);
+            $questions = $this->questionRepository->findByCategory($category);
+        }
+
+        $this->view->assignMultiple([
+            'category' => $category,
+            'questions' => $questions,
+            'errors' => $errors,
+        ]);
+
+        return $this->htmlResponse();
+    }
+
+    /**
      * @param QuestionCategory $category
      */
     private function getQuestionRek($category)
@@ -158,32 +182,7 @@ class FaqController extends AbstractController
             }
             $element['childElements'] = $childElements;
         }
+
         return $element;
-    }
-
-    /**
-     * @Plugin("FaqSingleCategory")
-     */
-    public function singleCategoryAction(): ResponseInterface
-    {
-        $errors = [];
-        $category = null;
-        $questions = [];
-        $categoryUid = $this->settings['initialCategory'];
-
-        if ("" === $categoryUid) {
-            $errors[] = 'plugin.FaqSingleCategory.errors.noCategorySelected';
-        } else {
-            $category = $this->questionCategoryRepository->findByUid($categoryUid);
-            $questions = $this->questionRepository->findByCategory($category);
-        }
-
-        $this->view->assignMultiple([
-            'category' => $category,
-            'questions' => $questions,
-            'errors' => $errors,
-        ]);
-
-        return $this->htmlResponse();
     }
 }

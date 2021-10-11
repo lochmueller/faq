@@ -1,10 +1,9 @@
 <?php
 
+declare(strict_types = 1);
 
 namespace HDNET\Faq\Service;
 
-
-use HDNET\Faq\Domain\Factory\QuestionFormFactory;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Error\Result;
@@ -12,24 +11,22 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ControllerContext;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Form\Domain\Factory\FormFactoryInterface;
 use TYPO3\CMS\Form\Domain\Finishers\FinisherContext;
-use TYPO3\CMS\Form\Domain\Model\FormDefinition;
 use TYPO3\CMS\Form\Domain\Runtime\FormRuntime;
 
 class FormService
 {
-
     /**
-     * @var array $errors
+     * @var array
      */
     protected $errors;
 
     /**
-     * @var FormRuntime $formRuntime
+     * @var FormRuntime
      */
     protected $formRuntime;
 
     /**
-     * @var ExtensionConfiguration $extensionConfiguration
+     * @var ExtensionConfiguration
      */
     protected $extensionConfiguration;
 
@@ -41,7 +38,6 @@ class FormService
         $this->errors = [];
         $this->extensionConfiguration = $extensionConfiguration;
     }
-
 
     public function validate(RequestInterface $request, string $factoryClassName): bool
     {
@@ -66,6 +62,7 @@ class FormService
             }
         }
         $this->errors = $errors;
+
         return empty($errors);
     }
 
@@ -77,7 +74,6 @@ class FormService
         $formRuntime = $form->bind($request);
 
         $extConfig = $this->extensionConfiguration->get('faq');
-
 
         foreach ($form->getFinishers() as $finisher) {
             $finisherIdentifier = $finisher->getFinisherIdentifier();
@@ -92,7 +88,7 @@ class FormService
                 ]);
                 $finisher->setOption('senderAddress', $extConfig['defaultFormSenderEmail']);
                 $finisher->setOption('senderName', $extConfig['defaultFormSenderName']);
-            } else if ('EmailToReceiver' === $finisherIdentifier) {
+            } elseif ('EmailToReceiver' === $finisherIdentifier) {
                 // Email to User
                 // Each option is set individually, since the option array is replaced by setOptions
                 // and existing options are overwritten
@@ -105,12 +101,8 @@ class FormService
             }
             $finisher->execute(new FinisherContext($formRuntime, new ControllerContext(), $request));
         }
-
     }
 
-    /**
-     * @return array
-     */
     public function getErrors(): array
     {
         return $this->errors;
@@ -120,5 +112,4 @@ class FormService
     {
         return $this->formRuntime;
     }
-
 }

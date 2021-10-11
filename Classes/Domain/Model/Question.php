@@ -32,7 +32,7 @@ class Question extends AbstractModel
      *
      * @var string
      * @DatabaseField(type="string")
-     * @EnableRichText()
+     * @EnableRichText
      */
     protected $answer = '';
 
@@ -72,7 +72,7 @@ class Question extends AbstractModel
      * @DatabaseField(type="int", sql="int(11) DEFAULT '0' NOT NULL")
      */
     protected $categories;
-    
+
     /**
      * @var \DateTime
      */
@@ -192,7 +192,7 @@ class Question extends AbstractModel
     {
         return $this->_languageUid;
     }
-    
+
     public function getCrdate(): \DateTime
     {
         return $this->crdate;

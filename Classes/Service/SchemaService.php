@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types = 1);
 
 namespace HDNET\Faq\Service;
-
 
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -26,7 +26,7 @@ class SchemaService
                 [
                     $question->getTitle(),
                     $question->getCrdate()->format('Y-m-d H:i:s'),
-                    strip_tags($question->getAnswer()),
+                    \strip_tags($question->getAnswer()),
                 ],
                 '{
                 "@type": "Question",
@@ -39,7 +39,7 @@ class SchemaService
                 }
             },');
         }
-        $additionalHeaderData = \substr($additionalHeaderData, 0, -1);
+        $additionalHeaderData = \mb_substr($additionalHeaderData, 0, -1);
         $additionalHeaderData .= '
             ]
         }

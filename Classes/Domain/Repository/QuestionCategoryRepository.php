@@ -57,12 +57,11 @@ class QuestionCategoryRepository extends AbstractRepository
         $parentCategories = [];
         /** @var QuestionCategory $category */
         foreach ($categories as $category) {
-            if(!$category->getParent()) {
+            if (!$category->getParent()) {
                 $parentCategories[] = $category;
             }
         }
 
         return $parentCategories;
     }
-
 }
