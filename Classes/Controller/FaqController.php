@@ -116,29 +116,12 @@ class FaqController extends AbstractController
      */
     public function allAction(): ResponseInterface
     {
-        // Todo: Check if only one oder more than 2 level(s) of categories is/are available
         $parentCategories = $this->questionCategoryRepository->findAllParentCategories();
         $questionsPerCategory = [];
 
         /** @var QuestionCategory $parentCategory */
         foreach ($parentCategories as $parentCategory) {
-            $questionsPerSubCategory = [];
-            $categoryChildren = $this->questionCategoryRepository->findByParent($parentCategory->getUid());
-
-            foreach ($categoryChildren as $subCategory) {
-                $questions = $this->questionRepository->findByCategories([$subCategory]);
-                if ($questions->count() !== 0) {
-                    $questionsPerSubCategory[] = [
-                        'category' => $subCategory,
-                        'questions' => $questions,
-                    ];
-                }
-            }
-
-            $questionsPerCategory[] = [
-                'category' => $parentCategory,
-                'subCategories' => $questionsPerSubCategory
-            ];
+            $questionsPerCategory[] = $this->getQuestionRek($parentCategory);
         }
 
         if ($this->addSchemaHeader) {
@@ -152,6 +135,26 @@ class FaqController extends AbstractController
         ]);
 
         return $this->htmlResponse();
+    }
+
+    /**
+     * @param QuestionCategory $category
+     */
+    private function getQuestionRek($category)
+    {
+        $childCategories = $this->questionCategoryRepository->findByParent($category->getUid())->toArray();
+        $element = [
+            'category' => $category,
+            'questions' => $this->questionRepository->findByCategory($category)->toArray(),
+        ];
+        if($childCategories) {
+            $childElements = [];
+            foreach ($childCategories as $childCategory) {
+                $childElements[] = $this->getQuestionRek($childCategory);
+            }
+            $element['childElements'] = $childElements;
+        }
+        return $element;
     }
 
     /**
