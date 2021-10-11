@@ -42,50 +42,54 @@
             <source>Initial selected category</source>
             <target>Initial ausgewählte Kategorie</target>
         </trans-unit>
-			<trans-unit id="flexform.initialCategory.description">
-				<source>You can only select categories of first level</source>
-				<target>Es können nur Kategorien der ersten Ebene ausgewählt werden.</target>
-			</trans-unit>
-			<trans-unit id="flexform.faqSingleCategory.itemsPerPage">
-				<source>Number of items</source>
-				<target>Anzahl der Elemente</target>
-			</trans-unit>
-			<trans-unit id="flexform.faqSingleCategory.itemsPerPage.description">
-				<source>Number of items to show in a list.</source>
-				<target>Anzahl der Elemente welche in einer Liste angezeigt werden.</target>
-			</trans-unit>
-			<trans-unit id="flexform.faqSingleCategory.Category">
-				<source>Selected category</source>
-				<target>Ausgewählte Kategorie</target>
-			</trans-unit>
-			<trans-unit id="flexform.faqSingleCategory.Category.description">
-				<source>You can only select categories of at least the second level.</source>
-				<target>Es kann nur eine Kategorie von mindestens der zweiten Ebene ausgewählt werden.</target>
-			</trans-unit>
-			<trans-unit id="flexform.allFaqsPageLink">
-				<source>All faqs page link</source>
-				<target>Alle FAQs Seitenlink</target>
-			</trans-unit>
-			<trans-unit id="flexform.allFaqsPageLink.description">
-				<source>The page where all faqs are displayed.</source>
-				<target>Die Seite auf der alle FAQs zu sehen sind.</target>
-			</trans-unit>
-			<trans-unit id="flexform.allFaqsPageLinkText">
-				<source>All faqs page link text</source>
-				<target>Alle FAQs Seitenlinktext</target>
-			</trans-unit>
-			<trans-unit id="flexform.allFaqsPageLinkText.description">
-				<source>The Text of the page link where all faqs are displayed.</source>
-				<target>Der Text des Seitenlinkes wo alle FAQs angezeigt werden.</target>
-			</trans-unit>
-			<trans-unit id="flexform.overrideCategoryDescription">
-				<source>Overwrite category description text</source>
-				<target>Kategoriebeschreibungstext überschreiben</target>
-			</trans-unit>
-			<trans-unit id="flexform.overrideCategoryDescription.description">
-				<source>Overwrites the category description text. If this field is empty the description or title of the selected category will be displayed.</source>
-				<target>Der Text welcher statt der Kategoriebeschreibung angezeigt werden soll. Wenn das Feld leer ist, wird die Beschreibung oder der Titel der Kategorie angezeigt.</target>
-			</trans-unit>
+		<trans-unit id="flexform.initialCategory.description">
+			<source>You can only select categories of first level</source>
+			<target>Es können nur Kategorien der ersten Ebene ausgewählt werden.</target>
+		</trans-unit>
+		<trans-unit id="flexform.faqSingleCategory.itemsPerPage">
+			<source>Number of items</source>
+			<target>Anzahl der Elemente</target>
+		</trans-unit>
+		<trans-unit id="flexform.faqSingleCategory.itemsPerPage.description">
+			<source>Number of items to show in a list.</source>
+			<target>Anzahl der Elemente welche in einer Liste angezeigt werden.</target>
+		</trans-unit>
+		<trans-unit id="flexform.faqSingleCategory.Category">
+			<source>Selected category</source>
+			<target>Ausgewählte Kategorie</target>
+		</trans-unit>
+		<trans-unit id="flexform.faqSingleCategory.Category.description">
+			<source>You can only select categories of at least the second level.</source>
+			<target>Es kann nur eine Kategorie von mindestens der zweiten Ebene ausgewählt werden.</target>
+		</trans-unit>
+		<trans-unit id="flexform.faqSingleCategory.Category.pleaseSelect">
+			<source>Please Select...</source>
+			<target>Bitte Auswählen...</target>
+		</trans-unit>
+		<trans-unit id="flexform.allFaqsPageLink">
+			<source>All faqs page link</source>
+			<target>Alle FAQs Seitenlink</target>
+		</trans-unit>
+		<trans-unit id="flexform.allFaqsPageLink.description">
+			<source>The page where all faqs are displayed.</source>
+			<target>Die Seite auf der alle FAQs zu sehen sind.</target>
+		</trans-unit>
+		<trans-unit id="flexform.allFaqsPageLinkText">
+			<source>All faqs page link text</source>
+			<target>Alle FAQs Seitenlinktext</target>
+		</trans-unit>
+		<trans-unit id="flexform.allFaqsPageLinkText.description">
+			<source>The Text of the page link where all faqs are displayed.</source>
+			<target>Der Text des Seitenlinkes wo alle FAQs angezeigt werden.</target>
+		</trans-unit>
+		<trans-unit id="flexform.overrideCategoryDescription">
+			<source>Overwrite category description text</source>
+			<target>Kategoriebeschreibungstext überschreiben</target>
+		</trans-unit>
+		<trans-unit id="flexform.overrideCategoryDescription.description">
+			<source>Overwrites the category description text. If this field is empty the description or title of the selected category will be displayed.</source>
+			<target>Der Text welcher statt der Kategoriebeschreibung angezeigt werden soll. Wenn das Feld leer ist, wird die Beschreibung oder der Titel der Kategorie angezeigt.</target>
+		</trans-unit>
 		<trans-unit id="form.email" approved="yes">
 			<source>Email (for the answer)</source>
 			<target>E-Mail-Adresse (für unsere Antwort)</target>
@@ -154,22 +158,26 @@
 			<source>List: Show items per page</source>
 			<target>Liste: Zeige Elemente pro Seite</target>
 		</trans-unit>
-			<trans-unit id="plugin.Faq">
-				<source>FAQ</source>
-				<target>FAQ</target>
-			</trans-unit>
-			<trans-unit id="plugin.FaqAll">
-				<source>FAQ All Categories</source>
-				<target>FAQ Alle Kategorien</target>
-			</trans-unit>
-			<trans-unit id="plugin.Question">
-				<source>FAQ Question Input</source>
-				<target>FAQ Frageneingabe</target>
-			</trans-unit>
-			<trans-unit id="plugin.FaqSingleCategory">
-				<source>FAQ Single Category Selection</source>
-				<target>FAQ Einzelne Kategorie auswahl</target>
-			</trans-unit>
+		<trans-unit id="plugin.Faq">
+			<source>FAQ</source>
+			<target>FAQ</target>
+		</trans-unit>
+		<trans-unit id="plugin.FaqAll">
+			<source>FAQ All Categories</source>
+			<target>FAQ Alle Kategorien</target>
+		</trans-unit>
+		<trans-unit id="plugin.Question">
+			<source>FAQ Question Input</source>
+			<target>FAQ Frageneingabe</target>
+		</trans-unit>
+		<trans-unit id="plugin.FaqSingleCategory">
+			<source>FAQ Single Category Selection</source>
+			<target>FAQ Einzelne Kategorie auswahl</target>
+		</trans-unit>
+		<trans-unit id="plugin.FaqSingleCategory.errors.noCategorySelected">
+			<source>Please select a category initially.</source>
+			<target>Bitte Wähle eine Startkategorie aus.</target>
+		</trans-unit>
 		</body>
 	</file>
 </xliff>

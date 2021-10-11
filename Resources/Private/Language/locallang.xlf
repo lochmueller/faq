@@ -36,6 +36,9 @@
 		<trans-unit id="flexform.faqSingleCategory.Category.description">
 			<source>You can only select categories of at least the second level.</source>
 		</trans-unit>
+		<trans-unit id="flexform.faqSingleCategory.Category.pleaseSelect">
+			<source>Please Select...</source>
+		</trans-unit>
 		<trans-unit id="flexform.allFaqsPageLink">
 			<source>All faqs page link</source>
 		</trans-unit>
@@ -161,6 +164,9 @@
 		</trans-unit>
 		<trans-unit id="plugin.FaqSingleCategory">
 			<source>FAQ Single Category Selection</source>
+		</trans-unit>
+		<trans-unit id="plugin.FaqSingleCategory.errors.noCategorySelected">
+			<source>Please select a category initially.</source>
 		</trans-unit>
 		</body>
 	</file>

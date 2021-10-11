@@ -159,18 +159,23 @@ class FaqController extends AbstractController
      */
     public function singleCategoryAction(): ResponseInterface
     {
-        // TODO: Check if parent category is selected. Is this valid? Or only direct parent of questions
-        // are available to select?
+        $errors = [];
+        $category = null;
+        $questions = [];
         $categoryUid = $this->settings['initialCategory'];
-        $category = $this->questionCategoryRepository->findByUid($categoryUid);
 
-        $questions = $this->questionRepository->findByCategory($category);
+        if("" === $categoryUid) {
+            $errors[] = 'plugin.FaqSingleCategory.errors.noCategorySelected';
+        } else {
+            $category = $this->questionCategoryRepository->findByUid($categoryUid);
+            $questions = $this->questionRepository->findByCategory($category);
+        }
 
         $this->view->assignMultiple([
             'category' => $category,
             'questions' => $questions,
+            'errors' => $errors,
         ]);
-
 
         return $this->htmlResponse();
     }

@@ -2,8 +2,6 @@
 
 <f:section name="content">
 
-	<f:debug>{_all}</f:debug>
-
 	<f:if condition="{questions}">
 		<f:then>
 			<div class="row">
@@ -56,8 +54,11 @@
 		</f:then>
 		<f:else>
 			<f:translate key="no_questions_found">
-				<p>Es konnten keine FAQ gefunden werden.</p>
+				<p>No questions found.</p>
 			</f:translate>
+			<f:for each="{errors}" as="error">
+				<f:translate key="{error}"></f:translate>
+			</f:for>
 		</f:else>
 	</f:if>
 </f:section>
