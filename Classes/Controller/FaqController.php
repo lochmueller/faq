@@ -22,8 +22,6 @@ use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
  */
 class FaqController extends AbstractController
 {
-    const TEASER_MODE_VOTING = 0;
-    const TEASER_MODE_CUSTOM = 1;
 
     /**
      * Question repository.
