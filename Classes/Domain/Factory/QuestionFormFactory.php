@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\Domain\Factory;
 
+use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationExtensionNotConfiguredException;
+use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationPathDoesNotExistException;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Request;
@@ -14,10 +16,24 @@ use TYPO3\CMS\Form\Domain\Model\FormDefinition;
 
 class QuestionFormFactory extends AbstractFormFactory
 {
+
+    /**
+     * @var Request
+     */
     protected $request;
 
+    /**
+     * @var mixed
+     */
     protected $extensionConfiguration;
 
+    /**
+     * QuestionFormFactory constructor.
+     * @param Request $request
+     * @param ExtensionConfiguration $extensionConfiguration
+     * @throws ExtensionConfigurationExtensionNotConfiguredException
+     * @throws ExtensionConfigurationPathDoesNotExistException
+     */
     public function __construct(Request $request, ExtensionConfiguration $extensionConfiguration)
     {
         $this->request = $request;
@@ -51,8 +67,23 @@ class QuestionFormFactory extends AbstractFormFactory
         $email->setProperty('elementDescription', $this->extensionConfiguration['emailDescription']);
         $email->setProperty('fluidAdditionalAttributes', ['required' => 'required', 'placeholder' => $this->extensionConfiguration['emailPlaceholder']]);
 
-        $form->createFinisher('EmailToSender', []);
-        $form->createFinisher('EmailToReceiver', []);
+        $form->createFinisher('EmailToSender', [
+            'subject' => 'Quesition',
+            'recipients' => [
+                $this->extensionConfiguration['fallbackFormReceivingEmail'] =>  $this->extensionConfiguration['fallbackFormReceivingName'],
+            ],
+            'senderAddress' => $this->extensionConfiguration['defaultFormSenderEmail'],
+            'senderName' => $this->extensionConfiguration['defaultFormSenderName'],
+        ]);
+
+        $form->createFinisher('EmailToReceiver', [
+            'subject' => 'Question',
+            'recipients' => [
+                '{email}' => '{email}',
+            ],
+            'senderAddress' => $this->extensionConfiguration['defaultFormSenderEmail'],
+            'senderName' => $this->extensionConfiguration['defaultFormSenderName'],
+        ]);
 
         $this->triggerFormBuildingFinished($form);
 

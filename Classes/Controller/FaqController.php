@@ -11,7 +11,6 @@ use HDNET\Autoloader\Annotation\Plugin;
 use HDNET\Faq\Domain\Model\QuestionCategory;
 use HDNET\Faq\Domain\Repository\QuestionCategoryRepository;
 use HDNET\Faq\Domain\Repository\QuestionRepository;
-use HDNET\Faq\Service\FormService;
 use HDNET\Faq\Service\SchemaService;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
@@ -49,13 +48,11 @@ class FaqController extends AbstractController
     public function __construct(
         QuestionRepository $questionRepository,
         QuestionCategoryRepository $questionCategoryRepository,
-        FormService $formValidationService,
         SchemaService $schemaService
     )
     {
         $this->questionRepository = $questionRepository;
         $this->questionCategoryRepository = $questionCategoryRepository;
-        $this->formValidationService = $formValidationService;
         $this->schemaService = $schemaService;
 
         $this->addSchemaHeader = $this->settings['faq']['addSchmemaOrgHeader'] ?? true;
