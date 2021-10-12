@@ -45,22 +45,6 @@ class Question extends AbstractModel
     protected $tags = '';
 
     /**
-     * Top Counter.
-     *
-     * @var int
-     * @DatabaseField(type="int")
-     */
-    protected $topCounter = 0;
-
-    /**
-     * Flop Counter.
-     *
-     * @var int
-     * @DatabaseField(type="int")
-     */
-    protected $flopCounter = 0;
-
-    /**
      * @var int
      */
     protected $_languageUid = 0;
