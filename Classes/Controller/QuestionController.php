@@ -11,7 +11,6 @@ use TYPO3\CMS\Extbase\Http\ForwardResponse;
 
 class QuestionController extends AbstractController
 {
-
     /**
      * @Plugin("Question")
      */

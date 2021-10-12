@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 /**
  * FAQ.
  */
@@ -49,8 +49,7 @@ class FaqController extends AbstractController
         QuestionRepository $questionRepository,
         QuestionCategoryRepository $questionCategoryRepository,
         SchemaService $schemaService
-    )
-    {
+    ) {
         $this->questionRepository = $questionRepository;
         $this->questionCategoryRepository = $questionCategoryRepository;
         $this->schemaService = $schemaService;

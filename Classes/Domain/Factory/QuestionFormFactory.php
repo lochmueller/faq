@@ -16,7 +16,6 @@ use TYPO3\CMS\Form\Domain\Model\FormDefinition;
 
 class QuestionFormFactory extends AbstractFormFactory
 {
-
     /**
      * @var Request
      */
@@ -29,8 +28,7 @@ class QuestionFormFactory extends AbstractFormFactory
 
     /**
      * QuestionFormFactory constructor.
-     * @param Request $request
-     * @param ExtensionConfiguration $extensionConfiguration
+     *
      * @throws ExtensionConfigurationExtensionNotConfiguredException
      * @throws ExtensionConfigurationPathDoesNotExistException
      */
@@ -70,7 +68,7 @@ class QuestionFormFactory extends AbstractFormFactory
         $form->createFinisher('EmailToSender', [
             'subject' => 'Quesition',
             'recipients' => [
-                $this->extensionConfiguration['fallbackFormReceivingEmail'] =>  $this->extensionConfiguration['fallbackFormReceivingName'],
+                $this->extensionConfiguration['fallbackFormReceivingEmail'] => $this->extensionConfiguration['fallbackFormReceivingName'],
             ],
             'senderAddress' => $this->extensionConfiguration['defaultFormSenderEmail'],
             'senderName' => $this->extensionConfiguration['defaultFormSenderName'],
