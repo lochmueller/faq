@@ -1,0 +1,50 @@
+<div>
+	<nav>
+		<ul class="pagination">
+			<f:if condition="{pagination.previousPageNumber} && {pagination.previousPageNumber} >= {pagination.firstPageNumber}">
+				<f:then>
+					<li class="page-item">
+						<a class="page-link" href="{f:uri.action(action:index, arguments:{currentPage: 1})}" title="firstPage">First Page</a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="{f:uri.action(action:index, arguments:{currentPage: pagination.previousPageNumber})}" title="previousPage"><</a>
+					</li>
+				</f:then>
+				<f:else>
+					<li class="page-item disabled">
+						<a class="page-link" href="#">firstPage</a>
+					</li>
+					<li class="page-item disabled">
+						<a class="page-link" href="#"><</a>
+					</li>
+				</f:else>
+			</f:if>
+
+			<f:for each="{pages}" as="page">
+				<li class="page-item {f:if(condition: '{page} == {paginator.currentPageNumber}', then: 'active')}">
+					<a class="page-link" href="{f:uri.action(action:indexAction, arguments:{currentPage: page})}" title="page">{page}</a>
+				</li>
+			</f:for>
+
+			<f:if condition="{pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber}">
+				<f:then>
+					<li class="page-item">
+						<a class="page-link" href="{f:uri.action(action:index, arguments:{currentPage: pagination.nextPageNumber})}" title="nextPage">></a>
+					</li>
+					<li class="page-item">
+						<a class="page-link" href="{f:uri.action(action:index, arguments:{currentPage: pagination.lastPageNumber})}" title="lastPage">lastPage</a>
+					</li>
+				</f:then>
+				<f:else>
+					<li class="page-item disabled">
+						<a class="page-link" href="#">></a>
+					</li>
+					<li class="page-item disabled">
+						<a class="page-link" href="#">lastPage</a>
+					</li>
+				</f:else>
+			</f:if>
+		</ul>
+	</nav>
+
+</div>

@@ -1,0 +1,24 @@
+{namespace hf=HDNET\Faq\ViewHelpers}
+
+<li>
+	Title: {element.category.title} <br>
+	<f:if condition="{element.questions}">
+		<f:then>
+			Questions:
+			<f:for each="{element.questions}" as="question">
+				<f:render partial="Faq/Answer"
+									arguments="{question: question, suffix: '-all', settings: settings}"/>
+			</f:for>
+		</f:then>
+	</f:if>
+	<f:if condition="{element.childElements}">
+		<f:then>
+			<ul>
+				<f:for each="{element.childElements}" as="childElement">
+					<f:render partial="Faq/CategoryRek"
+										arguments="{element: childElement, settings: settings}"/>
+				</f:for>
+			</ul>
+		</f:then>
+	</f:if>
+</li>

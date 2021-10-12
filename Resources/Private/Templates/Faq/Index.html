@@ -1,69 +1,62 @@
 <f:layout name="Default"/>
 
 <f:section name="content">
-
-	<f:if condition="{settings.hideSearch}">
+	<f:render partial="Faq/Categories" arguments="{categories: categories}"/>
+	<f:if condition="{questions}">
+		<f:then>
+			<div class="row">
+				<f:for each="{subCategories}" as="subCategory" iteration="categoryIterator">
+					<div class="col-2">
+						<f:if condition="{subCategory.category.description}">
+							<f:then>
+								<h3>
+									<f:format.html>{subCategory.category.description}</f:format.html>
+								</h3>
+							</f:then>
+							<f:else>
+								<h3>{subCategory.category.title}</h3>
+							</f:else>
+						</f:if>
+					</div>
+					<div class="col-10">
+						<div class="accordion" id="accordionExample">
+							<f:for each="{subCategory.questions}" as="question" iteration="questionIterator">
+								<f:if condition="{questionIterator.cycle} > {settings.faq.itemsPerPage}">
+									<f:then>
+										<f:render partial="Faq/Answer"
+															arguments="{question: question, suffix: '', questionIterator: questionIterator, settings: settings}"/>
+									</f:then>
+									<f:else>
+										<f:render partial="Faq/Answer"
+															arguments="{question: question, suffix: '', questionIterator: questionIterator, settings: settings}"/>
+									</f:else>
+								</f:if>
+							</f:for>
+						</div>
+						<f:if condition="{f:count(subject: subCategory.questions)} > {settings.faq.itemsPerPage}">
+							<f:then>
+								load more
+								</button>
+							</f:then>
+						</f:if>
+					</div>
+				</f:for>
+			</div>
+			<f:if condition="{paginator.numberOfPages} > 1">
+				<f:if condition="{settings.faq.enablePagination}">
+					<f:then>
+						<div class="col-12 mt-5">
+							<f:render partial="Paginator"
+												arguments="{pagination: pagination, pages: pages, paginator: paginator}"/>
+						</div>
+					</f:then>
+				</f:if>
+			</f:if>
+		</f:then>
 		<f:else>
-			<f:render partial="Faq/Form" arguments="{_all}"/>
+			<f:translate key="no_questions_found">
+				<p>No questions found.</p>
+			</f:translate>
 		</f:else>
 	</f:if>
-
-	<f:if condition="{showResults}">
-
-		<f:if condition="{settings.hideSearch}">
-			<f:else>
-				<h2>
-					<f:translate key="results">Suchergebnisse:</f:translate>
-				</h2>
-			</f:else>
-		</f:if>
-
-		<div class="box faq list results noPad clearfix">
-			<f:if condition="{questions}">
-				<f:then>
-					<f:widget.paginate objects="{questions}" as="quest"
-														 configuration="{itemsPerPage: '{settings.faq.limitPerPage}', insertAbove: 1 insertBelow: 1}">
-						<ul>
-							<f:for each="{quest}" as="question">
-								<f:render partial="Faq/Answer" arguments="{question: question, suffix: ''}"/>
-							</f:for>
-						</ul>
-					</f:widget.paginate>
-				</f:then>
-				<f:else>
-					<f:translate key="no_questions_found">
-						<p>Es konnten keine FAQ gefunden werden.<br/>Bitte versuchen Sie es erneut mit ein anderen Suchbegriff.</p>
-						<p><strong>Alternativ können Sie uns auch direkt eine Frage stellen.</strong></p>
-					</f:translate>
-				</f:else>
-			</f:if>
-		</div>
-	</f:if>
-
-	<f:if condition="{settings.faq.showNewest}">
-		<h2>
-			<f:translate key="recently"/>
-		</h2>
-		<div class="box faq list noPad clearfix">
-			<ul>
-				<f:for each="{newQuestions}" as="question">
-					<f:render partial="Faq/Answer" arguments="{question: question, suffix: '_new'}"/>
-				</f:for>
-			</ul>
-		</div>
-	</f:if>
-
-	<f:if condition="{settings.faq.showTop}">
-		<h2>
-			<f:translate key="top">Top Fragen</f:translate>
-		</h2>
-		<div class="box faq list noPad clearfix">
-			<ul>
-				<f:for each="{topQuestions}" as="question">
-					<f:render partial="Faq/Answer" arguments="{question: question, suffix: '_top'}"/>
-				</f:for>
-			</ul>
-		</div>
-	</f:if>
-
 </f:section>

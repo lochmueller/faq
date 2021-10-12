@@ -32,7 +32,7 @@ class Question extends AbstractModel
      *
      * @var string
      * @DatabaseField(type="string")
-     * @EnableRichText()
+     * @EnableRichText
      */
     protected $answer = '';
 
@@ -43,22 +43,6 @@ class Question extends AbstractModel
      * @DatabaseField(type="string")
      */
     protected $tags = '';
-
-    /**
-     * Top Counter.
-     *
-     * @var int
-     * @DatabaseField(type="int")
-     */
-    protected $topCounter = 0;
-
-    /**
-     * Flop Counter.
-     *
-     * @var int
-     * @DatabaseField(type="int")
-     */
-    protected $flopCounter = 0;
 
     /**
      * @var int
@@ -72,7 +56,7 @@ class Question extends AbstractModel
      * @DatabaseField(type="int", sql="int(11) DEFAULT '0' NOT NULL")
      */
     protected $categories;
-    
+
     /**
      * @var \DateTime
      */
@@ -192,7 +176,7 @@ class Question extends AbstractModel
     {
         return $this->_languageUid;
     }
-    
+
     public function getCrdate(): \DateTime
     {
         return $this->crdate;

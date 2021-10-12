@@ -7,25 +7,21 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\Controller;
 
-use HDNET\Faq\Domain\Model\Question;
-use HDNET\Faq\Domain\Model\Request\Faq;
-use HDNET\Faq\Domain\Model\Request\QuestionRequest;
+use HDNET\Autoloader\Annotation\Plugin;
+use HDNET\Faq\Domain\Model\QuestionCategory;
 use HDNET\Faq\Domain\Repository\QuestionCategoryRepository;
 use HDNET\Faq\Domain\Repository\QuestionRepository;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
-use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
-use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
+use HDNET\Faq\Service\FormService;
+use HDNET\Faq\Service\SchemaService;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Pagination\SimplePagination;
+use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 
 /**
  * FAQ.
  */
 class FaqController extends AbstractController
 {
-    const TEASER_MODE_VOTING = 0;
-
-    const TEASER_MODE_CUSTOM = 1;
-
     /**
      * Question repository.
      *
@@ -40,216 +36,153 @@ class FaqController extends AbstractController
      */
     protected $questionCategoryRepository;
 
-    public function __construct(QuestionRepository $questionRepository, QuestionCategoryRepository $questionCategoryRepository)
-    {
+    /**
+     * @var SchemaService
+     */
+    protected $schemaService;
+
+    /**
+     * @var bool
+     */
+    protected $addSchemaHeader = false;
+
+    public function __construct(
+        QuestionRepository $questionRepository,
+        QuestionCategoryRepository $questionCategoryRepository,
+        FormService $formValidationService,
+        SchemaService $schemaService
+    ) {
         $this->questionRepository = $questionRepository;
         $this->questionCategoryRepository = $questionCategoryRepository;
+        $this->formValidationService = $formValidationService;
+        $this->schemaService = $schemaService;
+
+        $this->addSchemaHeader = $this->settings['faq']['addSchmemaOrgHeader'] ?? true;
     }
 
     /**
-     * Index action.
-     *
-     * @throws InvalidQueryException
+     * @Plugin("Faq")
      */
-    public function indexAction(Faq $faq = null, bool $showAll = false): void
+    public function indexAction(QuestionCategory $category = null): ResponseInterface
     {
-        $topCategory = (int)$this->settings['faq']['topCategory'];
-
-        if (true === (bool)$this->settings['overrideShowAll']) {
-            $showAll = true;
+        $categoryUid = $category ? (int)$category->getUid() : (int)$this->settings['initialCategory'];
+        $categoryChildren = $this->questionCategoryRepository->findByParent($categoryUid);
+        $questionsPerSubCategory = [];
+        $allQuestions = [];
+        $questions = null;
+        if (!empty($categoryChildren->toArray())) {
+            $allQuestions = $this->questionRepository->findByCategories($categoryChildren);
         }
-        if (0 !== (int)$this->settings['overrideTopCategory']) {
-            $topCategory = (int)$this->settings['overrideTopCategory'];
+
+        foreach ($categoryChildren as $subCategory) {
+            $questions = $this->questionRepository->findByCategories([$subCategory]);
+            if (0 !== $questions->count()) {
+                $questionsPerSubCategory[] = [
+                    'category' => $subCategory,
+                    'questions' => $questions,
+                ];
+            }
         }
 
-        if (\is_object($faq)) {
-            $questions = $this->questionRepository->findByFaq($faq, $topCategory);
-            $showResults = true;
-        } elseif ($showAll) {
-            $showResults = true;
-            $questions = $this->questionRepository->findAll($topCategory);
+        if ($this->addSchemaHeader) {
+            $this->schemaService->addSchemaOrgHeader($allQuestions);
+        }
+
+        if ($this->request->getQueryParams()['tx_faq_faq']['currentPage']) {
+            $currentPage = (int)($this->request->getQueryParams()['tx_faq_faq']['currentPage']);
         } else {
-            $questions = [];
-            $showResults = false;
+            $currentPage = 1;
         }
 
-        if (self::TEASER_MODE_VOTING === (int)$this->settings['topMode']) {
-            $topQuestions = $this->questionRepository->findTop(
-                (int)$this->settings['faq']['limitTop'],
-                $topCategory,
-                GeneralUtility::intExplode(',', $this->settings['faq']['topQuestions'], true)
-            );
-        } else {
-            $topQuestions = $this->questionRepository->findByUidsSorted(GeneralUtility::intExplode(
-                ',',
-                $this->settings['custom'],
-                true
-            ));
+        $paginator = null;
+        $pagination = null;
+        if ($questions) {
+            $paginator = new QueryResultPaginator($questions, $currentPage, (int)$this->settings['faq']['itemsPerPage']);
+            $pagination = new SimplePagination($paginator);
         }
-
-        if (null === $faq) {
-            $faq = $this->objectManager->get(Faq::class);
-        }
-        
-        $this->addSchemaOrgHeader($questions);
 
         $this->view->assignMultiple([
-            'showResults' => $showResults,
-            'faq' => $faq,
-            'questions' => $questions,
-            'newQuestions' => $this->questionRepository->findNewest(
-                (int)$this->settings['faq']['limitNewest'],
-                $topCategory
-            ),
-            'topQuestions' => $topQuestions,
-            'categories' => $this->questionCategoryRepository->findByParent(
-                $topCategory,
-                (bool)$this->settings['faq']['categorySort'] ?: false
-            ),
+            'questions' => $allQuestions,
+            'subCategories' => $questionsPerSubCategory,
+            'paginator' => $paginator,
+            'pagination' => $pagination,
+            'pages' => $pagination ? \range(1, $pagination->getLastPageNumber()) : [],
+            'categories' => $this->questionCategoryRepository->findByParent(0),
         ]);
+
+        return $this->htmlResponse();
     }
 
     /**
-     * Render the teaser action.
+     * @Plugin("FaqAll")
      */
-    public function teaserAction(): void
+    public function allAction(): ResponseInterface
     {
-        $topQuestions = GeneralUtility::intExplode(',', $this->settings['faq']['topQuestions'], true);
-        $teaserCategories = GeneralUtility::intExplode(',', $this->settings['faq']['teaserCategories'], true);
-        $teaserLimit = (int)$this->settings['faq']['teaserLimit'];
-        $questions = $this->questionRepository->findByTeaserConfiguration(
-            $topQuestions,
-            $teaserCategories,
-            $teaserLimit
-        );
-        $this->addSchemaOrgHeader($questions);
-        $this->view->assign('questions', $questions);
+        $parentCategories = $this->questionCategoryRepository->findAllParentCategories();
+        $questionsPerCategory = [];
+
+        /** @var QuestionCategory $parentCategory */
+        foreach ($parentCategories as $parentCategory) {
+            $questionsPerCategory[] = $this->getQuestionRek($parentCategory);
+        }
+
+        if ($this->addSchemaHeader) {
+            $allQuestions = $this->questionRepository->findAll();
+            $this->schemaService->addSchemaOrgHeader($allQuestions);
+        }
+
+        $this->view->assignMultiple([
+            'questionsPerCategory' => $questionsPerCategory,
+            'categories' => $this->questionCategoryRepository->findByParent(0),
+        ]);
+
+        return $this->htmlResponse();
     }
 
     /**
-     * Render the detail action.
+     * @Plugin("FaqSingleCategory")
      */
-    public function detailAction(Question $question): void
+    public function singleCategoryAction(): ResponseInterface
     {
-        $this->addSchemaOrgHeader([$question]);
-        $this->view->assign('question', $question);
+        $errors = [];
+        $category = null;
+        $questions = [];
+        $categoryUid = $this->settings['initialCategory'];
+
+        if ('' === $categoryUid) {
+            $errors[] = 'plugin.FaqSingleCategory.errors.noCategorySelected';
+        } else {
+            $category = $this->questionCategoryRepository->findByUid($categoryUid);
+            $questions = $this->questionRepository->findByCategory($category);
+        }
+
+        $this->view->assignMultiple([
+            'category' => $category,
+            'questions' => $questions,
+            'errors' => $errors,
+        ]);
+
+        return $this->htmlResponse();
     }
 
     /**
-     * Enter form.
-     *
-     * @IgnoreValidation(argumentName="question")
+     * @param QuestionCategory $category
      */
-    public function formAction(QuestionRequest $question = null): void
+    private function getQuestionRek($category)
     {
-        if (null === $question) {
-            $question = new QuestionRequest();
+        $childCategories = $this->questionCategoryRepository->findByParent($category->getUid())->toArray();
+        $element = [
+            'category' => $category,
+            'questions' => $this->questionRepository->findByCategory($category)->toArray(),
+        ];
+        if ($childCategories) {
+            $childElements = [];
+            foreach ($childCategories as $childCategory) {
+                $childElements[] = $this->getQuestionRek($childCategory);
+            }
+            $element['childElements'] = $childElements;
         }
 
-        $this->view->assign('question', $question);
-    }
-
-    /**
-     * Send action.
-     *
-     * @throws StopActionException
-     */
-    public function sendAction(QuestionRequest $question, string $captcha = null): void
-    {
-        // @todo integrate captcha based on $this->settings['enableCaptcha']
-        // * @validate $captcha \SJBR\SrFreecap\Validation\Validator\CaptchaValidator && Not Empty
-        $this->disableIndexing();
-
-        $targetEmailAddress = $this->getTargetEmailAddress();
-        if (GeneralUtility::validEmail($targetEmailAddress)) {
-            $this->view->assign('to', [$targetEmailAddress => $targetEmailAddress]);
-            $this->view->assign('subject', 'Neue Frage eingestellt');
-            $this->view->assign('question', $question);
-            $this->view->assign('captcha', $captcha);
-            $this->view->render();
-        }
-        $this->forward('user');
-    }
-
-    /**
-     * user action.
-     *
-     * @throws StopActionException
-     */
-    public function userAction(QuestionRequest $question): void
-    {
-        if (GeneralUtility::validEmail($question->getEmail())) {
-            $this->view->assignMultiple([
-                'subject' => 'FAQ eingereicht',
-                'to' => [$question->getEmail() => $question->getEmail()],
-                'question' => $question,
-            ]);
-            $this->view->render();
-        }
-        $this->forward('thanks');
-    }
-
-    /**
-     * Send action.
-     */
-    public function thanksAction(QuestionRequest $question): void
-    {
-        $this->disableIndexing();
-        $this->view->assign('question', $question);
-    }
-
-    /**
-     * Get the target Email address.
-     *
-     * @throws \Exception
-     */
-    protected function getTargetEmailAddress(): string
-    {
-        if (isset($this->settings['faq']['targetEmail']) && GeneralUtility::validEmail(\trim((string)$this->settings['faq']['targetEmail']))) {
-            return \trim((string)$this->settings['faq']['targetEmail']);
-        }
-        throw new \Exception('No target e-mail address found', 123718231823);
-    }
-
-    protected function addSchemaOrgHeader(iterable $questions): void
-    {
-        if (!$this->settings['faq']['addSchmemaOrgHeader']) {
-            return;
-        }
-        
-        $additionalHeaderData = '
-        <script type="application/ld+json">
-        {
-            "@context": "http://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [';
-        foreach ($questions as $question) {
-            $additionalHeaderData .= \str_replace([
-                'QUESTION_TEXT',
-                'CREATED',
-                'ANSWER_TEXT',
-            ],
-                [
-                    $question->getTitle(),
-                    $question->getCrdate()->format('Y-m-d H:i:s'),
-                    $question->getAnswer(),
-                ],
-                '{
-                "@type": "Question",
-                "name": "QUESTION_TEXT",
-                "dateCreated": "CREATED",
-                "acceptedAnswer": {
-                    "@type": "answer",
-                    "text": "ANSWER_TEXT",
-                    "dateCreated": "CREATED"
-                }
-            },');
-        }
-        $additionalHeaderData = \substr($additionalHeaderData, 0, -1);
-        $additionalHeaderData .= '
-            ]
-        }
-        </script>';
-        $this->response->addAdditionalHeaderData($additionalHeaderData);
+        return $element;
     }
 }

@@ -1,0 +1,12 @@
+<f:layout name="Default"/>
+
+<f:section name="content">
+
+	<ul>
+		<f:for each="{questionsPerCategory}" as="element">
+			<f:render partial="Faq/CategoryRek"
+								arguments="{element: element, settings: settings}"/>
+		</f:for>
+	</ul>
+
+</f:section>

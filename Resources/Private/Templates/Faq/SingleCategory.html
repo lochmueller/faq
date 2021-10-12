@@ -1,0 +1,64 @@
+<f:layout name="Default"/>
+
+<f:section name="content">
+
+	<f:if condition="{questions}">
+		<f:then>
+			<div class="row">
+					<div class="col-2">
+						<f:if condition="{settings.faq.overrideCategoryDescription}">
+							<f:then>
+								<f:format.html>{settings.faq.overrideCategoryDescription}</f:format.html>
+							</f:then>
+							<f:else>
+								<f:if condition="{category.description}">
+									<f:then>
+										<h3>
+											<f:format.html>{category.description}</f:format.html>
+										</h3>
+									</f:then>
+									<f:else>
+										<h3>{category.title}</h3>
+									</f:else>
+								</f:if>
+							</f:else>
+						</f:if>
+					</div>
+					<div class="col-10">
+						<div class="accordion" id="accordionExample">
+							<f:for each="{questions}" as="question" iteration="questionIterator">
+								<f:if condition="{questionIterator.cycle} <= {settings.faq.itemsPerPage}">
+									<f:then>
+										<f:render partial="Faq/Answer"
+															arguments="{question: question, suffix: '', questionIterator: questionIterator, settings: settings}"/>
+									</f:then>
+								</f:if>
+							</f:for>
+						</div>
+						<f:if condition="{settings.faq.allFaqsPageLink}">
+							<f:then>
+								<f:link.typolink parameter="{settings.faq.allFaqsPageLink}">
+									<f:if condition="{settings.faq.allFaqsPageLinkText}">
+										<f:then>
+											{settings.faq.allFaqsPageLinkText}
+										</f:then>
+										<f:else>
+											All FAQs
+										</f:else>
+									</f:if>
+								</f:link.typolink>
+							</f:then>
+						</f:if>
+					</div>
+			</div>
+		</f:then>
+		<f:else>
+			<f:translate key="no_questions_found">
+				<p>No questions found.</p>
+			</f:translate>
+			<f:for each="{errors}" as="error">
+				<f:translate key="{error}"></f:translate>
+			</f:for>
+		</f:else>
+	</f:if>
+</f:section>

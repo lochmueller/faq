@@ -24,6 +24,7 @@ class ExtensionUtility
             'FlexForms',
             'StaticTyposcript',
             'ExtensionId',
+            'Plugins',
         ];
     }
 }

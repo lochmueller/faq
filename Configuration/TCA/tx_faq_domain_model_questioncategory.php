@@ -9,6 +9,11 @@ $base = ModelUtility::getTcaInformation(QuestionCategory::class);
 
 $custom = [
     'columns' => [
+        'answer' => [
+            'config' => [
+                'type' => 'text',
+            ],
+        ],
         'parent' => [
             'config' => [
                 'type' => 'select',

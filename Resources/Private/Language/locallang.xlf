@@ -6,36 +6,6 @@
 			<generator>LFEditor</generator>
 		</header>
 		<body>
-		<trans-unit id="answer.helpful">
-			<source>helpful</source>
-		</trans-unit>
-		<trans-unit id="answer.not_helpful">
-			<source>not helpful</source>
-		</trans-unit>
-		<trans-unit id="detail.back">
-			<source>back</source>
-		</trans-unit>
-		<trans-unit id="eid.error.multivote">
-			<source>Sie haben für diese Frage bereits abgestimmt!</source>
-		</trans-unit>
-		<trans-unit id="eid.error.question">
-			<source>Keine gültige Frage ausgewählt!</source>
-		</trans-unit>
-		<trans-unit id="eid.ok">
-			<source>Vielen Dank für Ihre Wertung.</source>
-		</trans-unit>
-		<trans-unit id="error.captcha.1221560718">
-			<source>The field must not be empty.</source>
-		</trans-unit>
-		<trans-unit id="error.captcha.9221561048">
-			<source>Entered word does not match the image</source>
-		</trans-unit>
-		<trans-unit id="error.question.email.1221560718">
-			<source>The field must not be empty.</source>
-		</trans-unit>
-		<trans-unit id="error.question.question.1221560718">
-			<source>The field must not be empty.</source>
-		</trans-unit>
 		<trans-unit id="flexform.faqEnter.targetEmail">
 			<source>Empfänger Email-Adresse</source>
 		</trans-unit>
@@ -45,33 +15,72 @@
 		<trans-unit id="flexform.topMode">
 			<source>Top-Fragen Modus</source>
 		</trans-unit>
-		<trans-unit id="flexform.topMode.custom">
-			<source>Auswahl</source>
-		</trans-unit>
 		<trans-unit id="flexform.topMode.title">
 			<source>Configuration</source>
 		</trans-unit>
-		<trans-unit id="flexform.topMode.votings">
-			<source>Votings</source>
+		<trans-unit id="flexform.itemsPerPage">
+			<source>Items per subcategory</source>
 		</trans-unit>
-		<trans-unit id="flexform.showNewest">
-			<source>Show latest questions</source>
+		<trans-unit id="flexform.itemsPerPage.description">
+            <source>List: Show items per page</source>
+        </trans-unit>
+		<trans-unit id="flexform.faqSingleCategory.itemsPerPage">
+			<source>Number of items</source>
 		</trans-unit>
-		<trans-unit id="flexform.limitPerPage">
-			<source>List: Show items per page</source>
+		<trans-unit id="flexform.faqSingleCategory.itemsPerPage.description">
+			<source>Number of items to show in a list.</source>
 		</trans-unit>
-		<trans-unit id="flexform.showTop">
-			<source>Show top questions</source>
+		<trans-unit id="flexform.faqSingleCategory.Category">
+			<source>Selected category</source>
+		</trans-unit>
+		<trans-unit id="flexform.faqSingleCategory.Category.description">
+			<source>You can only select categories of at least the second level.</source>
+		</trans-unit>
+		<trans-unit id="flexform.faqSingleCategory.Category.pleaseSelect">
+			<source>Please Select...</source>
+		</trans-unit>
+		<trans-unit id="flexform.allFaqsPageLink">
+			<source>All faqs page link</source>
+		</trans-unit>
+		<trans-unit id="flexform.allFaqsPageLink.description">
+			<source>The page where all faqs are displayed.</source>
+		</trans-unit>
+		<trans-unit id="flexform.allFaqsPageLinkText">
+			<source>All faqs page link text</source>
+		</trans-unit>
+		<trans-unit id="flexform.allFaqsPageLinkText.description">
+			<source>The Text of the page link where all faqs are displayed.</source>
+		</trans-unit>
+		<trans-unit id="flexform.overrideCategoryDescription">
+			<source>Overwrite category description text</source>
+		</trans-unit>
+		<trans-unit id="flexform.overrideCategoryDescription.description">
+			<source>Overwrites the category description text. If this field is empty the description or title of the selected category will be displayed.</source>
 		</trans-unit>
 		<trans-unit id="flexform.addSchemaOrgHeader">
-			<source>Add the schema.org header?</source>
+			<source>Enable schema.org Header</source>
 		</trans-unit>
-		<trans-unit id="form.captcha">
-			<source>Type the characters*</source>
-		</trans-unit>
-		<trans-unit id="form.captcha.popup">
-			<source>This field is for spam protection.</source>
-		</trans-unit>
+		<trans-unit id="flexform.addSchemaOrgHeader.description">
+            <source>For details see https://schema.org/FAQPage"</source>
+        </trans-unit>
+		<trans-unit id="flexform.enablePagination">
+            <source>Enable Pagination</source>
+        </trans-unit>
+        <trans-unit id="flexform.enablePagination.description">
+            <source>Enable Pagination</source>
+        </trans-unit>
+        <trans-unit id="flexform.initialCategory">
+            <source>Initial selected category</source>
+        </trans-unit>
+        <trans-unit id="flexform.initialCategory.description">
+            <source>You can only select categories of first level</source>
+        </trans-unit>
+		<trans-unit id="flexform.enableAnswerPreview">
+            <source>Enable answer preview</source>
+        </trans-unit>
+		<trans-unit id="flexform.enableAnswerPreview.description">
+            <source>Enable answer preview to show first x character without opening the question.</source>
+        </trans-unit>
 		<trans-unit id="form.email">
 			<source>Email (for the answer)</source>
 		</trans-unit>
@@ -87,44 +96,8 @@
 		<trans-unit id="no_questions_found">
 			<source>No questions found.</source>
 		</trans-unit>
-		<trans-unit id="recently">
-			<source>Recently asked questions</source>
-		</trans-unit>
-		<trans-unit id="results">
-			<source>Results:</source>
-		</trans-unit>
-		<trans-unit id="search.all">
-			<source>show all questions</source>
-		</trans-unit>
-		<trans-unit id="search.category.default">
-			<source>Please select</source>
-		</trans-unit>
-		<trans-unit id="search.text">
-			<source>What are you looking for?</source>
-		</trans-unit>
-		<trans-unit id="search.topic">
-			<source>Select a topic</source>
-		</trans-unit>
-		<trans-unit id="search">
-			<source>Search</source>
-		</trans-unit>
 		<trans-unit id="sysfolder">
 			<source>FAQ</source>
-		</trans-unit>
-		<trans-unit id="teaser.all">
-			<source>+ all questions</source>
-		</trans-unit>
-		<trans-unit id="teaser.faq">
-			<source>Frequently Asked Questions</source>
-		</trans-unit>
-		<trans-unit id="thanks.headline">
-			<source>Thank you!</source>
-		</trans-unit>
-		<trans-unit id="thanks.text">
-			<source>We will get back to you.</source>
-		</trans-unit>
-		<trans-unit id="top">
-			<source>Most asked questions</source>
 		</trans-unit>
 		<trans-unit id="tt_content.hdnet_faq.header">
 			<source>hdnet_faq (Header)</source>
@@ -159,6 +132,9 @@
 		<trans-unit id="tx_faq_domain_model_questioncategory.title">
 			<source>Titel</source>
 		</trans-unit>
+			<trans-unit id="tx_faq_domain_model_questioncategory.description">
+			<source>Description</source>
+		</trans-unit>
 		<trans-unit id="tx_faq_mm_question_questioncategory.ident">
 			<source>ident</source>
 		</trans-unit>
@@ -176,6 +152,21 @@
 		</trans-unit>
 		<trans-unit id="tx_faq_mm_question_questioncategory.uid_local">
 			<source>uid_local</source>
+		</trans-unit>
+		<trans-unit id="plugin.Faq">
+			<source>FAQ</source>
+		</trans-unit>
+		<trans-unit id="plugin.FaqAll">
+			<source>FAQ All Categories</source>
+		</trans-unit>
+		<trans-unit id="plugin.Question">
+			<source>FAQ Question Input</source>
+		</trans-unit>
+		<trans-unit id="plugin.FaqSingleCategory">
+			<source>FAQ Single Category Selection</source>
+		</trans-unit>
+		<trans-unit id="plugin.FaqSingleCategory.errors.noCategorySelected">
+			<source>Please select a category initially.</source>
 		</trans-unit>
 		</body>
 	</file>

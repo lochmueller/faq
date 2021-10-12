@@ -1,0 +1,7 @@
+<ul class="nav nav-pills">
+	<f:for each="{categories}" as="category">
+		<li class="nav-item">
+			<f:link.action class="nav-link" action="index" arguments="{category: category}">{category.title}</f:link.action>
+		</li>
+	</f:for>
+</ul>
