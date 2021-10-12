@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 /**
  * FAQ.
  */
@@ -51,7 +51,8 @@ class FaqController extends AbstractController
         QuestionCategoryRepository $questionCategoryRepository,
         FormService $formValidationService,
         SchemaService $schemaService
-    ) {
+    )
+    {
         $this->questionRepository = $questionRepository;
         $this->questionCategoryRepository = $questionCategoryRepository;
         $this->formValidationService = $formValidationService;
@@ -123,7 +124,7 @@ class FaqController extends AbstractController
 
         /** @var QuestionCategory $parentCategory */
         foreach ($parentCategories as $parentCategory) {
-            $questionsPerCategory[] = $this->getQuestionRek($parentCategory);
+            $questionsPerCategory[] = $this->getQuestionRec($parentCategory);
         }
 
         if ($this->addSchemaHeader) {
@@ -168,7 +169,7 @@ class FaqController extends AbstractController
     /**
      * @param QuestionCategory $category
      */
-    private function getQuestionRek($category)
+    private function getQuestionRec($category)
     {
         $childCategories = $this->questionCategoryRepository->findByParent($category->getUid())->toArray();
         $element = [
@@ -178,7 +179,7 @@ class FaqController extends AbstractController
         if ($childCategories) {
             $childElements = [];
             foreach ($childCategories as $childCategory) {
-                $childElements[] = $this->getQuestionRek($childCategory);
+                $childElements[] = $this->getQuestionRec($childCategory);
             }
             $element['childElements'] = $childElements;
         }
