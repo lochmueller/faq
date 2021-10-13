@@ -53,15 +53,8 @@ class QuestionCategoryRepository extends AbstractRepository
 
     public function findAllParentCategories()
     {
-        $categories = $this->findAll();
-        $parentCategories = [];
-        /** @var QuestionCategory $category */
-        foreach ($categories as $category) {
-            if (!$category->getParent()) {
-                $parentCategories[] = $category;
-            }
-        }
-
-        return $parentCategories;
+        $query = $this->createQuery();
+        $query->matching($query->equals('parent', ''));
+        return $query->execute();
     }
 }
