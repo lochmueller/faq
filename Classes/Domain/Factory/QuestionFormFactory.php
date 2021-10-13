@@ -83,6 +83,12 @@ class QuestionFormFactory extends AbstractFormFactory
             'senderName' => $this->extensionConfiguration['defaultFormSenderName'],
         ]);
 
+        $form->createFinisher('Confirmation', [
+            'templateRootPaths' => [
+                20 => 'EXT:faq/Resources/Private/Templates/Question/',
+            ],
+        ]);
+
         $this->triggerFormBuildingFinished($form);
 
         return $form;
