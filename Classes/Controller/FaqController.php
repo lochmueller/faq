@@ -11,7 +11,6 @@ use HDNET\Autoloader\Annotation\Plugin;
 use HDNET\Faq\Domain\Model\QuestionCategory;
 use HDNET\Faq\Domain\Repository\QuestionCategoryRepository;
 use HDNET\Faq\Domain\Repository\QuestionRepository;
-use HDNET\Faq\Service\FormService;
 use HDNET\Faq\Service\SchemaService;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
@@ -49,12 +48,10 @@ class FaqController extends AbstractController
     public function __construct(
         QuestionRepository $questionRepository,
         QuestionCategoryRepository $questionCategoryRepository,
-        FormService $formValidationService,
         SchemaService $schemaService
     ) {
         $this->questionRepository = $questionRepository;
         $this->questionCategoryRepository = $questionCategoryRepository;
-        $this->formValidationService = $formValidationService;
         $this->schemaService = $schemaService;
 
         $this->addSchemaHeader = $this->settings['faq']['addSchmemaOrgHeader'] ?? true;
@@ -123,7 +120,7 @@ class FaqController extends AbstractController
 
         /** @var QuestionCategory $parentCategory */
         foreach ($parentCategories as $parentCategory) {
-            $questionsPerCategory[] = $this->getQuestionRek($parentCategory);
+            $questionsPerCategory[] = $this->getQuestionRec($parentCategory);
         }
 
         if ($this->addSchemaHeader) {
@@ -168,7 +165,7 @@ class FaqController extends AbstractController
     /**
      * @param QuestionCategory $category
      */
-    private function getQuestionRek($category)
+    private function getQuestionRec($category)
     {
         $childCategories = $this->questionCategoryRepository->findByParent($category->getUid())->toArray();
         $element = [
@@ -178,7 +175,7 @@ class FaqController extends AbstractController
         if ($childCategories) {
             $childElements = [];
             foreach ($childCategories as $childCategory) {
-                $childElements[] = $this->getQuestionRek($childCategory);
+                $childElements[] = $this->getQuestionRec($childCategory);
             }
             $element['childElements'] = $childElements;
         }
