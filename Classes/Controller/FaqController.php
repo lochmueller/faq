@@ -62,7 +62,7 @@ class FaqController extends AbstractController
      */
     public function indexAction(QuestionCategory $category = null): ResponseInterface
     {
-        $categoryUid = $category ? (int)$category->getUid() : (int)$this->settings['initialCategory'];
+        $categoryUid = $category ? (int)$category->getUid() : (int)($this->settings['initialCategory'] ?? 0);
         $categoryChildren = $this->questionCategoryRepository->findByParent($categoryUid);
         $questionsPerSubCategory = [];
         $allQuestions = [];
@@ -85,7 +85,7 @@ class FaqController extends AbstractController
             $this->schemaService->addSchemaOrgHeader($allQuestions);
         }
 
-        if ($this->request->getQueryParams()['tx_faq_faq']['currentPage']) {
+        if ($this->request->getQueryParams()['tx_faq_faq']['currentPage'] ?? null) {
             $currentPage = (int)($this->request->getQueryParams()['tx_faq_faq']['currentPage']);
         } else {
             $currentPage = 1;
