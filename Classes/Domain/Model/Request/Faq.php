@@ -46,7 +46,7 @@ class Faq extends AbstractRequest
     /**
      * Get the category.
      */
-    public function getCategory(): QuestionCategory
+    public function getCategory(): ?QuestionCategory
     {
         return $this->category;
     }
