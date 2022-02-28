@@ -13,7 +13,7 @@ $EM_CONF[$_EXTKEY] = [
         'depends'   => [
             'php' => '7.2.0-7.4.99',
             'autoloader' => '7.0.0-7.99.99',
-            'typo3'      => '10.0.0-11.99.99',
+            'typo3'      => '11.5.0-11.99.99',
         ],
         'conflicts' => [],
         'suggests'  => [],
