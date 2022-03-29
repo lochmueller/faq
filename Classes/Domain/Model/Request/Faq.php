@@ -56,7 +56,7 @@ class Faq extends AbstractRequest
      */
     public function setSearchWord(string $searchWord): void
     {
-        $this->searchWord = \trim((string)$searchWord);
+        $this->searchWord = trim((string)$searchWord);
     }
 
     /**
@@ -64,7 +64,7 @@ class Faq extends AbstractRequest
      */
     public function getSearchWord(): string
     {
-        return \trim((string)$this->searchWord);
+        return trim((string)$this->searchWord);
     }
 
     public function getCategories(): array

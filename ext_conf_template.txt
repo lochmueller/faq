@@ -24,3 +24,6 @@ questionDescription = Please provide a useful question.
 
 # cat=question/disableFormFrontendValidation; type=boolean; label=Disable frontend (HTML) validation (Other Tamplates/Partials may override this setting)
 disableFormFrontendValidation = false
+
+# cat=basic/enable; type=boolean; label=Enable manually sorting : Allow the questions sort by the editor and use this as sorting. Please keep in mind, to run the DB compare after activating this setting.
+enableManuallySorting = 0

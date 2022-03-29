@@ -3,7 +3,7 @@
 declare(strict_types=1);
 require __DIR__ . '/.Build/vendor/autoload.php';
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setRiskyAllowed(true)
     ->setFinder(
         PhpCsFixer\Finder::create()
@@ -45,7 +45,6 @@ return PhpCsFixer\Config::create()
             'exclude' => [],
         ],
         'ordered_class_elements' => true,
-        'no_short_echo_tag' => true,
         'no_unreachable_default_argument_value' => true,
         'no_php4_constructor' => true,
         'simplified_null_return' => true,
@@ -58,14 +57,12 @@ return PhpCsFixer\Config::create()
         'ordered_imports' => true,
         'single_quote' => true,
         'no_empty_statement' => true,
-        'no_extra_consecutive_blank_lines' => true,
         'phpdoc_no_package' => true,
         'phpdoc_scalar' => true,
         'no_blank_lines_after_phpdoc' => true,
         'array_syntax' => ['syntax' => 'short'],
         'whitespace_after_comma_in_array' => true,
         'function_typehint_space' => true,
-        'hash_to_slash_comment' => true,
         'no_alias_functions' => true,
         'yoda_style' => true,
         'lowercase_cast' => true,
@@ -78,9 +75,7 @@ return PhpCsFixer\Config::create()
         'no_superfluous_elseif' => true,
         'no_useless_else' => true,
         'phpdoc_types' => true,
-        'silenced_deprecation_error' => true,
         'php_unit_internal_class' => true,
-        'php_unit_ordered_covers' => true,
         'php_unit_set_up_tear_down_visibility' => true,
         'php_unit_strict' => true,
         'php_unit_test_annotation' => true,

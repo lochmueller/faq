@@ -7,7 +7,6 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\Domain\Repository;
 
-use HDNET\Faq\Domain\Model\QuestionCategory;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
@@ -55,6 +54,7 @@ class QuestionCategoryRepository extends AbstractRepository
     {
         $query = $this->createQuery();
         $query->matching($query->equals('parent', ''));
+
         return $query->execute();
     }
 }

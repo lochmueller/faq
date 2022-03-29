@@ -1,14 +1,17 @@
 <?php
 
 declare(strict_types = 1);
+
 use HDNET\Autoloader\Utility\ArrayUtility;
 use HDNET\Autoloader\Utility\ModelUtility;
 use HDNET\Faq\Domain\Model\Question;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 $base = ModelUtility::getTcaInformation(Question::class);
 
-$configuration = (array)@\unserialize((string)$GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['faq']);
-$enableManuallySorting = isset($configuration['enableManuallySorting']) ? (bool)$configuration['enableManuallySorting'] : false;
+$extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('faq');
+$enableManuallySorting = $extensionConfiguration['enableManuallySorting'] ?? false;
 
 $custom = [
     'ctrl' => [

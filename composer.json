@@ -38,15 +38,18 @@
     "issues": "https://github.com/lochmueller/faq/issues"
   },
   "require-dev": {
-    "namelesscoder/typo3-repository-client": "^2.0",
     "typo3/testing-framework": "^6.2",
-    "friendsofphp/php-cs-fixer": "^2.12",
+    "friendsofphp/php-cs-fixer": "^3.8",
     "squizlabs/php_codesniffer": "^3.3",
     "phpmd/phpmd": "^2.6"
   },
   "config": {
     "vendor-dir": ".Build/vendor",
-    "bin-dir": ".Build/bin"
+    "bin-dir": ".Build/bin",
+    "allow-plugins": {
+      "typo3/cms-composer-installers": true,
+      "typo3/class-alias-loader": true
+    }
   },
   "extra": {
     "typo3/cms": {
@@ -60,7 +63,7 @@
   },
   "scripts": {
     "code": [
-      "php-cs-fixer fix --config .php_cs"
+      "php-cs-fixer fix --config .php-cs-fixer.php"
     ]
   }
 }

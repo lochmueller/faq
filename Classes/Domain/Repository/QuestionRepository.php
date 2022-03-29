@@ -7,6 +7,7 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\Domain\Repository;
 
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\ClassNamingUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
@@ -32,6 +33,14 @@ class QuestionRepository extends AbstractRepository
     {
         // Replace with parent constructor call in TYPO3 v12
         $this->objectType = ClassNamingUtility::translateRepositoryNameToModelName($this->getRepositoryClassName());
+
+        $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('faq');
+
+        if ($extensionConfiguration['enableManuallySorting'] ?? false) {
+            $this->defaultOrderings = [
+                'sorting' => QueryInterface::ORDER_ASCENDING,
+            ];
+        }
     }
 
     public function findByCategories($categories)
@@ -41,7 +50,7 @@ class QuestionRepository extends AbstractRepository
         $constraints = [];
         $categorySelection = [];
 
-        if (!\is_iterable($categories)) {
+        if (!is_iterable($categories)) {
             $categories = GeneralUtility::intExplode(',', $categories);
         }
 

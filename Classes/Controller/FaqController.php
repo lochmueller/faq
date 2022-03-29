@@ -103,7 +103,7 @@ class FaqController extends AbstractController
             'subCategories' => $questionsPerSubCategory,
             'paginator' => $paginator,
             'pagination' => $pagination,
-            'pages' => $pagination ? \range(1, $pagination->getLastPageNumber()) : [],
+            'pages' => $pagination ? range(1, $pagination->getLastPageNumber()) : [],
             'categories' => $this->questionCategoryRepository->findByParent(0),
         ]);
 

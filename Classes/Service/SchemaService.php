@@ -18,7 +18,7 @@ class SchemaService
             "@type": "FAQPage",
             "mainEntity": [';
         foreach ($questions as $question) {
-            $additionalHeaderData .= \str_replace([
+            $additionalHeaderData .= str_replace([
                 'QUESTION_TEXT',
                 'CREATED',
                 'ANSWER_TEXT',
@@ -26,7 +26,7 @@ class SchemaService
                 [
                     $question->getTitle(),
                     $question->getCrdate()->format('Y-m-d H:i:s'),
-                    \strip_tags($question->getAnswer()),
+                    strip_tags($question->getAnswer()),
                 ],
                 '{
                 "@type": "Question",
@@ -39,7 +39,7 @@ class SchemaService
                 }
             },');
         }
-        $additionalHeaderData = \mb_substr($additionalHeaderData, 0, -1);
+        $additionalHeaderData = mb_substr($additionalHeaderData, 0, -1);
         $additionalHeaderData .= '
             ]
         }
