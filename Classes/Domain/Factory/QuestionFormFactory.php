@@ -16,15 +16,9 @@ use TYPO3\CMS\Form\Domain\Model\FormDefinition;
 
 class QuestionFormFactory extends AbstractFormFactory
 {
-    /**
-     * @var Request
-     */
-    protected $request;
+    protected Request $request;
 
-    /**
-     * @var mixed
-     */
-    protected $extensionConfiguration;
+    protected array $extensionConfiguration;
 
     /**
      * QuestionFormFactory constructor.
@@ -35,7 +29,7 @@ class QuestionFormFactory extends AbstractFormFactory
     public function __construct(Request $request, ExtensionConfiguration $extensionConfiguration)
     {
         $this->request = $request;
-        $this->extensionConfiguration = $extensionConfiguration->get('faq');
+        $this->extensionConfiguration = (array)$extensionConfiguration->get('faq');
     }
 
     public function build(array $configuration, string $prototypeName = null): FormDefinition

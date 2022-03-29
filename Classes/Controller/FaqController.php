@@ -21,29 +21,13 @@ use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
  */
 class FaqController extends AbstractController
 {
-    /**
-     * Question repository.
-     *
-     * @var QuestionRepository
-     */
-    protected $questionRepository;
+    protected QuestionRepository $questionRepository;
 
-    /**
-     * Question category repository.
-     *
-     * @var QuestionCategoryRepository
-     */
-    protected $questionCategoryRepository;
+    protected QuestionCategoryRepository $questionCategoryRepository;
 
-    /**
-     * @var SchemaService
-     */
-    protected $schemaService;
+    protected SchemaService $schemaService;
 
-    /**
-     * @var bool
-     */
-    protected $addSchemaHeader = false;
+    protected bool $addSchemaHeader = false;
 
     public function __construct(
         QuestionRepository $questionRepository,
@@ -54,7 +38,7 @@ class FaqController extends AbstractController
         $this->questionCategoryRepository = $questionCategoryRepository;
         $this->schemaService = $schemaService;
 
-        $this->addSchemaHeader = $this->settings['faq']['addSchmemaOrgHeader'] ?? true;
+        $this->addSchemaHeader = (bool)($this->settings['faq']['addSchmemaOrgHeader'] ?? true);
     }
 
     /**
@@ -162,10 +146,7 @@ class FaqController extends AbstractController
         return $this->htmlResponse();
     }
 
-    /**
-     * @param QuestionCategory $category
-     */
-    private function getQuestionRec($category)
+    private function getQuestionRec(QuestionCategory $category)
     {
         $childCategories = $this->questionCategoryRepository->findByParent($category->getUid())->toArray();
         $element = [

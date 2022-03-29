@@ -64,9 +64,7 @@ class QuestionRepository extends AbstractRepository
             $query->logicalAnd($constraints)
         );
 
-        $result = $query->execute();
-
-        return $result;
+        return $query->execute();
     }
 
     public function findByCategory($category)

@@ -2,10 +2,6 @@
 
 declare(strict_types = 1);
 
-/**
- * ExtensionUtility.
- */
-
 namespace HDNET\Faq\Utility;
 
 /**
