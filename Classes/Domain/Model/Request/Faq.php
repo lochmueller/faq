@@ -17,7 +17,7 @@ class Faq extends AbstractRequest
     /**
      * Category.
      *
-     * @var QuestionCategory
+     * @var ?QuestionCategory
      */
     protected $category;
 
@@ -38,7 +38,7 @@ class Faq extends AbstractRequest
     /**
      * Set the category.
      */
-    public function setCategory(QuestionCategory $category): void
+    public function setCategory(?QuestionCategory $category): void
     {
         $this->category = $category;
     }
