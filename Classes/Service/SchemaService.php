@@ -24,9 +24,9 @@ class SchemaService
                 'ANSWER_TEXT',
             ],
                 [
-                    $question->getTitle(),
+                    htmlentities($question->getTitle()),
                     $question->getCrdate()->format('Y-m-d H:i:s'),
-                    strip_tags($question->getAnswer()),
+                    htmlentities(\strip_tags($question->getAnswer())),
                 ],
                 '{
                 "@type": "Question",
