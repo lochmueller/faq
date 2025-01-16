@@ -1,11 +1,51 @@
 <?php
 
 declare(strict_types = 1);
-use HDNET\Autoloader\Utility\ArrayUtility;
-use HDNET\Autoloader\Utility\ModelUtility;
+
 use HDNET\Faq\Domain\Model\QuestionCategory;
 
-$base = ModelUtility::getTcaInformation(QuestionCategory::class);
+$base = [
+    'ctrl' => [
+        'title' => 'FAQ Category',
+        'label' => 'title',
+        'tstamp' => 'tstamp',
+        'crdate' => 'crdate',
+        'delete' => 'deleted',
+        'iconfile' => 'EXT:faq/Resources/Public/Icons/category.svg',
+    ],
+    'columns' => [
+        'title' => [
+            'label' => 'Category Title',
+            'config' => [
+                'type' => 'input',
+                'eval' => 'trim,required',
+            ],
+        ],
+        'answer' => [
+            'label' => 'Answer',
+            'config' => [
+                'type' => 'text',
+            ],
+        ],
+        'parent' => [
+            'label' => 'Parent Category',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectTree',
+                'foreign_table' => 'tx_faq_domain_model_questioncategory',
+                'treeConfig' => [
+                    'parentField' => 'parent',
+                ],
+                'default' => 0,
+            ],
+        ],
+        '_languageUid' => [
+            'config' => [
+                'type' => 'passthrough',
+            ],
+        ],
+    ],
+];
 
 $custom = [
     'columns' => [
@@ -37,4 +77,4 @@ $custom = [
     ],
 ];
 
-return ArrayUtility::mergeRecursiveDistinct($base, $custom);
+return array_merge_recursive($base, $custom);

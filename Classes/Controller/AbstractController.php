@@ -14,7 +14,7 @@ use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
- * AbstractController.
+ * AbstractController. 
  *
  * General class information
  */

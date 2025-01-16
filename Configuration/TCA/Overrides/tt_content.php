@@ -1,7 +1,16 @@
 <?php
 
-declare(strict_types=1);
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
-use HDNET\Autoloader\Utility\ModelUtility;
+defined('TYPO3') or die();
 
-$GLOBALS['TCA']['tt_content'] = ModelUtility::getTcaOverrideInformation('faq', 'tt_content');
+(static function (): void {
+    $pluginKey = ExtensionUtility::registerPlugin(
+        // extension name, matching the PHP namespaces (but without the vendor)
+        'Faq',
+        // arbitrary, but unique plugin name (not visible in the backend)
+        'Faq',
+        // plugin title, as visible in the drop-down in the backend, use "LLL:" for localization
+        'FAQ',
+    );
+})();

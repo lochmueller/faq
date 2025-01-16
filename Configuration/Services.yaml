@@ -6,3 +6,5 @@ services:
 
   HDNET\Faq\:
     resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
+ 

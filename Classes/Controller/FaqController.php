@@ -83,7 +83,6 @@ class FaqController extends AbstractController
         }
 
         $this->view->assignMultiple([
-            'category' => $category,
             'questions' => $allQuestions,
             'subCategories' => $questionsPerSubCategory,
             'paginator' => $paginator,

@@ -1,0 +1,25 @@
+mod {
+	wizards.newContentElement.wizardItems.plugins {
+		elements {
+			faq {
+			    iconIdentifier = extension-faq
+				title = LLL:EXT:faq/Resources/Private/Language/locallang.xlf:plugin.Faq
+				description = Create FAQ Plugin to handle the FAQ output
+				tt_content_defValues {
+					CType = list
+					list_type = faq_faq
+				}
+			}
+			faq_all_category {
+			    iconIdentifier = extension-faq
+				title = LLL:EXT:faq/Resources/Private/Language/locallang.xlf:plugin.FaqAll
+				description = Create FAQ Plugin to handle the FAQ output incl. all the categories
+				tt_content_defValues {
+					CType = list
+					list_type = faq_faqall
+				}
+			}
+		}
+        show = *
+	}
+}
