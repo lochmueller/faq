@@ -7,7 +7,6 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\Controller;
 
-use HDNET\Autoloader\Annotation\Plugin;
 use HDNET\Faq\Domain\Model\QuestionCategory;
 use HDNET\Faq\Domain\Repository\QuestionCategoryRepository;
 use HDNET\Faq\Domain\Repository\QuestionRepository;
@@ -41,9 +40,6 @@ class FaqController extends AbstractController
         $this->addSchemaHeader = (bool)($this->settings['faq']['addSchmemaOrgHeader'] ?? true);
     }
 
-    /**
-     * @Plugin("Faq")
-     */
     public function indexAction(QuestionCategory $category = null): ResponseInterface
     {
         $categoryUid = $category ? (int)$category->getUid() : (int)($this->settings['initialCategory'] ?? 0);
@@ -51,7 +47,7 @@ class FaqController extends AbstractController
         $questionsPerSubCategory = [];
         $allQuestions = [];
         $questions = null;
-        if (!empty($categoryChildren->toArray())) {
+        if (!empty($categoryChildren)) {
             $allQuestions = $this->questionRepository->findByCategories($categoryChildren);
         }
 
@@ -83,7 +79,6 @@ class FaqController extends AbstractController
         }
 
         $this->view->assignMultiple([
-            'category' => $category,
             'questions' => $allQuestions,
             'subCategories' => $questionsPerSubCategory,
             'paginator' => $paginator,
@@ -95,9 +90,6 @@ class FaqController extends AbstractController
         return $this->htmlResponse();
     }
 
-    /**
-     * @Plugin("FaqAll")
-     */
     public function allAction(): ResponseInterface
     {
         $parentCategories = $this->questionCategoryRepository->findAllParentCategories();
@@ -121,9 +113,6 @@ class FaqController extends AbstractController
         return $this->htmlResponse();
     }
 
-    /**
-     * @Plugin("FaqSingleCategory")
-     */
     public function singleCategoryAction(): ResponseInterface
     {
         $errors = [];
@@ -131,12 +120,14 @@ class FaqController extends AbstractController
         $questions = [];
         $categoryUid = $this->settings['initialCategory'];
 
-        if ('' === $categoryUid) {
+        if (empty($categoryUid) || !is_numeric($categoryUid)) {
             $errors[] = 'plugin.FaqSingleCategory.errors.noCategorySelected';
-        } else {
+            $this->view->assignMultiple(['errors' => $errors]);
+            return $this->htmlResponse();
+        }else {
             $category = $this->questionCategoryRepository->findByUid($categoryUid);
             $questions = $this->questionRepository->findByCategory($category);
-        }
+        } 
 
         $this->view->assignMultiple([
             'category' => $category,

@@ -4,31 +4,24 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\Domain\Factory;
 
-use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationExtensionNotConfiguredException;
-use TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationPathDoesNotExistException;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Mvc\Request;
-use TYPO3\CMS\Extbase\Validation\Validator\NotEmptyValidator;
 use TYPO3\CMS\Form\Domain\Configuration\ConfigurationService;
 use TYPO3\CMS\Form\Domain\Factory\AbstractFormFactory;
 use TYPO3\CMS\Form\Domain\Model\FormDefinition;
 
 class QuestionFormFactory extends AbstractFormFactory
 {
-    protected Request $request;
-
     protected array $extensionConfiguration;
 
     /**
      * QuestionFormFactory constructor.
      *
-     * @throws ExtensionConfigurationExtensionNotConfiguredException
-     * @throws ExtensionConfigurationPathDoesNotExistException
+     * @throws \TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationExtensionNotConfiguredException
+     * @throws \TYPO3\CMS\Core\Configuration\Exception\ExtensionConfigurationPathDoesNotExistException
      */
-    public function __construct(Request $request, ExtensionConfiguration $extensionConfiguration)
+    public function __construct(ExtensionConfiguration $extensionConfiguration)
     {
-        $this->request = $request;
         $this->extensionConfiguration = (array)$extensionConfiguration->get('faq');
     }
 
@@ -49,18 +42,18 @@ class QuestionFormFactory extends AbstractFormFactory
         $page = $form->createPage('page');
         $question = $page->createElement('question', 'Textarea');
         $question->setLabel('Question');
-        $question->addValidator(GeneralUtility::makeInstance(NotEmptyValidator::class));
+        $question->addValidator(GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Validation\Validator\NotEmptyValidator::class));
         $question->setProperty('elementDescription', $this->extensionConfiguration['questionDescription']);
         $question->setProperty('fluidAdditionalAttributes', ['required' => 'required', 'placeholder' => $this->extensionConfiguration['questionPlaceholder']]);
 
         $email = $page->createElement('email', 'Email');
         $email->setLabel('Email');
-        $email->addValidator(GeneralUtility::makeInstance(NotEmptyValidator::class));
+        $email->addValidator(GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Validation\Validator\NotEmptyValidator::class));
         $email->setProperty('elementDescription', $this->extensionConfiguration['emailDescription']);
         $email->setProperty('fluidAdditionalAttributes', ['required' => 'required', 'placeholder' => $this->extensionConfiguration['emailPlaceholder']]);
 
         $form->createFinisher('EmailToSender', [
-            'subject' => 'Quesition',
+            'subject' => 'Question',
             'recipients' => [
                 $this->extensionConfiguration['fallbackFormReceivingEmail'] => $this->extensionConfiguration['fallbackFormReceivingName'],
             ],

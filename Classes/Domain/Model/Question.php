@@ -7,15 +7,12 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\Domain\Model;
 
-use HDNET\Autoloader\Annotation\DatabaseField;
-use HDNET\Autoloader\Annotation\DatabaseTable;
-use HDNET\Autoloader\Annotation\EnableRichText;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * Question / Frage.
  *
- * @DatabaseTable
+ * 
  */
 class Question extends AbstractModel
 {
@@ -23,7 +20,6 @@ class Question extends AbstractModel
      * Title.
      *
      * @var string
-     * @DatabaseField(type="string")
      */
     protected $title = '';
 
@@ -31,8 +27,6 @@ class Question extends AbstractModel
      * Answer.
      *
      * @var string
-     * @DatabaseField(type="string")
-     * @EnableRichText
      */
     protected $answer = '';
 
@@ -40,20 +34,13 @@ class Question extends AbstractModel
      * Tags.
      *
      * @var string
-     * @DatabaseField(type="string")
      */
     protected $tags = '';
-
-    /**
-     * @var int
-     */
-    protected $_languageUid = 0;
 
     /**
      * Categories.
      *
      * @var ObjectStorage<QuestionCategory>
-     * @DatabaseField(type="int", sql="int(11) DEFAULT '0' NOT NULL")
      */
     protected $categories;
 
@@ -167,14 +154,6 @@ class Question extends AbstractModel
     public function getFlopCounter(): int
     {
         return (int)$this->flopCounter;
-    }
-
-    /**
-     * Public getter for the languageUid.
-     */
-    public function getLanguageId(): int
-    {
-        return $this->_languageUid;
     }
 
     public function getCrdate(): \DateTime

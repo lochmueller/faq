@@ -22,16 +22,12 @@ class QuestionCategoryRepository extends AbstractRepository
      */
     protected $defaultOrderings = ['sorting' => QueryInterface::ORDER_ASCENDING];
 
-    /**
-     * Create query.
-     */
-    public function createQuery(): QueryInterface
+    public function initializeObject(): void
     {
-        $query = parent::createQuery();
-        $query->getQuerySettings()
-            ->setRespectStoragePage(false);
-
-        return $query;
+        $querySettings = $this->createQuery()->getQuerySettings();
+        // Show comments from all pages
+        $querySettings->setRespectStoragePage(false);
+        $this->setDefaultQuerySettings($querySettings);
     }
 
     /**

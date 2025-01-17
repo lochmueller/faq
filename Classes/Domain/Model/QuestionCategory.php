@@ -7,14 +7,10 @@ declare(strict_types = 1);
 
 namespace HDNET\Faq\Domain\Model;
 
-use HDNET\Autoloader\Annotation\DatabaseField;
-use HDNET\Autoloader\Annotation\DatabaseTable;
-use HDNET\Autoloader\Annotation\EnableRichText;
 
 /**
  * Questioncategory / Fragen Kategorie.
  *
- * @DatabaseTable
  */
 class QuestionCategory extends AbstractModel
 {
@@ -22,7 +18,7 @@ class QuestionCategory extends AbstractModel
      * Title.
      *
      * @var string
-     * @DatabaseField(type="string")
+     * 
      */
     protected $title;
 
@@ -30,23 +26,17 @@ class QuestionCategory extends AbstractModel
      * Parent.
      *
      * @var QuestionCategory
-     * @DatabaseField(type="int", sql="int(11) DEFAULT '0' NOT NULL")
+     * 
      */
     protected $parent;
 
     /**
      * Description.
      *
-     * @var string
-     * @DatabaseField(type="string")
-     * @EnableRichText
+     * @var string|null
+     * 
      */
     protected $description;
-
-    /**
-     * @var int
-     */
-    protected $_languageUid = 0;
 
     public function setTitle(string $title): void
     {
@@ -66,11 +56,6 @@ class QuestionCategory extends AbstractModel
     public function getParent(): ?self
     {
         return $this->parent;
-    }
-
-    public function getLanguageUid(): int
-    {
-        return $this->_languageUid;
     }
 
     public function getDescription(): ?string
