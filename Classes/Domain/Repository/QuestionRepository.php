@@ -1,9 +1,6 @@
 <?php
 
 declare(strict_types = 1);
-/**
- * Build up the Question.
- */
 
 namespace HDNET\Faq\Domain\Repository;
 
@@ -12,9 +9,6 @@ use TYPO3\CMS\Core\Utility\ClassNamingUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
-/**
- * Build up the Question.
- */
 class QuestionRepository extends AbstractRepository
 {
     /**

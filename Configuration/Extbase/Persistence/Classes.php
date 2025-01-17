@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
+use HDNET\Faq\Domain\Model\QuestionCategory;
+
 return [
-    \HDNET\Faq\Domain\Model\QuestionCategory::class => [
+    QuestionCategory::class => [
         'tableName' => 'tx_faq_domain_model_questioncategory',
     ],
 ];

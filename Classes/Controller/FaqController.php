@@ -1,9 +1,6 @@
 <?php
 
 declare(strict_types = 1);
-/**
- * FAQ.
- */
 
 namespace HDNET\Faq\Controller;
 
@@ -15,9 +12,6 @@ use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 
-/**
- * FAQ.
- */
 class FaqController extends AbstractController
 {
     protected QuestionRepository $questionRepository;
@@ -31,7 +25,7 @@ class FaqController extends AbstractController
     public function __construct(
         QuestionRepository $questionRepository,
         QuestionCategoryRepository $questionCategoryRepository,
-        SchemaService $schemaService
+        SchemaService $schemaService,
     ) {
         $this->questionRepository = $questionRepository;
         $this->questionCategoryRepository = $questionCategoryRepository;
@@ -40,7 +34,7 @@ class FaqController extends AbstractController
         $this->addSchemaHeader = (bool)($this->settings['faq']['addSchmemaOrgHeader'] ?? true);
     }
 
-    public function indexAction(QuestionCategory $category = null): ResponseInterface
+    public function indexAction(?QuestionCategory $category = null): ResponseInterface
     {
         $categoryUid = $category ? (int)$category->getUid() : (int)($this->settings['initialCategory'] ?? 0);
         $categoryChildren = $this->questionCategoryRepository->findByParent($categoryUid);
@@ -123,11 +117,11 @@ class FaqController extends AbstractController
         if (empty($categoryUid) || !is_numeric($categoryUid)) {
             $errors[] = 'plugin.FaqSingleCategory.errors.noCategorySelected';
             $this->view->assignMultiple(['errors' => $errors]);
+
             return $this->htmlResponse();
-        }else {
-            $category = $this->questionCategoryRepository->findByUid($categoryUid);
-            $questions = $this->questionRepository->findByCategory($category);
-        } 
+        }
+        $category = $this->questionCategoryRepository->findByUid($categoryUid);
+        $questions = $this->questionRepository->findByCategory($category);
 
         $this->view->assignMultiple([
             'category' => $category,

@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types = 1);
+
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
-defined('TYPO3') or die();
+\defined('TYPO3') || exit();
 
 (static function (): void {
     $pluginKey = ExtensionUtility::registerPlugin(
@@ -39,18 +41,17 @@ defined('TYPO3') or die();
     );
 })();
 
-$pluginSignature = str_replace('_','','faq') . '_' . 'faq';
+$pluginSignature = str_replace('_', '', 'faq') . '_faq';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'recursive,select_key,pages';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . 'faq' . '/Configuration/FlexForms/Faq.xml');
+TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:faq/Configuration/FlexForms/Faq.xml');
 
-$pluginSignature = str_replace('_','','faq') . '_' . 'question';
+$pluginSignature = str_replace('_', '', 'faq') . '_question';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'recursive,select_key,pages';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . 'faq' . '/Configuration/FlexForms/Question.xml');
+TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:faq/Configuration/FlexForms/Question.xml');
 
-$pluginSignature = str_replace('_','','faq') . '_' . 'faqsinglecategory';
+$pluginSignature = str_replace('_', '', 'faq') . '_faqsinglecategory';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'recursive,select_key,pages';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . 'faq' . '/Configuration/FlexForms/FaqSingleCategory.xml');
-
+TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:faq/Configuration/FlexForms/FaqSingleCategory.xml');

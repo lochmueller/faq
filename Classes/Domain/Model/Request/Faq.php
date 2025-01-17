@@ -1,17 +1,11 @@
 <?php
 
 declare(strict_types = 1);
-/**
- * Request Faq.
- */
 
 namespace HDNET\Faq\Domain\Model\Request;
 
 use HDNET\Faq\Domain\Model\QuestionCategory;
 
-/**
- * Request Faq.
- */
 class Faq extends AbstractRequest
 {
     /**
@@ -56,7 +50,7 @@ class Faq extends AbstractRequest
      */
     public function setSearchWord(string $searchWord): void
     {
-        $this->searchWord = trim($searchWord);
+        $this->searchWord = mb_trim($searchWord);
     }
 
     /**
@@ -64,7 +58,7 @@ class Faq extends AbstractRequest
      */
     public function getSearchWord(): string
     {
-        return trim((string)$this->searchWord);
+        return mb_trim((string)$this->searchWord);
     }
 
     public function getCategories(): array

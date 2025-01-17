@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -7,12 +9,12 @@ $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::c
 $enableManuallySorting = $extensionConfiguration['enableManuallySorting'] ?? false;
 
 return [
-    'ctrl' => [ 
+    'ctrl' => [
         'title' => 'LLL:EXT:faq/Resources/Private/Language/locallang_be.xlf:tx_faq_domain_model_question',
         'label' => 'title',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'versioningWS' => true,        
+        'versioningWS' => true,
         'transOrigDiffSourceField' => 'l10n_diffsource',
         'delete' => 'deleted',
         'enablecolumns' => [
@@ -29,17 +31,17 @@ return [
             'showitem' => implode(
                 ',',
                 [
-                    'title, answer, tags, categories',                
+                    'title, answer, tags, categories',
                     '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language',
-                    'sys_language_uid',                    
+                    'sys_language_uid',
                     'l10n_diffsource',
                     '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access',
                     'hidden',
                     'starttime',
                     'endtime',
                 ]
-            )
-        ]
+            ),
+        ],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -61,7 +63,7 @@ return [
                     ['label' => '', 'value' => 0],
                 ],
                 'foreign_table' => 'tx_faq_domain_model_questioncategory',
-                    'foreign_table_where' => 'AND {#tx_faq_domain_model_questioncategory}.{#pid}=###CURRENT_PID### AND {#tx_faq_domain_model_questioncategory}.{#sys_language_uid} IN (-1,0)',
+                'foreign_table_where' => 'AND {#tx_faq_domain_model_questioncategory}.{#pid}=###CURRENT_PID### AND {#tx_faq_domain_model_questioncategory}.{#sys_language_uid} IN (-1,0)',
             ],
         ],
         'l10n_diffsource' => [
@@ -79,8 +81,8 @@ return [
                     [
                         'label' => '',
                         'value' => '',
-                        'invertStateDisplay' => true
-                    ]
+                        'invertStateDisplay' => true,
+                    ],
                 ],
             ],
         ],
@@ -97,8 +99,8 @@ return [
                 'eval' => 'datetime,int',
                 'default' => 0,
                 'behaviour' => [
-                    'allowLanguageSynchronization' => true
-                ]
+                    'allowLanguageSynchronization' => true,
+                ],
             ],
         ],
         'starttime' => [
@@ -109,8 +111,8 @@ return [
                 'eval' => 'datetime,int',
                 'default' => 0,
                 'behaviour' => [
-                    'allowLanguageSynchronization' => true
-                ]
+                    'allowLanguageSynchronization' => true,
+                ],
             ],
         ],
         'endtime' => [
@@ -121,11 +123,11 @@ return [
                 'eval' => 'datetime,int',
                 'default' => 0,
                 'range' => [
-                    'upper' => mktime(0, 0, 0, 1, 1, 2038)
+                    'upper' => mktime(0, 0, 0, 1, 1, 2038),
                 ],
                 'behaviour' => [
-                    'allowLanguageSynchronization' => true
-                ]
+                    'allowLanguageSynchronization' => true,
+                ],
             ],
         ],
 

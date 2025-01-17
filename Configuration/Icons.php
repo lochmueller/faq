@@ -1,16 +1,18 @@
 <?php
 
+use TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider;
+
 return [
     'contains-faq' => [
-        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
+        'provider' => BitmapIconProvider::class,
         'source' => 'EXT:faq/Resources/Public/Icons/Extension.png',
     ],
     'apps-pagetree-folder-contains-faq' => [
-        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
+        'provider' => BitmapIconProvider::class,
         'source' => 'EXT:faq/Resources/Public/Icons/Extension.png',
     ],
     'extension-faq' => [
-        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
+        'provider' => BitmapIconProvider::class,
         'source' => 'EXT:faq/Resources/Public/Icons/Extension.png',
     ],
 ];

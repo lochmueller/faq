@@ -25,7 +25,7 @@ class QuestionFormFactory extends AbstractFormFactory
         $this->extensionConfiguration = (array)$extensionConfiguration->get('faq');
     }
 
-    public function build(array $configuration, string $prototypeName = null): FormDefinition
+    public function build(array $configuration, ?string $prototypeName = null): FormDefinition
     {
         $prototypeName = 'standard';
         /** @var ConfigurationService $configurationService */

@@ -13,6 +13,7 @@ use HDNET\Faq\Domain\Model\Question;
  * QuestionTest.
  *
  * @internal
+ *
  * @coversNothing
  */
 class QuestionTest extends \TYPO3\CMS\Core\Tests\UnitTestCase

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -7,12 +9,12 @@ $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::c
 $enableManuallySorting = $extensionConfiguration['enableManuallySorting'] ?? false;
 
 return [
-    'ctrl' => [ 
+    'ctrl' => [
         'title' => 'LLL:EXT:faq/Resources/Private/Language/locallang_be.xlf:tx_faq_domain_model_questioncategory',
         'label' => 'title',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'versioningWS' => true,        
+        'versioningWS' => true,
         'transOrigDiffSourceField' => 'l10n_diffsource',
         'delete' => 'deleted',
         'enablecolumns' => [
@@ -29,17 +31,17 @@ return [
             'showitem' => implode(
                 ',',
                 [
-                    'title, parent, description',                
+                    'title, parent, description',
                     '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language',
-                    'sys_language_uid',                    
+                    'sys_language_uid',
                     'l10n_diffsource',
                     '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access',
                     'hidden',
                     'starttime',
                     'endtime',
                 ]
-            )
-        ]
+            ),
+        ],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -79,8 +81,8 @@ return [
                     [
                         'label' => '',
                         'value' => '',
-                        'invertStateDisplay' => true
-                    ]
+                        'invertStateDisplay' => true,
+                    ],
                 ],
             ],
         ],
@@ -96,8 +98,8 @@ return [
                 'type' => 'datetime',
                 'default' => 0,
                 'behaviour' => [
-                    'allowLanguageSynchronization' => true
-                ]
+                    'allowLanguageSynchronization' => true,
+                ],
             ],
         ],
         'starttime' => [
@@ -107,8 +109,8 @@ return [
                 'type' => 'datetime',
                 'default' => 0,
                 'behaviour' => [
-                    'allowLanguageSynchronization' => true
-                ]
+                    'allowLanguageSynchronization' => true,
+                ],
             ],
         ],
         'endtime' => [
@@ -118,11 +120,11 @@ return [
                 'type' => 'datetime',
                 'default' => 0,
                 'range' => [
-                    'upper' => mktime(0, 0, 0, 1, 1, 2038)
+                    'upper' => mktime(0, 0, 0, 1, 1, 2038),
                 ],
                 'behaviour' => [
-                    'allowLanguageSynchronization' => true
-                ]
+                    'allowLanguageSynchronization' => true,
+                ],
             ],
         ],
 

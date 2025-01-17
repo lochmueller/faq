@@ -1,23 +1,18 @@
 <?php
 
 declare(strict_types = 1);
-/**
- * Request Faq.
- */
 
 namespace HDNET\Faq\Domain\Model\Request;
 
 use TYPO3\CMS\Extbase\Annotation\Validate;
 
-/**
- * Request Faq.
- */
 class QuestionRequest extends AbstractRequest
 {
     /**
      * Question.
      *
      * @var string
+     *
      * @Validate(validator="NotEmpty")
      */
     protected $question;
@@ -26,6 +21,7 @@ class QuestionRequest extends AbstractRequest
      * E-Mail.
      *
      * @var string
+     *
      * @Validate(validator="NotEmpty")
      * @Validate(validator="EmailAddress")
      */

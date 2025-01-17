@@ -1,19 +1,11 @@
 <?php
 
 declare(strict_types = 1);
-/**
- * Question / Frage.
- */
 
 namespace HDNET\Faq\Domain\Model;
 
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
-/**
- * Question / Frage.
- *
- * 
- */
 class Question extends AbstractModel
 {
     /**

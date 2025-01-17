@@ -1,18 +1,12 @@
 <?php
 
 declare(strict_types = 1);
-/**
- * Build up the Question category.
- */
 
 namespace HDNET\Faq\Domain\Repository;
 
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 
-/**
- * Build up the Question category.
- */
 class QuestionCategoryRepository extends AbstractRepository
 {
     /**

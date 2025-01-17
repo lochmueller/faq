@@ -1,24 +1,15 @@
 <?php
 
 declare(strict_types = 1);
-/**
- * Questioncategory / Fragen Kategorie.
- */
 
 namespace HDNET\Faq\Domain\Model;
 
-
-/**
- * Questioncategory / Fragen Kategorie.
- *
- */
 class QuestionCategory extends AbstractModel
 {
     /**
      * Title.
      *
      * @var string
-     * 
      */
     protected $title;
 
@@ -26,7 +17,6 @@ class QuestionCategory extends AbstractModel
      * Parent.
      *
      * @var QuestionCategory
-     * 
      */
     protected $parent;
 
@@ -34,7 +24,6 @@ class QuestionCategory extends AbstractModel
      * Description.
      *
      * @var string|null
-     * 
      */
     protected $description;
 
