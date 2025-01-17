@@ -14,9 +14,11 @@
 		<f:if condition="{settings.faq.enableAnswerPreview}">
 			<f:then>
 				<span class="fs-6 p-3">
-					<f:format.crop maxCharacters="100">
-						{question.answer}
-					</f:format.crop>
+					<f:format.raw>
+						<f:format.crop maxCharacters="100">
+							{question.answer}
+						</f:format.crop>
+					</f:format.raw>
 				</span>
 			</f:then>
 		</f:if>

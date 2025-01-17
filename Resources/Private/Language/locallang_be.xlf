@@ -154,6 +154,10 @@
 			<source>Titel</source>
 			<target>Titel</target>
 		</trans-unit>
+		<trans-unit id="tx_faq_domain_model_questioncategory.description">
+			<source>Description</source>
+            <target>Description</target>
+		</trans-unit>
 		<trans-unit id="flexform.itemsPerPage.description" approved="yes">
 			<source>List: Show items per page</source>
 			<target>Liste: Zeige Elemente pro Seite</target>

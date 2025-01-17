@@ -43,6 +43,14 @@ class QuestionRepository extends AbstractRepository
         }
     }
 
+    public function initializeObject(): void
+    {
+        $querySettings = $this->createQuery()->getQuerySettings();
+        // Show comments from all pages
+        $querySettings->setRespectStoragePage(false);
+        $this->setDefaultQuerySettings($querySettings);
+    }
+
     public function findByCategories($categories)
     {
         $query = $this->createQuery();
@@ -58,11 +66,15 @@ class QuestionRepository extends AbstractRepository
             $categorySelection[] = $query->contains('categories', $category);
         }
 
-        $constraints[] = $query->logicalOr($categorySelection);
+        if (!empty($categorySelection)) {
+            $constraints[] = $query->logicalOr(...$categorySelection);
+        }
 
-        $query->matching(
-            $query->logicalAnd($constraints)
-        );
+        if (!empty($constraints)) {
+            $query->matching(
+                $query->logicalAnd(...$constraints)
+            );
+        }
 
         return $query->execute();
     }

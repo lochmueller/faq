@@ -10,11 +10,10 @@ declare(strict_types = 1);
 namespace HDNET\Faq\Controller;
 
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
- * AbstractController.
+ * AbstractController. 
  *
  * General class information
  */
@@ -24,12 +23,10 @@ abstract class AbstractController extends ActionController
      * Initializes the view before invoking an action method.
      * Add content object data to view.
      *
-     * @param ViewInterface $view The view to be initialized
      */
-    protected function initializeView(ViewInterface $view)
+    protected function initializeView():void
     {
-        $view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
-        parent::initializeView($view);
+        $this->view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
     }
 
     /**

@@ -6,3 +6,13 @@ services:
 
   HDNET\Faq\:
     resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
+
+  HDNET\Faq\Domain\Factory\QuestionFormFactory:
+    arguments:
+      $extensionConfiguration: '@TYPO3\CMS\Core\Configuration\ExtensionConfiguration'
+    public: true 
+
+  HDNET\Faq\Controller\QuestionController:
+    arguments:
+      $questionFormFactory: '@HDNET\Faq\Domain\Factory\QuestionFormFactory'
