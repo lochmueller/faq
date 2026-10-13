@@ -3,12 +3,13 @@
 declare(strict_types = 1);
 
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('faq');
 $enableManuallySorting = $extensionConfiguration['enableManuallySorting'] ?? false;
 
-return [
+$tca = [
     'ctrl' => [
         'title' => 'LLL:EXT:faq/Resources/Private/Language/locallang_be.xlf:tx_faq_domain_model_question',
         'label' => 'title',
@@ -22,7 +23,6 @@ return [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'searchFields' => 'title',
         'iconfile' => 'EXT:faq/Resources/Public/Icons/Question.png',
         'sortby' => $enableManuallySorting ? 'sorting' : null,
     ],
@@ -62,8 +62,8 @@ return [
                 'items' => [
                     ['label' => '', 'value' => 0],
                 ],
-                'foreign_table' => 'tx_faq_domain_model_questioncategory',
-                'foreign_table_where' => 'AND {#tx_faq_domain_model_questioncategory}.{#pid}=###CURRENT_PID### AND {#tx_faq_domain_model_questioncategory}.{#sys_language_uid} IN (-1,0)',
+                'foreign_table' => 'tx_faq_domain_model_question',
+                'foreign_table_where' => 'AND {#tx_faq_domain_model_question}.{#pid}=###CURRENT_PID### AND {#tx_faq_domain_model_question}.{#sys_language_uid} IN (-1,0)',
             ],
         ],
         'l10n_diffsource' => [
@@ -96,7 +96,6 @@ return [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.timestamp',
             'config' => [
                 'type' => 'datetime',
-                'eval' => 'datetime,int',
                 'default' => 0,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
@@ -108,7 +107,6 @@ return [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.starttime',
             'config' => [
                 'type' => 'datetime',
-                'eval' => 'datetime,int',
                 'default' => 0,
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
@@ -120,7 +118,6 @@ return [
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.endtime',
             'config' => [
                 'type' => 'datetime',
-                'eval' => 'datetime,int',
                 'default' => 0,
                 'range' => [
                     'upper' => mktime(0, 0, 0, 1, 1, 2038),
@@ -179,3 +176,15 @@ return [
         ],
     ],
 ];
+
+if ((new Typo3Version())->getMajorVersion() < 14) {
+    // TYPO3 v13.4 still evaluates ctrl.searchFields ...
+    $tca['ctrl']['searchFields'] = 'title';
+} else {
+    // ... while v14 searches every suitable field unless it opts out via "searchable".
+    foreach (['answer', 'tags', 'tstamp', 'starttime', 'endtime'] as $fieldName) {
+        $tca['columns'][$fieldName]['config']['searchable'] = false;
+    }
+}
+
+return $tca;

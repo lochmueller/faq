@@ -1,186 +1,127 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2016-06-09T06:59:02Z">
-		<header>
-			<type>database</type>
-			<generator>LFEditor</generator>
-		</header>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-06-09T06:59:02Z">
+		<header/>
 		<body>
-		<trans-unit id="flexform.faqEnter.targetEmail" approved="yes">
-			<source>Empfänger Email-Adresse</source>
-			<target>Empfänger Email-Adresse</target>
+		<trans-unit id="flexform.faqEnter.targetEmail">
+			<source>Recipient email address</source>
 		</trans-unit>
-		<trans-unit id="flexform.faqEnter.title" approved="yes">
-			<source>Neue Frage</source>
-			<target>Neue Frage</target>
+		<trans-unit id="flexform.faqEnter.title">
+			<source>New question</source>
 		</trans-unit>
-		<trans-unit id="flexform.topMode" approved="yes">
-			<source>Top-Fragen Modus</source>
-			<target>Top-Fragen Modus</target>
+		<trans-unit id="flexform.topMode">
+			<source>Top questions mode</source>
 		</trans-unit>
 		<trans-unit id="flexform.itemsPerPage">
 			<source>List: Show items per page</source>
-			<target>Liste: FAQs pro Seite anzeigen</target>
 		</trans-unit>
-		<trans-unit id="flexform.addSchemaOrgHeader">
-			<source>Enable schema.org Header</source>
-			<target>Schema.org Header aktivieren</target>
-		</trans-unit>
-			<trans-unit id="flexform.addSchemaOrgHeader.description">
-				<source>For details see https://schema.org/FAQPage"</source>
-				<target>Für Details siehe https://schema.org/FAQPage</target>
-			</trans-unit>
 		<trans-unit id="flexform.enablePagination">
             <source>Enable Pagination</source>
-            <target>Paginierung aktivieren</target>
         </trans-unit>
 			<trans-unit id="flexform.enablePagination.description">
 				<source>Enable Pagination</source>
-				<target>Paginierung aktivieren</target>
 			</trans-unit>
         <trans-unit id="flexform.initialCategory">
             <source>Initial selected category</source>
-            <target>Initial ausgewählte Kategorie</target>
         </trans-unit>
 		<trans-unit id="flexform.initialCategory.description">
 			<source>You can only select categories of first level</source>
-			<target>Es können nur Kategorien der ersten Ebene ausgewählt werden.</target>
 		</trans-unit>
 		<trans-unit id="flexform.faqSingleCategory.itemsPerPage">
 			<source>Number of items</source>
-			<target>Anzahl der Elemente</target>
 		</trans-unit>
 		<trans-unit id="flexform.faqSingleCategory.itemsPerPage.description">
 			<source>Number of items to show in a list.</source>
-			<target>Anzahl der Elemente welche in einer Liste angezeigt werden.</target>
 		</trans-unit>
 		<trans-unit id="flexform.faqSingleCategory.Category">
 			<source>Selected category</source>
-			<target>Ausgewählte Kategorie</target>
 		</trans-unit>
 		<trans-unit id="flexform.faqSingleCategory.Category.description">
 			<source>You can only select categories of at least the second level.</source>
-			<target>Es kann nur eine Kategorie von mindestens der zweiten Ebene ausgewählt werden.</target>
 		</trans-unit>
 		<trans-unit id="flexform.faqSingleCategory.Category.pleaseSelect">
 			<source>Please Select...</source>
-			<target>Bitte Auswählen...</target>
 		</trans-unit>
 		<trans-unit id="flexform.allFaqsPageLink">
 			<source>All faqs page link</source>
-			<target>Alle FAQs Seitenlink</target>
 		</trans-unit>
 		<trans-unit id="flexform.allFaqsPageLink.description">
 			<source>The page where all faqs are displayed.</source>
-			<target>Die Seite auf der alle FAQs zu sehen sind.</target>
 		</trans-unit>
 		<trans-unit id="flexform.allFaqsPageLinkText">
 			<source>All faqs page link text</source>
-			<target>Alle FAQs Seitenlinktext</target>
 		</trans-unit>
 		<trans-unit id="flexform.allFaqsPageLinkText.description">
 			<source>The Text of the page link where all faqs are displayed.</source>
-			<target>Der Text des Seitenlinkes wo alle FAQs angezeigt werden.</target>
 		</trans-unit>
 		<trans-unit id="flexform.overrideCategoryDescription">
 			<source>Overwrite category description text</source>
-			<target>Kategoriebeschreibungstext überschreiben</target>
 		</trans-unit>
 		<trans-unit id="flexform.overrideCategoryDescription.description">
 			<source>Overwrites the category description text. If this field is empty the description or title of the selected category will be displayed.</source>
-			<target>Der Text welcher statt der Kategoriebeschreibung angezeigt werden soll. Wenn das Feld leer ist, wird die Beschreibung oder der Titel der Kategorie angezeigt.</target>
 		</trans-unit>
-		<trans-unit id="form.email" approved="yes">
+		<trans-unit id="form.email">
 			<source>Email (for the answer)</source>
-			<target>E-Mail-Adresse (für unsere Antwort)</target>
 		</trans-unit>
-		<trans-unit id="form.headline" approved="yes">
+		<trans-unit id="form.headline">
 			<source>Send us your question!</source>
-			<target>Es fehlt eine Frage? Teilen Sie sie uns mit!</target>
 		</trans-unit>
-		<trans-unit id="form.question" approved="yes">
+		<trans-unit id="form.question">
 			<source>Your question</source>
-			<target>Ihre Frage</target>
 		</trans-unit>
-		<trans-unit id="form.submit" approved="yes">
+		<trans-unit id="form.submit">
 			<source>Send question</source>
-			<target>Frage übermitteln</target>
 		</trans-unit>
-		<trans-unit id="no_questions_found" approved="yes">
+		<trans-unit id="no_questions_found">
 			<source>No questions found.</source>
-			<target>Es konnten keine FAQ gefunden werden.</target>
 		</trans-unit>
-		<trans-unit id="tt_content.hdnet_faq.header" approved="yes">
+		<trans-unit id="tt_content.hdnet_faq.header">
 			<source>hdnet_faq (Header)</source>
-			<target>hdnet_faq (Header)</target>
 		</trans-unit>
-		<trans-unit id="tx_faq_domain_model_question" approved="yes">
-			<source>Frage</source>
-			<target>Frage</target>
+		<trans-unit id="tx_faq_domain_model_question">
+			<source>Question</source>
 		</trans-unit>
-		<trans-unit id="tx_faq_domain_model_question.answer" approved="yes">
-			<source>Antwort</source>
-			<target>Antwort</target>
+		<trans-unit id="tx_faq_domain_model_question.answer">
+			<source>Answer</source>
 		</trans-unit>
-		<trans-unit id="tx_faq_domain_model_question.categories" approved="yes">
-			<source>Kategorien</source>
-			<target>Kategorien</target>
+		<trans-unit id="tx_faq_domain_model_question.categories">
+			<source>Categories</source>
 		</trans-unit>
-		<trans-unit id="tx_faq_domain_model_question.flop_counter" approved="yes">
-			<source>Anzahl / Flop</source>
-			<target>Anzahl / Flop</target>
-		</trans-unit>
-		<trans-unit id="tx_faq_domain_model_question.tags" approved="yes">
+		<trans-unit id="tx_faq_domain_model_question.tags">
 			<source>Tags</source>
-			<target>Tags</target>
 		</trans-unit>
-		<trans-unit id="tx_faq_domain_model_question.title" approved="yes">
-			<source>Frage</source>
-			<target>Frage</target>
+		<trans-unit id="tx_faq_domain_model_question.title">
+			<source>Question</source>
 		</trans-unit>
-		<trans-unit id="tx_faq_domain_model_question.top_counter" approved="yes">
-			<source>Anzahl / Top</source>
-			<target>Anzahl / Top</target>
+		<trans-unit id="tx_faq_domain_model_questioncategory">
+			<source>FAQ Category</source>
 		</trans-unit>
-		<trans-unit id="tx_faq_domain_model_questioncategory" approved="yes">
-			<source>FAQ Kategorie</source>
-			<target>FAQ Kategorie</target>
+		<trans-unit id="tx_faq_domain_model_questioncategory.parent">
+			<source>Category</source>
 		</trans-unit>
-		<trans-unit id="tx_faq_domain_model_questioncategory.parent" approved="yes">
-			<source>Kategorie</source>
-			<target>Kategorie</target>
-		</trans-unit>
-		<trans-unit id="tx_faq_domain_model_questioncategory.title" approved="yes">
-			<source>Titel</source>
-			<target>Titel</target>
+		<trans-unit id="tx_faq_domain_model_questioncategory.title">
+			<source>Title</source>
 		</trans-unit>
 		<trans-unit id="tx_faq_domain_model_questioncategory.description">
 			<source>Description</source>
-            <target>Description</target>
 		</trans-unit>
-		<trans-unit id="flexform.itemsPerPage.description" approved="yes">
+		<trans-unit id="flexform.itemsPerPage.description">
 			<source>List: Show items per page</source>
-			<target>Liste: Zeige Elemente pro Seite</target>
 		</trans-unit>
 		<trans-unit id="plugin.Faq">
 			<source>FAQ</source>
-			<target>FAQ</target>
 		</trans-unit>
 		<trans-unit id="plugin.FaqAll">
 			<source>FAQ All Categories</source>
-			<target>FAQ Alle Kategorien</target>
 		</trans-unit>
 		<trans-unit id="plugin.Question">
 			<source>FAQ Question Input</source>
-			<target>FAQ Frageneingabe</target>
 		</trans-unit>
 		<trans-unit id="plugin.FaqSingleCategory">
 			<source>FAQ Single Category Selection</source>
-			<target>FAQ Einzelne Kategorie auswahl</target>
 		</trans-unit>
 		<trans-unit id="plugin.FaqSingleCategory.errors.noCategorySelected">
 			<source>Please select a category initially.</source>
-			<target>Bitte Wähle eine Startkategorie aus.</target>
 		</trans-unit>
 		</body>
 	</file>

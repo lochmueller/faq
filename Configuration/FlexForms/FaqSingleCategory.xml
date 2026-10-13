@@ -6,61 +6,45 @@
     <sheets>
         <sheet1>
             <ROOT>
-                <TCEforms>
-                    <sheetTitle>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode.title</sheetTitle>
-                </TCEforms>
+                <sheetTitle>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.topMode.title</sheetTitle>
                 <type>array</type>
                 <el>
                     <settings.faq.itemsPerPage>
-                        <TCEforms>
-                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.faqSingleCategory.itemsPerPage</label>
-                            <description>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.faqSingleCategory.itemsPerPage.description</description>
-                            <config>
-                                <type>input</type>
-                                <size>5</size>
-                                <eval>int</eval>
-                                <range>
-                                    <lower>1</lower>
-                                    <upper>1000</upper>
-                                </range>
-                                <default>10</default>
-                            </config>
-                        </TCEforms>
+                        <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.faqSingleCategory.itemsPerPage</label>
+                        <description>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.faqSingleCategory.itemsPerPage.description</description>
+                        <config>
+                            <type>number</type>
+                            <size>5</size>
+                            
+                            <range>
+                                <lower>1</lower>
+                                <upper>1000</upper>
+                            </range>
+                            <default>10</default>
+                        </config>
                     </settings.faq.itemsPerPage>
-                    <settings.faq.enableAnswerPreview>
-                        <TCEforms>
-                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.enableAnswerPreview</label>
-                            <description>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.enableAnswerPreview.description</description>
-                            <config>
-                                <type>check</type>
-                            </config>
-                        </TCEforms>
-                    </settings.faq.enableAnswerPreview>
                     <settings.initialCategory>
-                        <TCEforms>
-                            <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.faqSingleCategory.Category</label>
-                            <description>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.faqSingleCategory.Category.description</description>
-                            <config>
-                                <type>select</type>
-                                <renderType>selectSingle</renderType>
-                                <foreign_table>tx_faq_domain_model_questioncategory</foreign_table>
-                                <foreign_table_where>tx_faq_domain_model_questioncategory.sys_language_uid IN (0,-1)</foreign_table_where>
-                                <size>1</size>
-                                <items type="array">
-                                    <numIndex index="0" type="array">
-                                        <numIndex index="0">Please select</numIndex>
-                                        <numIndex index="1">Please select</numIndex>
-                                    </numIndex>
-                                </items>
-                            </config>
-                        </TCEforms>
+                        <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.faqSingleCategory.Category</label>
+                        <description>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.faqSingleCategory.Category.description</description>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <foreign_table>tx_faq_domain_model_questioncategory</foreign_table>
+                            <foreign_table_where>tx_faq_domain_model_questioncategory.sys_language_uid IN (0,-1)</foreign_table_where>
+                            <size>1</size>
+                            <items type="array">
+                                <numIndex index="0" type="array">
+                                    <label>Please select</label>
+                                    <value>0</value>
+                                </numIndex>
+                            </items>
+                        </config>
                     </settings.initialCategory>
                     <settings.faq.allFaqsPageLink>
                         <label>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.allFaqsPageLink</label>
                         <description>LLL:EXT:faq/Resources/Private/Language/locallang.xlf:flexform.allFaqsPageLink.description</description>
                         <config>
-                            <type>input</type>
-                            <renderType>inputLink</renderType>
+                            <type>link</type>
                         </config>
                     </settings.faq.allFaqsPageLink>
                     <settings.faq.allFaqsPageLinkText>

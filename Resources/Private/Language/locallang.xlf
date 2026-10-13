@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
 	<file source-language="en" datatype="plaintext" original="messages" date="2016-06-09T06:59:02Z">
-		<header>
-			<type>database</type>
-			<generator>LFEditor</generator>
-		</header>
+		<header/>
 		<body>
 		<trans-unit id="flexform.faqEnter.targetEmail">
-			<source>Empfänger Email-Adresse</source>
+			<source>Recipient email address</source>
 		</trans-unit>
 		<trans-unit id="flexform.faqEnter.title">
-			<source>Neue Frage</source>
+			<source>New question</source>
 		</trans-unit>
 		<trans-unit id="flexform.topMode">
-			<source>Top-Fragen Modus</source>
+			<source>Top questions mode</source>
 		</trans-unit>
 		<trans-unit id="flexform.topMode.title">
 			<source>Configuration</source>
 		</trans-unit>
 		<trans-unit id="flexform.itemsPerPage">
-			<source>Items per subcategory</source>
+			<source>List: Show items per page</source>
 		</trans-unit>
 		<trans-unit id="flexform.itemsPerPage.description">
             <source>List: Show items per page</source>
@@ -57,12 +54,6 @@
 		<trans-unit id="flexform.overrideCategoryDescription.description">
 			<source>Overwrites the category description text. If this field is empty the description or title of the selected category will be displayed.</source>
 		</trans-unit>
-		<trans-unit id="flexform.addSchemaOrgHeader">
-			<source>Enable schema.org Header</source>
-		</trans-unit>
-		<trans-unit id="flexform.addSchemaOrgHeader.description">
-            <source>For details see https://schema.org/FAQPage"</source>
-        </trans-unit>
 		<trans-unit id="flexform.enablePagination">
             <source>Enable Pagination</source>
         </trans-unit>
@@ -74,12 +65,6 @@
         </trans-unit>
         <trans-unit id="flexform.initialCategory.description">
             <source>You can only select categories of first level</source>
-        </trans-unit>
-		<trans-unit id="flexform.enableAnswerPreview">
-            <source>Enable answer preview</source>
-        </trans-unit>
-		<trans-unit id="flexform.enableAnswerPreview.description">
-            <source>Enable answer preview to show first x character without opening the question.</source>
         </trans-unit>
 		<trans-unit id="form.email">
 			<source>Email (for the answer)</source>
@@ -103,34 +88,28 @@
 			<source>hdnet_faq (Header)</source>
 		</trans-unit>
 		<trans-unit id="tx_faq_domain_model_question">
-			<source>Frage</source>
+			<source>Question</source>
 		</trans-unit>
 		<trans-unit id="tx_faq_domain_model_question.answer">
-			<source>Antwort</source>
+			<source>Answer</source>
 		</trans-unit>
 		<trans-unit id="tx_faq_domain_model_question.categories">
-			<source>Kategorien</source>
-		</trans-unit>
-		<trans-unit id="tx_faq_domain_model_question.flop_counter">
-			<source>Anzahl / Flop</source>
+			<source>Categories</source>
 		</trans-unit>
 		<trans-unit id="tx_faq_domain_model_question.tags">
 			<source>Tags</source>
 		</trans-unit>
 		<trans-unit id="tx_faq_domain_model_question.title">
-			<source>Frage</source>
-		</trans-unit>
-		<trans-unit id="tx_faq_domain_model_question.top_counter">
-			<source>Anzahl / Top</source>
+			<source>Question</source>
 		</trans-unit>
 		<trans-unit id="tx_faq_domain_model_questioncategory">
-			<source>FAQ Kategorie</source>
+			<source>FAQ Category</source>
 		</trans-unit>
 		<trans-unit id="tx_faq_domain_model_questioncategory.parent">
-			<source>Kategorie</source>
+			<source>Category</source>
 		</trans-unit>
 		<trans-unit id="tx_faq_domain_model_questioncategory.title">
-			<source>Titel</source>
+			<source>Title</source>
 		</trans-unit>
 			<trans-unit id="tx_faq_domain_model_questioncategory.description">
 			<source>Description</source>

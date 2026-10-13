@@ -6,8 +6,9 @@ namespace HDNET\Faq\Domain\Repository;
 
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
-class QuestionCategoryRepository extends AbstractRepository
+class QuestionCategoryRepository extends Repository
 {
     /**
      * Default sorting.
@@ -19,7 +20,7 @@ class QuestionCategoryRepository extends AbstractRepository
     public function initializeObject(): void
     {
         $querySettings = $this->createQuery()->getQuerySettings();
-        // Show comments from all pages
+        // Show categories from all pages
         $querySettings->setRespectStoragePage(false);
         $this->setDefaultQuerySettings($querySettings);
     }
@@ -40,11 +41,13 @@ class QuestionCategoryRepository extends AbstractRepository
         return $query->execute();
     }
 
+    /**
+     * Find all categories without a parent (top level categories).
+     *
+     * @return array|QueryResultInterface
+     */
     public function findAllParentCategories()
     {
-        $query = $this->createQuery();
-        $query->matching($query->equals('parent', ''));
-
-        return $query->execute();
+        return $this->findByParent(0);
     }
 }

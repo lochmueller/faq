@@ -11,9 +11,9 @@ $EM_CONF[$_EXTKEY] = [
     'author_company' => 'hdnet.de',
     'constraints' => [
         'depends' => [
-            'php' => '7.4.0-8.4.99',
-            'typo3' => '11.5.0-12.99.99',
-            'form' => '11.5.0-12.99.99',
+            'php' => '8.2.0-8.5.99',
+            'typo3' => '13.4.0-14.3.99',
+            'form' => '13.4.0-14.3.99',
         ],
     ],
     'autoload' => [
