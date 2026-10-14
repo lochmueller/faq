@@ -5,11 +5,11 @@ declare(strict_types = 1);
 namespace HDNET\Faq\Domain\Repository;
 
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
-use TYPO3\CMS\Core\Utility\ClassNamingUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 
-class QuestionRepository extends AbstractRepository
+class QuestionRepository extends Repository
 {
     /**
      * Orderings.
@@ -20,17 +20,11 @@ class QuestionRepository extends AbstractRepository
         'title' => QueryInterface::ORDER_ASCENDING,
     ];
 
-    /**
-     * Constructs a new Repository.
-     */
-    public function __construct()
+    public function __construct(ExtensionConfiguration $extensionConfiguration)
     {
-        // Replace with parent constructor call in TYPO3 v12
-        $this->objectType = ClassNamingUtility::translateRepositoryNameToModelName($this->getRepositoryClassName());
+        parent::__construct();
 
-        $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('faq');
-
-        if ($extensionConfiguration['enableManuallySorting'] ?? false) {
+        if ($extensionConfiguration->get('faq')['enableManuallySorting'] ?? false) {
             $this->defaultOrderings = [
                 'sorting' => QueryInterface::ORDER_ASCENDING,
             ];
@@ -40,7 +34,7 @@ class QuestionRepository extends AbstractRepository
     public function initializeObject(): void
     {
         $querySettings = $this->createQuery()->getQuerySettings();
-        // Show comments from all pages
+        // Show questions from all pages
         $querySettings->setRespectStoragePage(false);
         $this->setDefaultQuerySettings($querySettings);
     }
@@ -49,7 +43,6 @@ class QuestionRepository extends AbstractRepository
     {
         $query = $this->createQuery();
 
-        $constraints = [];
         $categorySelection = [];
 
         if (!is_iterable($categories)) {
@@ -60,15 +53,14 @@ class QuestionRepository extends AbstractRepository
             $categorySelection[] = $query->contains('categories', $category);
         }
 
-        if (!empty($categorySelection)) {
-            $constraints[] = $query->logicalOr(...$categorySelection);
+        if ([] === $categorySelection) {
+            // No categories given: match nothing instead of everything
+            $query->matching($query->equals('uid', 0));
+
+            return $query->execute();
         }
 
-        if (!empty($constraints)) {
-            $query->matching(
-                $query->logicalAnd(...$constraints)
-            );
-        }
+        $query->matching($query->logicalOr(...$categorySelection));
 
         return $query->execute();
     }

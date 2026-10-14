@@ -7,14 +7,12 @@ namespace HDNET\Faq\Controller;
 use HDNET\Faq\Domain\Factory\QuestionFormFactory;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
-class QuestionController extends AbstractController
+class QuestionController extends ActionController
 {
-    protected QuestionFormFactory $questionFormFactory;
-
-    public function __construct(QuestionFormFactory $questionFormFactory)
+    public function __construct(protected readonly QuestionFormFactory $questionFormFactory)
     {
-        $this->questionFormFactory = $questionFormFactory;
     }
 
     public function indexAction(): ResponseInterface

@@ -2,9 +2,9 @@
 
 defined('TYPO3') or die();
 
-use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
-use HDNET\Faq\Controller\QuestionController;
 use HDNET\Faq\Controller\FaqController;
+use HDNET\Faq\Controller\QuestionController;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 ExtensionUtility::configurePlugin(
     'Faq', // Extension name
@@ -16,7 +16,9 @@ ExtensionUtility::configurePlugin(
     // Non-cacheable actions
     [
         FaqController::class => 'index',
-    ]
+    ],
+    // Register as content element (CType)
+    ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
 );
 ExtensionUtility::configurePlugin(
     'Faq', // Extension name
@@ -28,7 +30,9 @@ ExtensionUtility::configurePlugin(
     // Non-cacheable actions
     [
         FaqController::class => 'all',
-    ]
+    ],
+    // Register as content element (CType)
+    ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
 );
 ExtensionUtility::configurePlugin(
     'Faq', // Extension name
@@ -40,7 +44,9 @@ ExtensionUtility::configurePlugin(
     // Non-cacheable actions
     [
         QuestionController::class => 'submit',
-    ]
+    ],
+    // Register as content element (CType)
+    ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
 );
 ExtensionUtility::configurePlugin(
     'Faq', // Extension name
@@ -52,32 +58,7 @@ ExtensionUtility::configurePlugin(
     // Non-cacheable actions
     [
         FaqController::class => 'singleCategory',
-    ]
+    ],
+    // Register as content element (CType)
+    ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
 );
-
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('
-mod {
-	wizards.newContentElement.wizardItems.plugins {
-		elements {
-			faq {
-			    iconIdentifier = extension-faq
-				title = LLL:EXT:faq/Resources/Private/Language/locallang.xlf:plugin.Faq
-				description = Create FAQ Plugin to handle the FAQ output
-				tt_content_defValues {
-					CType = list
-					list_type = faq_faq
-				}
-			}
-			faq_all_category {
-			    iconIdentifier = extension-faq
-				title = LLL:EXT:faq/Resources/Private/Language/locallang.xlf:plugin.FaqAll
-				description = Create FAQ Plugin to handle the FAQ output incl. all the categories
-				tt_content_defValues {
-					CType = list
-					list_type = faq_faqall
-				}
-			}
-		}
-	}
-}
-');

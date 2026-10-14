@@ -1,0 +1,17 @@
+# Default settings for the FAQ plugins. The view root paths are added
+# automatically by Extbase (EXT:faq/Resources/Private/{Templates,Partials,Layouts}).
+plugin.tx_faq_faq {
+	settings {
+		faq {
+			itemsPerPage = 10
+		}
+	}
+}
+
+plugin.tx_faq_faqsinglecategory {
+	settings {
+		faq {
+			itemsPerPage = 10
+		}
+	}
+}

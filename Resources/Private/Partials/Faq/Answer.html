@@ -1,36 +1,8 @@
-{namespace hf=HDNET\Faq\ViewHelpers}
-
-<div class="accordion-item">
-	<h2 class="accordion-header" id="heading_{question.uid}{suffix}">
-		<button class="accordion-button collapsed"
-						type="button"
-						data-bs-toggle="collapse"
-						data-bs-target="#collapse_{question.uid}{suffix}"
-						aria-expanded="false"
-						aria-controls="collapse_{question.uid}{suffix}">
-			{question.title}
-		</button>
-
-		<f:if condition="{settings.faq.enableAnswerPreview}">
-			<f:then>
-				<span class="fs-6 p-3">
-					<f:format.raw>
-						<f:format.crop maxCharacters="100">
-							{question.answer}
-						</f:format.crop>
-					</f:format.raw>
-				</span>
-			</f:then>
-		</f:if>
-
-	</h2>
-	<div id="collapse_{question.uid}{suffix}"
-			 class="accordion-collapse collapse"
-			 aria-labelledby="heading_{question.uid}{suffix}"
-			 data-bs-parent="#accordionExample">
-		<div class="accordion-body">
-			<span class="cat"><f:for each="{question.categories}" as="cat" iteration="i">{f:if(condition: i.isFirst, then: '', else: ', ')}{cat.title}</f:for></span>
+<details data-faq="section" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+	<summary data-faq="question" itemprop="name">{question.title}</summary>
+	<div data-faq="answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+		<div itemprop="text">
 			<f:format.html>{question.answer}</f:format.html>
 		</div>
 	</div>
-</div>
+</details>

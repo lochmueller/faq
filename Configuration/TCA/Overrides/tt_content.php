@@ -2,56 +2,69 @@
 
 declare(strict_types = 1);
 
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 \defined('TYPO3') || exit();
 
 (static function (): void {
-    $pluginKey = ExtensionUtility::registerPlugin(
-        // extension name, matching the PHP namespaces (but without the vendor)
-        'Faq',
-        // arbitrary, but unique plugin name (not visible in the backend)
-        'Faq',
-        // plugin title, as visible in the drop-down in the backend, use "LLL:" for localization
-        'FAQ',
-    );
-    $pluginKey = ExtensionUtility::registerPlugin(
-        // extension name, matching the PHP namespaces (but without the vendor)
-        'Faq',
-        // arbitrary, but unique plugin name (not visible in the backend)
-        'FaqAll',
-        // plugin title, as visible in the drop-down in the backend, use "LLL:" for localization
-        'FAQ All Categories',
-    );
-    $pluginKey = ExtensionUtility::registerPlugin(
-        // extension name, matching the PHP namespaces (but without the vendor)
-        'Faq',
-        // arbitrary, but unique plugin name (not visible in the backend)
-        'Question',
-        // plugin title, as visible in the drop-down in the backend, use "LLL:" for localization
-        'FAQ Question Input',
-    );
-    $pluginKey = ExtensionUtility::registerPlugin(
-        // extension name, matching the PHP namespaces (but without the vendor)
-        'Faq',
-        // arbitrary, but unique plugin name (not visible in the backend)
-        'FaqSingleCategory',
-        // plugin title, as visible in the drop-down in the backend, use "LLL:" for localization
-        'FAQ Single Category Selection',
-    );
+    $isV14OrNewer = (new Typo3Version())->getMajorVersion() >= 14;
+
+    $plugins = [
+        'Faq' => [
+            'title' => 'FAQ',
+            'flexForm' => 'FILE:EXT:faq/Configuration/FlexForms/Faq.xml',
+        ],
+        'FaqAll' => [
+            'title' => 'FAQ All Categories',
+            'flexForm' => '',
+        ],
+        'Question' => [
+            'title' => 'FAQ Question Input',
+            'flexForm' => 'FILE:EXT:faq/Configuration/FlexForms/Question.xml',
+        ],
+        'FaqSingleCategory' => [
+            'title' => 'FAQ Single Category Selection',
+            'flexForm' => 'FILE:EXT:faq/Configuration/FlexForms/FaqSingleCategory.xml',
+        ],
+    ];
+
+    foreach ($plugins as $pluginName => $plugin) {
+        if ($isV14OrNewer) {
+            // TYPO3 v14: registerPlugin() accepts the FlexForm directly and adds
+            // the plugin tab together with the pi_flexform field on its own.
+            ExtensionUtility::registerPlugin(
+                'Faq',
+                $pluginName,
+                $plugin['title'],
+                'extension-faq',
+                'plugins',
+                '',
+                $plugin['flexForm'],
+            );
+            continue;
+        }
+
+        // TYPO3 v13.4: registerPlugin() does not accept a FlexForm yet, so it is
+        // registered the classic way (see core EXT:felogin for the pattern).
+        $contentType = ExtensionUtility::registerPlugin(
+            'Faq',
+            $pluginName,
+            $plugin['title'],
+            'extension-faq',
+        );
+
+        if ('' === $plugin['flexForm']) {
+            continue;
+        }
+
+        ExtensionManagementUtility::addPiFlexFormValue('*', $plugin['flexForm'], $contentType);
+        ExtensionManagementUtility::addToAllTCAtypes(
+            'tt_content',
+            '--div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:plugin, pi_flexform',
+            $contentType,
+            'after:palette:headers',
+        );
+    }
 })();
-
-$pluginSignature = str_replace('_', '', 'faq') . '_faq';
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'recursive,select_key,pages';
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:faq/Configuration/FlexForms/Faq.xml');
-
-$pluginSignature = str_replace('_', '', 'faq') . '_question';
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'recursive,select_key,pages';
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:faq/Configuration/FlexForms/Question.xml');
-
-$pluginSignature = str_replace('_', '', 'faq') . '_faqsinglecategory';
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'recursive,select_key,pages';
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:faq/Configuration/FlexForms/FaqSingleCategory.xml');

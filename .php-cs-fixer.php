@@ -8,7 +8,6 @@ return (new PhpCsFixer\Config())
     ->setFinder(
         PhpCsFixer\Finder::create()
             ->in(__DIR__ . '/Classes')
-            ->in(__DIR__ . '/Tests/Unit')
             ->in(__DIR__ . '/Configuration/TCA')
     )
     ->setRules([
@@ -16,7 +15,6 @@ return (new PhpCsFixer\Config())
         '@DoctrineAnnotation' => true,
         '@Symfony' => true,
         '@Symfony:risky' => true,
-        '@PHP70Migration' => true,
         'concat_space' => [
             'spacing' => 'one',
         ],
@@ -28,7 +26,7 @@ return (new PhpCsFixer\Config())
         'phpdoc_add_missing_param_annotation' => true,
         'phpdoc_order' => true,
         'ordered_imports' => [
-            'sortAlgorithm' => 'alpha',
+            'sort_algorithm' => 'alpha',
         ],
         'combine_consecutive_issets' => true,
         'combine_consecutive_unsets' => true,
@@ -40,7 +38,6 @@ return (new PhpCsFixer\Config())
         'no_homoglyph_names' => true,
         'visibility_required' => true,
         'declare_strict_types' => true,
-        'mb_str_functions' => true,
         'native_function_invocation' => [
             'exclude' => [],
         ],
@@ -54,7 +51,6 @@ return (new PhpCsFixer\Config())
         'no_singleline_whitespace_before_semicolons' => true,
         'no_unused_imports' => true,
         'no_whitespace_in_blank_line' => true,
-        'ordered_imports' => true,
         'single_quote' => true,
         'no_empty_statement' => true,
         'phpdoc_no_package' => true,

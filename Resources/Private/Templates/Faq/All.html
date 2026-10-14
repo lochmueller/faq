@@ -2,11 +2,13 @@
 
 <f:section name="content">
 
-	<ul>
-		<f:for each="{questionsPerCategory}" as="element">
-			<f:render partial="Faq/CategoryRec"
-								arguments="{element: element, settings: settings}"/>
-		</f:for>
-	</ul>
+	<div class="faq" itemscope itemtype="https://schema.org/FAQPage">
+		<ul>
+			<f:for each="{questionsPerCategory}" as="element">
+				<f:render partial="Faq/CategoryRec"
+									arguments="{element: element}"/>
+			</f:for>
+		</ul>
+	</div>
 
 </f:section>

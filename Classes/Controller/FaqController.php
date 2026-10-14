@@ -7,77 +7,38 @@ namespace HDNET\Faq\Controller;
 use HDNET\Faq\Domain\Model\QuestionCategory;
 use HDNET\Faq\Domain\Repository\QuestionCategoryRepository;
 use HDNET\Faq\Domain\Repository\QuestionRepository;
-use HDNET\Faq\Service\SchemaService;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
 
-class FaqController extends AbstractController
+class FaqController extends ActionController
 {
-    protected QuestionRepository $questionRepository;
-
-    protected QuestionCategoryRepository $questionCategoryRepository;
-
-    protected SchemaService $schemaService;
-
-    protected bool $addSchemaHeader = false;
-
     public function __construct(
-        QuestionRepository $questionRepository,
-        QuestionCategoryRepository $questionCategoryRepository,
-        SchemaService $schemaService,
+        protected readonly QuestionRepository $questionRepository,
+        protected readonly QuestionCategoryRepository $questionCategoryRepository,
     ) {
-        $this->questionRepository = $questionRepository;
-        $this->questionCategoryRepository = $questionCategoryRepository;
-        $this->schemaService = $schemaService;
-
-        $this->addSchemaHeader = (bool)($this->settings['faq']['addSchmemaOrgHeader'] ?? true);
     }
 
     public function indexAction(?QuestionCategory $category = null): ResponseInterface
     {
-        $categoryUid = $category ? (int)$category->getUid() : (int)($this->settings['initialCategory'] ?? 0);
-        $categoryChildren = $this->questionCategoryRepository->findByParent($categoryUid);
-        $questionsPerSubCategory = [];
-        $allQuestions = [];
-        $questions = null;
-        if (!empty($categoryChildren)) {
-            $allQuestions = $this->questionRepository->findByCategories($categoryChildren);
-        }
+        $categoryUid = $category instanceof QuestionCategory
+            ? (int)$category->getUid()
+            : (int)($this->settings['initialCategory'] ?? 0);
 
-        foreach ($categoryChildren as $subCategory) {
-            $questions = $this->questionRepository->findByCategories([$subCategory]);
-            if (0 !== $questions->count()) {
-                $questionsPerSubCategory[] = [
-                    'category' => $subCategory,
-                    'questions' => $questions,
-                ];
-            }
-        }
+        $questions = $this->questionRepository->findByCategories(
+            $this->questionCategoryRepository->findByParent($categoryUid)
+        );
 
-        if ($this->addSchemaHeader) {
-            $this->schemaService->addSchemaOrgHeader($allQuestions);
-        }
-
-        if ($this->request->getQueryParams()['tx_faq_faq']['currentPage'] ?? null) {
-            $currentPage = (int)($this->request->getQueryParams()['tx_faq_faq']['currentPage']);
-        } else {
-            $currentPage = 1;
-        }
-
-        $paginator = null;
-        $pagination = null;
-        if ($questions) {
-            $paginator = new QueryResultPaginator($questions, $currentPage, (int)$this->settings['faq']['itemsPerPage']);
-            $pagination = new SimplePagination($paginator);
-        }
+        $itemsPerPage = max(1, (int)($this->settings['faq']['itemsPerPage'] ?? 10));
+        $paginator = new QueryResultPaginator($questions, $this->getCurrentPage(), $itemsPerPage);
+        $pagination = new SimplePagination($paginator);
 
         $this->view->assignMultiple([
-            'questions' => $allQuestions,
-            'subCategories' => $questionsPerSubCategory,
+            'questions' => $questions,
             'paginator' => $paginator,
             'pagination' => $pagination,
-            'pages' => $pagination ? range(1, $pagination->getLastPageNumber()) : [],
+            'pages' => range(1, $pagination->getLastPageNumber()),
             'categories' => $this->questionCategoryRepository->findByParent(0),
         ]);
 
@@ -86,17 +47,10 @@ class FaqController extends AbstractController
 
     public function allAction(): ResponseInterface
     {
-        $parentCategories = $this->questionCategoryRepository->findAllParentCategories();
         $questionsPerCategory = [];
 
-        /** @var QuestionCategory $parentCategory */
-        foreach ($parentCategories as $parentCategory) {
+        foreach ($this->questionCategoryRepository->findAllParentCategories() as $parentCategory) {
             $questionsPerCategory[] = $this->getQuestionRec($parentCategory);
-        }
-
-        if ($this->addSchemaHeader) {
-            $allQuestions = $this->questionRepository->findAll();
-            $this->schemaService->addSchemaOrgHeader($allQuestions);
         }
 
         $this->view->assignMultiple([
@@ -112,16 +66,16 @@ class FaqController extends AbstractController
         $errors = [];
         $category = null;
         $questions = [];
-        $categoryUid = $this->settings['initialCategory'];
+        $categoryUid = $this->settings['initialCategory'] ?? null;
 
         if (empty($categoryUid) || !is_numeric($categoryUid)) {
             $errors[] = 'plugin.FaqSingleCategory.errors.noCategorySelected';
-            $this->view->assignMultiple(['errors' => $errors]);
-
-            return $this->htmlResponse();
+        } else {
+            $category = $this->questionCategoryRepository->findByUid((int)$categoryUid);
+            if ($category instanceof QuestionCategory) {
+                $questions = $this->questionRepository->findByCategory($category);
+            }
         }
-        $category = $this->questionCategoryRepository->findByUid($categoryUid);
-        $questions = $this->questionRepository->findByCategory($category);
 
         $this->view->assignMultiple([
             'category' => $category,
@@ -132,14 +86,14 @@ class FaqController extends AbstractController
         return $this->htmlResponse();
     }
 
-    private function getQuestionRec(QuestionCategory $category)
+    private function getQuestionRec(QuestionCategory $category): array
     {
-        $childCategories = $this->questionCategoryRepository->findByParent($category->getUid())->toArray();
+        $childCategories = $this->questionCategoryRepository->findByParent((int)$category->getUid())->toArray();
         $element = [
             'category' => $category,
             'questions' => $this->questionRepository->findByCategory($category)->toArray(),
         ];
-        if ($childCategories) {
+        if ([] !== $childCategories) {
             $childElements = [];
             foreach ($childCategories as $childCategory) {
                 $childElements[] = $this->getQuestionRec($childCategory);
@@ -148,5 +102,14 @@ class FaqController extends AbstractController
         }
 
         return $element;
+    }
+
+    private function getCurrentPage(): int
+    {
+        $currentPage = $this->request->hasArgument('currentPage')
+            ? (int)$this->request->getArgument('currentPage')
+            : 1;
+
+        return max(1, $currentPage);
     }
 }

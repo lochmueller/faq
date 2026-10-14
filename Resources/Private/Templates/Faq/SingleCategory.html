@@ -25,12 +25,12 @@
 						</f:if>
 					</div>
 					<div class="col-10">
-						<div class="accordion" id="accordionExample">
+						<div class="faq" itemscope itemtype="https://schema.org/FAQPage">
 							<f:for each="{questions}" as="question" iteration="questionIterator">
 								<f:if condition="{questionIterator.cycle} <= {settings.faq.itemsPerPage}">
 									<f:then>
 										<f:render partial="Faq/Answer"
-															arguments="{question: question, suffix: '', questionIterator: questionIterator, settings: settings}"/>
+															arguments="{question: question}"/>
 									</f:then>
 								</f:if>
 							</f:for>

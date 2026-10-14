@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
 	<file source-language="en" target-language="pl" datatype="plaintext" original="messages" date="2016-06-09T06:59:02Z">
-		<header>
-			<type>database</type>
-			<generator>LFEditor</generator>
-		</header>
+		<header/>
 		<body>
 		<trans-unit id="form.email" approved="yes">
 			<source>Email (for the answer)</source>

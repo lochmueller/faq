@@ -99,22 +99,6 @@ class Question extends AbstractModel
     }
 
     /**
-     * Set the top counter.
-     */
-    public function setTopCounter(int $topCounter): void
-    {
-        $this->topCounter = $topCounter;
-    }
-
-    /**
-     * Get the top counter.
-     */
-    public function getTopCounter(): int
-    {
-        return (int)$this->topCounter;
-    }
-
-    /**
      * Set the categories.
      *
      * @param ObjectStorage $categories
@@ -130,22 +114,6 @@ class Question extends AbstractModel
     public function getCategories(): ObjectStorage
     {
         return $this->categories;
-    }
-
-    /**
-     * Set the Flop Counter.
-     */
-    public function setFlopCounter(int $flopCounter): void
-    {
-        $this->flopCounter = $flopCounter;
-    }
-
-    /**
-     * Get the flop counter.
-     */
-    public function getFlopCounter(): int
-    {
-        return (int)$this->flopCounter;
     }
 
     public function getCrdate(): \DateTime

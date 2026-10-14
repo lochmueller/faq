@@ -22,7 +22,7 @@
 
 			<f:for each="{pages}" as="page">
 				<li class="page-item {f:if(condition: '{page} == {paginator.currentPageNumber}', then: 'active')}">
-					<a class="page-link" href="{f:uri.action(action:indexAction, arguments:{currentPage: page})}" title="page">{page}</a>
+					<a class="page-link" href="{f:uri.action(action:index, arguments:{currentPage: page})}" title="page">{page}</a>
 				</li>
 			</f:for>
 
