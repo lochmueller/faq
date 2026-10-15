@@ -23,7 +23,7 @@ $tca = [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'iconfile' => 'EXT:faq/Resources/Public/Icons/Question.png',
+        'iconfile' => 'EXT:faq/Resources/Public/Icons/Question.svg',
         'sortby' => $enableManuallySorting ? 'sorting' : null,
     ],
     'types' => [
