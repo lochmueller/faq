@@ -1,18 +1,18 @@
 <?php
 
-use TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider;
+use TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider;
 
 return [
     'contains-faq' => [
-        'provider' => BitmapIconProvider::class,
-        'source' => 'EXT:faq/Resources/Public/Icons/Extension.png',
+        'provider' => SvgIconProvider::class,
+        'source' => 'EXT:faq/Resources/Public/Icons/QuestionFolder.svg',
     ],
     'apps-pagetree-folder-contains-faq' => [
-        'provider' => BitmapIconProvider::class,
-        'source' => 'EXT:faq/Resources/Public/Icons/Extension.png',
+        'provider' => SvgIconProvider::class,
+        'source' => 'EXT:faq/Resources/Public/Icons/QuestionFolder.svg',
     ],
     'extension-faq' => [
-        'provider' => BitmapIconProvider::class,
-        'source' => 'EXT:faq/Resources/Public/Icons/Extension.png',
+        'provider' => SvgIconProvider::class,
+        'source' => 'EXT:faq/Resources/Public/Icons/Question.svg',
     ],
 ];
